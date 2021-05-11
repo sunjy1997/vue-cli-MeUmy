@@ -1,7 +1,7 @@
 # vue-cli-MeUmy
 
 > A Vue.js project
-
+近期会对项目格式进行编辑，请开发人员仔细阅读
 ## Build Setup
 
 ``` bash
