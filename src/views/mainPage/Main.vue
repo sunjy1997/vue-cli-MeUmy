@@ -1,14 +1,17 @@
 <template>
   <div id="app" class="namePage">
-    <p>早上好</p>
+    <pageHeader></pageHeader>
   </div>
 </template>
 
 <script>
+  import pageHeader from '../../components/pageHeader'
 
   export default {
     name: "mainPage",
-    components: {}
+    components: {
+      pageHeader
+    }
   }
 </script>
 
