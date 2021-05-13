@@ -1,45 +1,62 @@
 <template>
-  <div>
-    <div class="header-body">
-      <div class="header_tags">
-        <div class="header_tags" v-for="item in menu" :key="item.key">
-          <div
-            class="header_btn"
-            :class="{btn_choose: pageNum === item.page}"
-            @click="jumpToVideo(item.path)">
-            {{ item.name }}
-          </div>
-          <img
-            v-if="item.name === '绘图'"
-            class="header_img"
-            src="../assets/img/head_title.png">
-        </div>
-      </div>
-      <div class="right_div">
+  <div class="header-body">
+    <div class="header_tags">
+      <!-- 遍历展示头部标题按钮，包括视频、绘图、文章、创作者 -->
+      <div
+        class="header_tags"
+        v-for="item in tabList"
+        :key="item.key">
+        <!-- 仅有首页有进入页面时的头部动画效果，样式为header_btn_animate -->
+        <!-- 被选中的页面下方高亮，样式为btn_choose -->
         <div
-          class="icon_font"
-          @mouseenter="showMenu = true"
-          @mouseleave="showMenu = false">
-          创作素材
-          <transition
-            enter-active-class="animate__animated animate__backInRight"
-            leave-active-class="animate__bounceOut">
-            <div
-              class="menu_body"
-              v-if="showMenu">
-              <div
-                v-for="item in list"
-                :key="item.key"
-                class="list_font">
-                {{item.name}}
-              </div>
-            </div>
-          </transition>
+          class="header_btn"
+          :class="
+            [pageNum === '' ?
+            'header_btn_animate' :
+            pageNum === item.page ?
+            'btn_choose' :
+            '']"
+          @click="jumpToTabPage(item.path)">
+          {{ item.name }}
         </div>
+        <!-- 仅在绘图按钮右边展示标题图片 -->
         <img
-          src="../assets/img/icon.png"
-          class="icon_img">
+          v-if="item.name === '绘图'"
+          class="header_img"
+          :class="{header_img_animate: pageNum === ''}"
+          src="../assets/img/head_title.png">
       </div>
+    </div>
+    <!-- 右侧创作素材及关于按钮 -->
+    <div
+      class="right_div"
+      :class="{right_div_animate: pageNum === ''}">
+      <div
+        class="icon_font"
+        @mouseleave="showMenu = false"
+        @click="showMenu = !showMenu">
+        创作素材
+        <!-- 添加子菜单框的显示控制与动画效果 -->
+        <transition
+          enter-active-class="animate__animated animate__backInRight"
+          leave-active-class="animate__bounceOut">
+          <div
+            class="menu_body"
+            v-if="showMenu">
+            <!-- 遍历展示子菜单按钮，包括素材库、草原路灯、草原录播 -->
+            <div
+              v-for="item in menuList"
+              :key="item.key"
+              class="list_font"
+              @click="jumpToMenuPage(item.path)">
+              {{item.name}}
+            </div>
+          </div>
+        </transition>
+      </div>
+      <img
+        src="../assets/img/icon.png"
+        class="icon_img">
     </div>
   </div>
 </template>
@@ -47,9 +64,15 @@
 <script>
   export default {
     name: 'header',
+    props: {
+      // 视频：0;绘图：1;文章：2;创作者：3;首页：''
+      pageNum: {
+        type: String
+      }
+    },
     data() {
       return {
-        menu: [ // 遍历头部按钮
+        tabList: [ // 遍历头部按钮
           {
             name: '视频',
             page: '0',
@@ -71,29 +94,42 @@
             path: ''
           }
         ],
-        pageNum: '', // 视频：0；绘图：1；文章：2；创作者：3
         showMenu: false, // 是否展示子菜单
-        list: [
+        menuList: [ // 遍历创作素材按钮
           {
             name: '素材库',
             path: ''
           },
           {
             name: '草原录播',
-            path: ''
+            path: 'https://space.bilibili.com/674622242/video'
           },
           {
             name: '草原路灯',
-            path: ''
+            path: 'https://meumy.club/'
           }
         ]
       }
     },
     methods: {
-      // 页面跳转
-      jumpToVideo(path) {
-        // this.$router.push(path)
+      // 跳转tab目录，由于都是项目内页面，使用$router跳转
+      jumpToTabPage(path) {
+        this.$router.push(path)
       },
+      // 跳转子菜单目录
+      jumpToMenuPage(path) {
+        if (path.indexOf('https') === -1) {
+          // 素材库为项目内页面，使用$router跳转
+          this.$router.push(path);
+        } else {
+          // 路灯和录播为外链，用https作为判断依据，打开新页面跳转
+          window.open(path);
+        }
+      },
+      // 跳转关于页面，由于是项目内页面，使用$router跳转
+      jumpToAboutPage() {
+        this.$router.push('');
+      }
     }
   }
 </script>
@@ -108,7 +144,7 @@
     width: 100%;
     height: 3.5rem;
     padding-left: 4.5rem;
-    /* background: pink; */
+    box-shadow: #CCCCCC 3px 3px 3px 1px;
   }
   .header_tags {
     display: flex;
@@ -116,6 +152,8 @@
   }
   .header_img {
     height: 3.5rem;
+  }
+  .header_img_animate {
     animation: zoomInUp;
     animation-duration: 2s;
   }
@@ -130,6 +168,8 @@
     width: 4.5rem;
     height: 3.2rem;
     margin-bottom: 0.3rem;
+  }
+  .header_btn_animate {
     animation: zoomIn;
     animation-duration: 2.5s;
   }
@@ -137,16 +177,21 @@
     background: #DEDEDE;
     cursor: pointer;
     border-radius: 1rem;
-    /* animation: pulse;
-    animation-duration: 1s; */
-    /* --animate-repeat: 2; */
   }
   .btn_choose {
     border-bottom: 0.3rem solid aqua;
   }
+  /* .btn_choose:hover {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+  } */
   .right_div {
     display: flex;
     align-items: center;
+  }
+  .right_div_animate {
     animation: rotateInDownRight;
     animation-duration: 1.5s;
   }
@@ -174,6 +219,8 @@
   .menu_body {
     border: 1px solid gray;
     border-radius: 0.5rem;
+    overflow: auto;
+    background: whitesmoke;
     width: 8rem;
     position: fixed;
     right: 0rem;
@@ -182,6 +229,7 @@
   }
   .list_font {
     font-family: cjkFonts;
+    background: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
