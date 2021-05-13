@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="namePage">
-    <pageHeader></pageHeader>
+    <pageHeader
+      pageNum = '1'></pageHeader>
   </div>
 </template>
 
@@ -11,6 +12,11 @@
     name: "mainPage",
     components: {
       pageHeader
+    },
+    data() {
+      return {
+        
+      }
     }
   }
 </script>
