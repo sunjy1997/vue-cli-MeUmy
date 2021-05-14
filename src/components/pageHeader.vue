@@ -140,11 +140,11 @@
   }
   .header-body {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
     height: 3.5rem;
-    padding-left: 4.5rem;
-    box-shadow: #CCCCCC 3px 3px 3px 1px;
+    padding-left: 12rem;
+    padding-right: 1rem;
+    box-shadow: #CCCCCC 2px 4px 3px 0px;
   }
   .header_tags {
     display: flex;
@@ -217,10 +217,9 @@
     height: 1.6rem;
   }
   .menu_body {
-    border: 1px solid gray;
     border-radius: 0.5rem;
     overflow: auto;
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 0.5);
     width: 8rem;
     position: fixed;
     right: 0rem;
@@ -229,14 +228,14 @@
   }
   .list_font {
     font-family: cjkFonts;
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3rem;
   }
   .list_font:hover {
-    background: #DEDEDE;
+    background: rgba( 222, 222, 222, 0.8);
     cursor: pointer;
     border-radius: 0.5rem;
   }
