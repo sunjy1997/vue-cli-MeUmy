@@ -24,7 +24,10 @@
           v-if="item.name === '绘图'"
           class="header_img"
           :class="{header_img_animate: pageNum === ''}"
-          src="../assets/img/head_title.png">
+          src="../assets/img/head_title.png"
+          oncontextmenu="return false"
+          onselectstart="return false"
+          draggable="false">
       </div>
     </div>
     <!-- 右侧创作素材及关于按钮 -->
@@ -33,7 +36,6 @@
       :class="{right_div_animate: pageNum === ''}">
       <div
         class="icon_font"
-        @mouseleave="showMenu = false"
         @click="showMenu = !showMenu">
         创作素材
         <!-- 添加子菜单框的显示控制与动画效果 -->
@@ -49,26 +51,27 @@
               :key="item.key"
               class="list_font"
               @click="jumpToMenuPage(item.path)">
-              {{item.name}}
+              {{ item.name }}
             </div>
           </div>
         </transition>
       </div>
       <img
         src="../assets/img/icon.png"
-        class="icon_img">
+        class="icon_img"
+        oncontextmenu="return false"
+        onselectstart="return false"
+        draggable="false">
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'header',
+    name: 'head',
     props: {
       // 视频：0;绘图：1;文章：2;创作者：3;首页：''
-      pageNum: {
-        type: String
-      }
+      pageNum: { type: String }
     },
     data() {
       return {
@@ -111,6 +114,17 @@
         ]
       }
     },
+    watch: {
+      // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
+      // 所以添加逻辑设定点击4秒后关闭弹窗
+      showMenu(newState, oldState) {
+        if (newState === true) {
+          setTimeout(() => {
+            this.showMenu = false;
+          }, '4000')
+        }
+      }
+    },
     methods: {
       // 跳转tab目录，由于都是项目内页面，使用$router跳转
       jumpToTabPage(path) {
@@ -141,10 +155,10 @@
   .header-body {
     display: flex;
     justify-content: space-between;
-    height: 3.5rem;
-    padding-left: 12rem;
+    padding-left: 13rem;
     padding-right: 1rem;
-    box-shadow: #CCCCCC 2px 4px 3px 0px;
+    padding-top: 0.3rem;
+    box-shadow: #616161 1px 2px 3px 1px;
   }
   .header_tags {
     display: flex;
@@ -152,9 +166,15 @@
   }
   .header_img {
     height: 3.5rem;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    margin-right: 0.5rem;
   }
   .header_img_animate {
-    animation: zoomInUp;
+    animation: zoomIn;
     animation-duration: 2s;
   }
   .header_btn {
@@ -167,7 +187,7 @@
     font-size: 1.3rem;
     width: 4.5rem;
     height: 3.2rem;
-    margin-bottom: 0.3rem;
+    margin-right: 0.5rem;
   }
   .header_btn_animate {
     animation: zoomIn;
@@ -205,8 +225,9 @@
     font-family: emoji;
     font-size: 1.2rem;
     width: 5.5rem;
-    height: 3.5rem;
+    height: 3.2rem;
     margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
   }
   .icon_font:hover {
     background: #DEDEDE;
@@ -215,6 +236,11 @@
   .icon_img {
     width: 1.6rem;
     height: 1.6rem;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
   }
   .menu_body {
     border-radius: 0.5rem;
@@ -225,6 +251,7 @@
     right: 0rem;
     top: 4rem;
     margin-right: 3rem;
+    z-index: 1;
   }
   .list_font {
     font-family: cjkFonts;
