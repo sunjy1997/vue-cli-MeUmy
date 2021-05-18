@@ -4,7 +4,10 @@
     <img
       src="../../../assets/img/newWorks.png"
       class="newWorks_img"
-      :class="{phone_newWorks_img: isPhone}">
+      :class="{phone_newWorks_img: isPhone}"
+      oncontextmenu="return false"
+      onselectstart="return false"
+      draggable="false">
     <!-- 展示框 -->
     <div v-if="!isPhone" class="newWorks_div">
       <!-- 框体组件 -->
@@ -23,13 +26,15 @@
         :key="item.key"
         class="phone_works_box">
         <div class="phone_title">{{ item.name }}</div>
-        <div class="phone_works_body"></div>
+        <div class="phone_works_body">
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'newWorks',
   props: [ 'newWorksInfo', 'isPhone']
@@ -46,6 +51,11 @@ export default {
   }
   .newWorks_img {
     width: 15%;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
   }
   .phone_newWorks_img {
     width: 25%;
@@ -56,14 +66,14 @@ export default {
     text-align: center;
     justify-content: space-evenly;
     background: #FAFAFA;
-    width: 80%;
+    width: 90%;
     margin-top: 1rem;
     padding-top: 2rem;
   }
   .works_box {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 45%;
     margin-bottom: 2rem;
   }
   .phone_works_box {

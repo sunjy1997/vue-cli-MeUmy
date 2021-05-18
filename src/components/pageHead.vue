@@ -17,7 +17,7 @@
             pageNum === item.page ?
             'btn_choose' :
             '']"
-          @click="jumpToTabPage(item.path)">
+          @click="jumpToMenuPage(item.path)">
           {{ item.name }}
         </div>
         <!-- 仅在绘图按钮右边展示标题图片 -->
@@ -95,7 +95,7 @@
               v-for="item in tabList"
               :key="item.key"
               class="list_font phone_list_font"
-              @click="jumpToTabPage(item.path)">
+              @click="jumpToMenuPage(item.path)">
               {{ item.name }}
             </div>
             <div
@@ -105,7 +105,9 @@
               @click="jumpToMenuPage(item.path)">
               {{ item.name }}
             </div>
-            <div class="list_font phone_list_font" @click="jumpToAboutPage()">关于</div>
+            <div
+              class="list_font phone_list_font"
+              @click="jumpToAboutPage()">关于</div>
           </div>
         </transition>
     </div>
@@ -172,17 +174,13 @@
       }
     },
     methods: {
-      // 跳转tab目录，由于都是项目内页面，使用$router跳转
-      jumpToTabPage(path) {
-        this.$router.push(path)
-      },
-      // 跳转子菜单目录
+      // 跳转各个页面
       jumpToMenuPage(path) {
         if (path.indexOf('https') === -1) {
-          // 素材库为项目内页面，使用$router跳转
+          // 视频等菜单为项目内页面，使用$router跳转
           this.$router.push(path);
         } else {
-          // 路灯和录播为外链，用https作为判断依据，打开新页面跳转
+          // 路灯、录播为外链，用https作为判断依据，打开新页面跳转
           window.open(path);
         }
       },

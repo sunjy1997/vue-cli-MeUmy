@@ -124,7 +124,7 @@
   }
   .user {
     align-self: center;
-    font-size: 0.9rem;
+    font-size: 1rem;
     animation: fadeInTopLeft;
     animation-duration: 1s;
   }
@@ -147,7 +147,7 @@
   }
   .tag {
     align-self: flex-end;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     animation: fadeInBottomLeft;
     animation-duration: 1s;
   }
