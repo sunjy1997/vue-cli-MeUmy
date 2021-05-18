@@ -1,5 +1,6 @@
 <template>
-  <div class="header-body">
+  <!-- 网页版头部样式 -->
+  <div v-if="!isPhone" class="header-body">
     <div class="header_tags">
       <!-- 遍历展示头部标题按钮，包括视频、绘图、文章、创作者 -->
       <div
@@ -36,6 +37,8 @@
       :class="{right_div_animate: pageNum === ''}">
       <div
         class="icon_font"
+        @mouseenter="showMenu = true"
+        @mouseleave="showMenu = false"
         @click="showMenu = !showMenu">
         创作素材
         <!-- 添加子菜单框的显示控制与动画效果 -->
@@ -44,7 +47,7 @@
           leave-active-class="animate__bounceOut">
           <div
             class="menu_body"
-            v-if="showMenu">
+            v-show="showMenu">
             <!-- 遍历展示子菜单按钮，包括素材库、草原路灯、草原录播 -->
             <div
               v-for="item in menuList"
@@ -61,7 +64,50 @@
         class="icon_img"
         oncontextmenu="return false"
         onselectstart="return false"
-        draggable="false">
+        draggable="false"
+        @click="jumpToAboutPage()">
+    </div>
+  </div>
+  <!-- 移动端头部样式 -->
+  <div v-else class="phone_header_body">
+    <img
+      class="phone_header_img"
+      :class="{header_img_animate: pageNum === ''}"
+      src="../assets/img/head_title.png"
+      oncontextmenu="return false"
+      onselectstart="return false"
+      draggable="false">
+    <div class="more_img">
+      <img
+        class="more_img"
+        src="../assets/img/more.png"
+        :class="{right_div_animate: pageNum === ''}"
+        @click="showMenu = !showMenu">
+      <transition
+          enter-active-class="animate__bounceIn"
+          leave-active-class="animate__bounceOut">
+          <div
+            class="phone_menu_body"
+            v-show="showMenu">
+            <!-- 遍历展示子菜单按钮 -->
+            <!-- 包括视频、绘图、文章、创作者、素材库、草原路灯、草原录播 -->
+            <div
+              v-for="item in tabList"
+              :key="item.key"
+              class="list_font phone_list_font"
+              @click="jumpToTabPage(item.path)">
+              {{ item.name }}
+            </div>
+            <div
+              v-for="item in menuList"
+              :key="item.key"
+              class="list_font phone_list_font"
+              @click="jumpToMenuPage(item.path)">
+              {{ item.name }}
+            </div>
+            <div class="list_font phone_list_font" @click="jumpToAboutPage()">关于</div>
+          </div>
+        </transition>
     </div>
   </div>
 </template>
@@ -69,10 +115,7 @@
 <script>
   export default {
     name: 'head',
-    props: {
-      // 视频：0;绘图：1;文章：2;创作者：3;首页：''
-      pageNum: { type: String }
-    },
+    props: [ 'isPhone', 'pageNum' ],
     data() {
       return {
         tabList: [ // 遍历头部按钮
@@ -116,11 +159,14 @@
     },
     watch: {
       // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
-      // 所以添加逻辑设定点击4秒后关闭弹窗
-      showMenu(newState, oldState) {
+      showMenu(newState) {
+        // 手机不添加定时功能
+        if (isPhone) {
+          return;
+        }
         if (newState === true) {
           setTimeout(() => {
-            this.showMenu = false;
+            showMenu = false;
           }, '4000')
         }
       }
@@ -149,15 +195,21 @@
 </script>
 
 <style scoped>
-  html{
-      font-size:20px;
-  }
   .header-body {
     display: flex;
     justify-content: space-between;
     padding-left: 13rem;
     padding-right: 1rem;
     padding-top: 0.3rem;
+    box-shadow: #616161 1px 2px 3px 1px;
+  }
+  .phone_header_body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8.5rem;
+    padding-top: 0.8rem;
+    padding-left: 1rem;
     box-shadow: #616161 1px 2px 3px 1px;
   }
   .header_tags {
@@ -172,6 +224,20 @@
     -khtml-user-select: none;
     user-select: none;
     margin-right: 0.5rem;
+  }
+  .phone_header_img {
+    width: 70%;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    margin-right: 0.5rem;
+  }
+  .more_img {
+    width: 5rem;
+    height: 5rem;
+    padding-right: 2rem;
   }
   .header_img_animate {
     animation: zoomIn;
@@ -201,12 +267,6 @@
   .btn_choose {
     border-bottom: 0.3rem solid aqua;
   }
-  /* .btn_choose:hover {
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-left-radius: 0rem;
-    border-bottom-right-radius: 0rem;
-  } */
   .right_div {
     display: flex;
     align-items: center;
@@ -253,6 +313,17 @@
     margin-right: 3rem;
     z-index: 1;
   }
+  .phone_menu_body {
+    border-radius: 0.5rem;
+    overflow: auto;
+    background: rgba(245, 245, 245, 0.5);
+    width: 18rem;
+    font-size: 3rem;
+    position: relative;
+    z-index: 1;
+    right: 11rem;
+    top: 1.7rem;
+  }
   .list_font {
     font-family: cjkFonts;
     background: rgba(245, 245, 245, 0.5);
@@ -260,6 +331,9 @@
     justify-content: center;
     align-items: center;
     height: 3rem;
+  }
+  .phone_list_font {
+    height: 6rem;
   }
   .list_font:hover {
     background: rgba( 222, 222, 222, 0.8);
