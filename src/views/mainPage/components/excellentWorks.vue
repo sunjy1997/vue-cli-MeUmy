@@ -15,8 +15,15 @@
       <!-- 框体组件 -->
       <div
         v-for="item in info"
-        :key="item.key">
-        <videoBox></videoBox>
+        :key="item.key"
+        class="works_div"
+        :class="{phone_works_div: isPhone}">
+        <videoBox
+          :isPhone = isPhone>
+        </videoBox>
+        <imageBox
+          :isPhone = isPhone>
+        </imageBox>
       </div>
     </div>
   </div>
@@ -24,12 +31,14 @@
 
 <script>
 import videoBox from '../../../components/videoBox';
+import imageBox from '../../../components/imageBox';
 
 export default {
   name: 'excellentWorks',
   props: ['excellWorksInfo', 'isPhone'],
   components: {
-    videoBox
+    videoBox,
+    imageBox
   },
   data() {
     return {
@@ -58,13 +67,23 @@ export default {
     width: 35%;
   }
   .excellent_div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     background: white;
-    width: 40%;
+    width: 90%;
+    padding: 0.5rem 0 0.5rem 0;
     margin-top: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
   .phone_excellent_div {
-    width: 80%;
+    width: 90%;
+  }
+  .works_div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+  }
+  .phone_works_div {
+    width: 90%;
   }
 </style>
