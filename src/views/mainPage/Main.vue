@@ -43,7 +43,7 @@
         isPhone: false, // 判断是否是移动设备访问
         MerryHead: '', // 咩栗头像
         UmyHead: '', // 呜米头像
-        excellWorksInfo: [], // 推荐作品信息
+        excellWorksInfo: [{}, {}], // 推荐作品信息
         newWorksInfo: [] // 最新作品信息
       }
     },
@@ -54,15 +54,19 @@
       this.getHeadPage();
       this.getExcellWorksInfo();
       this.getNewWorksInfo();
+      window.onresize = () => { // 实时检测页面宽度
+        this.userIsPhone();
+      };
     },
     methods: {
-      // 判断是否移动设备访问
+      // 获取浏览器宽度，动态调整样式
       userIsPhone() {
-        let w = document.documentElement.offsetWidth ||
-                document.body.offsetWidth;
-        // 若屏幕宽度小于1000，默认为移动设备
+        // 获取屏幕宽度
+        let w = document.documentElement.clientWidth;
         if ( w < 1000 ) {
           this.isPhone = true;
+        } else if (1000 <= w <= 1500) {
+          this.isPhone = false;
         }
       },
       // 获取咩栗、呜米头像
@@ -105,5 +109,6 @@
   .namePage {
     font-family: 'cjkFonts';
     background: #F5F5F5;
+    max-width: 1500px;
   }
 </style>

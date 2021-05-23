@@ -1,11 +1,13 @@
-import Vue from 'vue'
-import App from './views/mainPage/Main.vue'
-import router from './router'
-import animated from 'animate.css'
-import './font/font.css'
+import Vue from 'vue';
+import App from './views/mainPage/Main.vue';
+import router from './router';
+import animated from 'animate.css';
+import './font/font.css';
+import common from './assets/common/common';
 
 Vue.config.productionTip = false;
-Vue.use(animated)
+Vue.use(animated);
+Vue.use(common);
 
 new Vue({
   router,

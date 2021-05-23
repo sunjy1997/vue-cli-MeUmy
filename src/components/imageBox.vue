@@ -102,7 +102,7 @@ export default {
     background: white;
     overflow: auto;
     width: 100%;
-    height: 6.5rem;
+    height: 10vw;
     border-radius: 0.6rem;
     margin-top: 1rem;
     margin-bottom: 1rem;

@@ -1,7 +1,7 @@
 <template>
   <!-- 网页版头部样式 -->
   <div v-if="!isPhone" class="header-body">
-    <div class="header_tags">
+    <div class="header_tags_out">
       <!-- 遍历展示头部标题按钮，包括视频、绘图、文章、创作者 -->
       <div
         class="header_tags"
@@ -163,12 +163,12 @@
       // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
       showMenu(newState) {
         // 手机不添加定时功能
-        if (isPhone) {
+        if (this.isPhone) {
           return;
         }
         if (newState === true) {
           setTimeout(() => {
-            showMenu = false;
+            this.showMenu = false;
           }, '4000')
         }
       }
@@ -195,8 +195,6 @@
 <style scoped>
   .header-body {
     display: flex;
-    justify-content: space-between;
-    padding-left: 13rem;
     padding-right: 1rem;
     padding-top: 0.3rem;
     box-shadow: #616161 1px 2px 3px 1px;
@@ -209,6 +207,12 @@
     padding-top: 0.8rem;
     padding-left: 1rem;
     box-shadow: #616161 1px 2px 3px 1px;
+  }
+  .header_tags_out {
+    display: flex;
+    justify-content: flex-end;
+    height: 3rem;
+    width: 75%;
   }
   .header_tags {
     display: flex;
@@ -267,7 +271,9 @@
   }
   .right_div {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    width: 25%;
   }
   .right_div_animate {
     animation: rotateInDownRight;

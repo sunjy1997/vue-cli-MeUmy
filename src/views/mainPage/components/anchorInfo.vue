@@ -136,7 +136,7 @@
   .single_box {
     display: flex;
     justify-content: center;
-    max-width: 50%;
+    width: 50%;
   }
   .phone_single_box {
     display: flex;
@@ -149,9 +149,9 @@
     justify-content: center;
     align-items: center;
     background: white;
-    padding: 0.5rem;
-    width: 5.5rem;
-    height: 5.5rem;
+    padding: 1.5%;
+    width: 15%;
+    height: 80%;
     border-radius: 0.4rem;
     box-shadow: #b9b9b9 0.05rem 0.1rem 0.15rem 0.05rem;
   }

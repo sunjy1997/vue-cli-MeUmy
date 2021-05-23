@@ -24,6 +24,14 @@
         <imageBox
           :isPhone = isPhone>
         </imageBox>
+        <articalBox
+          :isPhone = isPhone
+          :isImg = true>
+        </articalBox>
+        <articalBox
+          :isPhone = isPhone
+          :isImg = false>
+        </articalBox>
       </div>
     </div>
   </div>
@@ -32,13 +40,15 @@
 <script>
 import videoBox from '../../../components/videoBox';
 import imageBox from '../../../components/imageBox';
+import articalBox from '../../../components/articalBox';
 
 export default {
   name: 'excellentWorks',
   props: ['excellWorksInfo', 'isPhone'],
   components: {
     videoBox,
-    imageBox
+    imageBox,
+    articalBox
   },
   data() {
     return {

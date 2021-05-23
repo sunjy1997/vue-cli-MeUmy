@@ -88,8 +88,8 @@
 
 <style scoped>
   .info_body {
-    width: 16.5rem;
-    height: 6rem;
+    width: 50%;
+    height: 100%;
     margin-top: 0;
   }
   .phone_info_body {
@@ -102,8 +102,7 @@
   .info_box {
     display: flex;
     background: white;
-    width: 15.7rem;
-    height: 4rem;
+    height: 66%;
     border-radius: 0.6rem;
     padding: 0.5rem;
     padding-bottom: 0.4rem;
@@ -163,6 +162,7 @@
     justify-content: flex-end;
     color: #B0B0B0;
     text-decoration: underline;
+    width: 50%;
     padding-left: 1.2rem;
     padding-top: 0.3rem;
   }
@@ -180,6 +180,7 @@
   .bottom_box {
     display: flex;
     position: relative;
+    height: 28%;
     bottom: 1rem;
   }
   .phone_bottom_box {
@@ -190,10 +191,9 @@
     justify-content: center;
     align-items: center;
     color: white;
-    width: 3.5rem;
-    height: 1.7rem;
+    width: 20%;
     border-radius: 0.5rem;
-    margin-left: 0.55rem;
+    margin-left: 4%;
   }
   .phone_btn {
     width: 8rem;
