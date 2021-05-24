@@ -91,7 +91,7 @@ export default {
       if (this.showInfo.uid && this.showInfo.uid !== "") {
         this.authUid = this.showInfo.uid;
       }
-      // 处理视频链接，若无链接数据，使用默认值
+      // 处理作品链接，若无链接数据，使用默认值
       if (this.showInfo.artId && this.showInfo.artId !== "") {
         this.artWorkPath = "https://t.bilibili.com/" + this.showInfo.artId;
       }
@@ -115,7 +115,7 @@ export default {
   background: white;
   overflow: auto;
   width: 100%;
-  height: 10vw;
+  height: 7rem;
   border-radius: 0.6rem;
   margin-top: 1rem;
   margin-bottom: 1rem;

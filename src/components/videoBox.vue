@@ -101,7 +101,7 @@ export default {
     background: white;
     overflow: auto;
     width: 100%;
-    height: 10vw;
+    height: 7rem;
     border-radius: 0.6rem;
     margin-top: 1rem;
     margin-bottom: 1rem;

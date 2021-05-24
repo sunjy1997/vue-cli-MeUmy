@@ -5,22 +5,24 @@
       pageNum = ''
       :isPhone = isPhone>
     </pageHead>
-    <!-- 主播信息 -->
-    <anchorInfo
-      :MerryHead = MerryHead
-      :UmyHead = UmyHead
-      :isPhone = isPhone>
-    </anchorInfo>
-    <!-- MeUmy精选 -->
-    <excellentWorks
-      :excellWorksInfo = excellWorksInfo
-      :isPhone = isPhone>
-    </excellentWorks>
-    <!-- 最新作品 -->
-    <newWorks
-      :newWorksInfo = newWorksInfo
-      :isPhone = isPhone>
-    </newWorks>
+    <div class="body">
+      <!-- 主播信息 -->
+      <anchorInfo
+        :MerryHead = MerryHead
+        :UmyHead = UmyHead
+        :isPhone = isPhone>
+      </anchorInfo>
+      <!-- MeUmy精选 -->
+      <excellentWorks
+        :excellWorksInfo = excellWorksInfo
+        :isPhone = isPhone>
+      </excellentWorks>
+      <!-- 最新作品 -->
+      <newWorks
+        :newWorksInfo = newWorksInfo
+        :isPhone = isPhone>
+      </newWorks>
+    </div>
   </div>
 </template>
 
@@ -65,7 +67,7 @@
         let w = document.documentElement.clientWidth;
         if ( w < 1000 ) {
           this.isPhone = true;
-        } else if (1000 <= w <= 1500) {
+        } else {
           this.isPhone = false;
         }
       },
@@ -107,8 +109,14 @@
 
 <style scoped>
   .namePage {
+    display: flex;
+    flex-direction: column;
     font-family: 'cjkFonts';
     background: #F5F5F5;
-    max-width: 1500px;
+    height: 100vh;
+  }
+  .body {
+    align-self: center;
+    max-width: 1250px;
   }
 </style>
