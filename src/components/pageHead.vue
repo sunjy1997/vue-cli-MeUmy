@@ -1,6 +1,7 @@
 <template>
-  <div class="header-body">
-    <div class="header_tags">
+  <!-- 网页版头部样式 -->
+  <div v-if="!isPhone" class="header-body">
+    <div class="header_tags_out">
       <!-- 遍历展示头部标题按钮，包括视频、绘图、文章、创作者 -->
       <div
         class="header_tags"
@@ -16,7 +17,7 @@
             pageNum === item.page ?
             'btn_choose' :
             '']"
-          @click="jumpToTabPage(item.path)">
+          @click="jumpToMenuPage(item.path)">
           {{ item.name }}
         </div>
         <!-- 仅在绘图按钮右边展示标题图片 -->
@@ -24,7 +25,10 @@
           v-if="item.name === '绘图'"
           class="header_img"
           :class="{header_img_animate: pageNum === ''}"
-          src="../assets/img/head_title.png">
+          src="../assets/img/head_title.png"
+          oncontextmenu="return false"
+          onselectstart="return false"
+          draggable="false">
       </div>
     </div>
     <!-- 右侧创作素材及关于按钮 -->
@@ -33,6 +37,7 @@
       :class="{right_div_animate: pageNum === ''}">
       <div
         class="icon_font"
+        @mouseenter="showMenu = true"
         @mouseleave="showMenu = false"
         @click="showMenu = !showMenu">
         创作素材
@@ -42,34 +47,77 @@
           leave-active-class="animate__bounceOut">
           <div
             class="menu_body"
-            v-if="showMenu">
+            v-show="showMenu">
             <!-- 遍历展示子菜单按钮，包括素材库、草原路灯、草原录播 -->
             <div
               v-for="item in menuList"
               :key="item.key"
               class="list_font"
               @click="jumpToMenuPage(item.path)">
-              {{item.name}}
+              {{ item.name }}
             </div>
           </div>
         </transition>
       </div>
       <img
         src="../assets/img/icon.png"
-        class="icon_img">
+        class="icon_img"
+        oncontextmenu="return false"
+        onselectstart="return false"
+        draggable="false"
+        @click="jumpToAboutPage()">
+    </div>
+  </div>
+  <!-- 移动端头部样式 -->
+  <div v-else class="phone_header_body">
+    <img
+      class="phone_header_img"
+      :class="{header_img_animate: pageNum === ''}"
+      src="../assets/img/head_title.png"
+      oncontextmenu="return false"
+      onselectstart="return false"
+      draggable="false">
+    <div class="more_img">
+      <img
+        class="more_img"
+        src="../assets/img/more.png"
+        :class="{right_div_animate: pageNum === ''}"
+        @click="showMenu = !showMenu">
+      <transition
+          enter-active-class="animate__bounceIn"
+          leave-active-class="animate__bounceOut">
+          <div
+            class="phone_menu_body"
+            v-show="showMenu">
+            <!-- 遍历展示子菜单按钮 -->
+            <!-- 包括视频、绘图、文章、创作者、素材库、草原路灯、草原录播 -->
+            <div
+              v-for="item in tabList"
+              :key="item.key"
+              class="list_font phone_list_font"
+              @click="jumpToMenuPage(item.path)">
+              {{ item.name }}
+            </div>
+            <div
+              v-for="item in menuList"
+              :key="item.key"
+              class="list_font phone_list_font"
+              @click="jumpToMenuPage(item.path)">
+              {{ item.name }}
+            </div>
+            <div
+              class="list_font phone_list_font"
+              @click="jumpToAboutPage()">关于</div>
+          </div>
+        </transition>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'header',
-    props: {
-      // 视频：0;绘图：1;文章：2;创作者：3;首页：''
-      pageNum: {
-        type: String
-      }
-    },
+    name: 'head',
+    props: [ 'isPhone', 'pageNum' ],
     data() {
       return {
         tabList: [ // 遍历头部按钮
@@ -111,18 +159,28 @@
         ]
       }
     },
+    watch: {
+      // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
+      showMenu(newState) {
+        // 手机不添加定时功能
+        if (this.isPhone) {
+          return;
+        }
+        if (newState === true) {
+          setTimeout(() => {
+            this.showMenu = false;
+          }, '4000')
+        }
+      }
+    },
     methods: {
-      // 跳转tab目录，由于都是项目内页面，使用$router跳转
-      jumpToTabPage(path) {
-        this.$router.push(path)
-      },
-      // 跳转子菜单目录
+      // 跳转各个页面
       jumpToMenuPage(path) {
         if (path.indexOf('https') === -1) {
-          // 素材库为项目内页面，使用$router跳转
+          // 视频等菜单为项目内页面，使用$router跳转
           this.$router.push(path);
         } else {
-          // 路灯和录播为外链，用https作为判断依据，打开新页面跳转
+          // 路灯、录播为外链，用https作为判断依据，打开新页面跳转
           window.open(path);
         }
       },
@@ -135,16 +193,26 @@
 </script>
 
 <style scoped>
-  html{
-      font-size:20px;
-  }
   .header-body {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 3.5rem;
-    padding-left: 4.5rem;
-    box-shadow: #CCCCCC 3px 3px 3px 1px;
+    padding-right: 1rem;
+    padding-top: 0.3rem;
+    box-shadow: #616161 1px 2px 3px 1px;
+  }
+  .phone_header_body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8.5rem;
+    padding-top: 0.8rem;
+    padding-left: 1rem;
+    box-shadow: #616161 1px 2px 3px 1px;
+  }
+  .header_tags_out {
+    display: flex;
+    justify-content: flex-end;
+    height: 3rem;
+    width: 75%;
   }
   .header_tags {
     display: flex;
@@ -152,9 +220,29 @@
   }
   .header_img {
     height: 3.5rem;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    margin-right: 0.5rem;
+  }
+  .phone_header_img {
+    width: 70%;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    margin-right: 0.5rem;
+  }
+  .more_img {
+    width: 5rem;
+    height: 5rem;
+    padding-right: 2rem;
   }
   .header_img_animate {
-    animation: zoomInUp;
+    animation: zoomIn;
     animation-duration: 2s;
   }
   .header_btn {
@@ -167,7 +255,7 @@
     font-size: 1.3rem;
     width: 4.5rem;
     height: 3.2rem;
-    margin-bottom: 0.3rem;
+    margin-right: 0.5rem;
   }
   .header_btn_animate {
     animation: zoomIn;
@@ -181,15 +269,11 @@
   .btn_choose {
     border-bottom: 0.3rem solid aqua;
   }
-  /* .btn_choose:hover {
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-left-radius: 0rem;
-    border-bottom-right-radius: 0rem;
-  } */
   .right_div {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    width: 25%;
   }
   .right_div_animate {
     animation: rotateInDownRight;
@@ -205,8 +289,9 @@
     font-family: emoji;
     font-size: 1.2rem;
     width: 5.5rem;
-    height: 3.5rem;
+    height: 3.2rem;
     margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
   }
   .icon_font:hover {
     background: #DEDEDE;
@@ -215,28 +300,47 @@
   .icon_img {
     width: 1.6rem;
     height: 1.6rem;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
   }
   .menu_body {
-    border: 1px solid gray;
     border-radius: 0.5rem;
     overflow: auto;
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 0.5);
     width: 8rem;
     position: fixed;
     right: 0rem;
     top: 4rem;
     margin-right: 3rem;
+    z-index: 1;
+  }
+  .phone_menu_body {
+    border-radius: 0.5rem;
+    overflow: auto;
+    background: rgba(245, 245, 245, 0.5);
+    width: 18rem;
+    font-size: 3rem;
+    position: relative;
+    z-index: 1;
+    right: 11rem;
+    top: 1.7rem;
   }
   .list_font {
     font-family: cjkFonts;
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3rem;
   }
+  .phone_list_font {
+    height: 6rem;
+  }
   .list_font:hover {
-    background: #DEDEDE;
+    background: rgba( 222, 222, 222, 0.8);
     cursor: pointer;
     border-radius: 0.5rem;
   }
