@@ -1,47 +1,28 @@
 <template>
-  <div class="artical_body" :class="{ phone_artical_body: isPhone }">
-    <img
-      v-if="artImg !== ''"
-      :src="artImg"
-      class="artical_img"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false"
-      @click="jumpToartical(artWorkPath)"
-    />
+  <div class="material_body" :class="{ phone_material_body: isPhone }">
     <div
-      class="artical_text"
+      class="material_text"
       :class="[
-        { phone_artical_text: isPhone },
-        { no_img_artical_text: artTitle !== '' },
+        { phone_material_text: isPhone }
       ]"
     >
       <div class="title_text">
         <span
-          v-if="artTitle !== ''"
           class="title_font"
           :class="{ phone_title_font: isPhone }"
-          @click="jumpToartical(artWorkPath)"
+          @click="jumpToMaterial(matPath)"
         >
-          {{ artTitle }}
-        </span>
-        <span
-          v-else
-          class="title_font"
-          :class="{ phone_title_font: isPhone }"
-          @click="jumpToartical(artWorkPath)"
-        >
-          {{ artText }}
+          {{ matTitle }}
         </span>
       </div>
       <div class="auth_text" :class="{ phone_auth_text: isPhone }">
         <span>
           创作者：
           <span class="name" @click.stop="jumpToAuthPage(authUid)">
-            {{ artAuth }}
+            {{ matAuth }}
           </span>
         </span>
-        <span class="time">{{ artTime }}</span>
+        <span class="time">{{ matTime }}</span>
       </div>
     </div>
   </div>
@@ -49,7 +30,7 @@
 
 <script>
 export default {
-  name: "articalBox",
+  name: "materialBox",
   props: ["info", "isPhone"],
   mounted() {
     window.onresize = () => {
@@ -58,15 +39,13 @@ export default {
   },
   data() {
     return {
-      artTitle: this.info.title, // 文章标题
-      // 如果没有标题，展示一部分文章内容
-      artText: this.info.text,
-      artAuth: this.info.auth, // 文章作者
-      artTime: this.info.time, // 文章上传时间
-      // 文章图片，若没有图片则为空
-      artImg: this.info.img,
-      authUid:  this.info.uid, // 作者地址
-      artWorkPath: this.info.workPath, // 文章地址
+      // 文章标题
+      matTitle:
+        "\xa0\xa0\xa0\xa0" + this.info.title,
+      matAuth: this.info.auth, // 文章作者
+      matTime: this.info.time, // 文章上传时间
+      authUid: this.info.uid, // 作者地址
+      matPath: this.info.workPath, // 文章地址
     };
   },
   methods: {
@@ -76,7 +55,7 @@ export default {
       this.$router.push(path, uid);
     },
     // 跳转视频页面
-    jumpToartical(path) {
+    jumpToMaterial(path) {
       window.open(path);
     },
   },
@@ -84,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-.artical_body {
+.material_body {
   display: flex;
   background: white;
   overflow: auto;
@@ -95,13 +74,13 @@ export default {
   margin-bottom: 1rem;
   box-shadow: #838383 0px 2px 3px 1px;
 }
-.phone_artical_body {
+.phone_material_body {
   height: 12rem;
 }
-.artical_body:hover {
+.material_body:hover {
   cursor: default;
 }
-.artical_img {
+.material_img {
   width: 40%;
   height: 100%;
   filter: blur(0.5rem);
@@ -111,20 +90,17 @@ export default {
   -khtml-user-select: none;
   user-select: none;
 }
-.artical_img:hover {
+.material_img:hover {
   filter: blur(0.1rem);
 }
-.artical_text {
+.material_text {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 100%;
   padding: 0.7rem;
 }
-.phone_artical_text {
+.phone_material_text {
   padding: 1rem;
-}
-.no_img_artical_text {
-  width: 100%;
 }
 .title_text {
   width: 100%;

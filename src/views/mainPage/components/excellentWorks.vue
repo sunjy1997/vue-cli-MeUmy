@@ -19,19 +19,21 @@
         class="works_div"
         :class="{phone_works_div: isPhone}">
         <videoBox
-          :isPhone = isPhone>
+          :isPhone = isPhone
+          :info = test>
         </videoBox>
         <imageBox
-          :isPhone = isPhone>
+          :isPhone = isPhone
+          :info = test>
         </imageBox>
         <articalBox
           :isPhone = isPhone
-          :isImg = true>
+          :info = test>
         </articalBox>
-        <articalBox
+        <materialBox
           :isPhone = isPhone
-          :isImg = false>
-        </articalBox>
+          :info = test>
+        </materialBox>
       </div>
     </div>
   </div>
@@ -41,6 +43,7 @@
 import videoBox from '../../../components/videoBox';
 import imageBox from '../../../components/imageBox';
 import articalBox from '../../../components/articalBox';
+import materialBox from '../../../components/materialBox';
 
 export default {
   name: 'excellentWorks',
@@ -48,12 +51,23 @@ export default {
   components: {
     videoBox,
     imageBox,
-    articalBox
+    articalBox,
+    materialBox
   },
   data() {
     return {
-      info: this.excellWorksInfo
+      info: this.excellWorksInfo,
+      test: {
+        type: '0',
+        uid: '000000',
+        img: require('../../../assets/img/videoImg.png')
+      }
     }
+  },
+  created() {
+    let a = this.formatInfo(this.test);
+    console.log(a)
+    this.test = a;
   }
 }
 </script>

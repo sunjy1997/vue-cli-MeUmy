@@ -45,44 +45,15 @@ export default {
   },
   data() {
     return {
-      showInfo: this.info, // 传入的适配数据
-      imgText: '这里应该是一段介绍但是画师大大什么都没说.jpg', // 绘图简介
-      imgAuth: '然后这里放一个画师大大', // 绘图作者
-      imgTime: '那这里只能放时间了', // 绘图上传时间
-      imgPath: require('../assets/img/videoImg.png'), // 绘图封面
-      authUid: '2488613', // 作者地址
-      imgWorkPath: '' // 绘图地址
+      imgText: this.info.title, // 绘图简介
+      imgAuth: this.info.auth, // 绘图作者
+      imgTime: this.info.time, // 绘图上传时间
+      imgPath: this.info.img, // 绘图封面
+      authUid: this.info.uid, // 作者地址
+      imgWorkPath: this.info.workPath // 绘图地址
     }
   },
   methods: {
-    // 组件渲染时进行数据处理
-    controlInfo() {
-      // 处理标题，若无标题数据，使用默认值
-      if (this.showInfo.title && this.showInfo.title !== '') {
-        this.imgText = this.showInfo.title;
-      }
-      // 处理作者名，若无作者名数据，使用默认值
-      if (this.showInfo.auth && this.showInfo.auth !== '') {
-        this.imgAuth = this.showInfo.auth;
-        // 对作者名长度做出限制
-        if (this.imgAuth.length > 10) {
-          this.imgAuth = this.imgAuth.substring(0, 8) + '...';
-        }
-      }
-      // 处理上传时间，若无上传时间数据，使用默认值
-      if (this.showInfo.time && this.showInfo.time !== '') {
-        this.imgTime = this.showInfo.time;
-      }
-      // 处理作者uid跳转，若无作者数据，使用默认值
-      if (this.showInfo.uid && this.showInfo.uid !== '') {
-        this.authUid = this.showInfo.uid;
-      }
-      // 处理视频链接，若无链接数据，使用默认值
-      if (this.showInfo.imgId && this.showInfo.imgId !== '') {
-        this.imgWorkPath =
-          'https://t.bilibili.com/' + this.showInfo.imgId;
-      }
-    },
     // 跳转创作者页面
     jumpToAuthPage(uid) {
       let path = '';

@@ -113,7 +113,7 @@
     flex-direction: column;
     font-family: 'cjkFonts';
     background: #F5F5F5;
-    height: 100vh;
+    height: 100%;
   }
   .body {
     align-self: center;
