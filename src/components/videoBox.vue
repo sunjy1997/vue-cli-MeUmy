@@ -39,9 +39,6 @@
 export default {
   name: 'videoBox',
   props: ['info', 'isPhone'],
-  mounted() {
-    // this.controlInfo();
-  },
   data() {
     return {
       vidTitle: this.info.title, // 视频标题

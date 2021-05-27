@@ -22,18 +22,22 @@
           :isPhone = isPhone
           :info = test>
         </videoBox>
-        <imageBox
+        <!-- <imageBox
           :isPhone = isPhone
           :info = test>
         </imageBox>
         <articalBox
           :isPhone = isPhone
           :info = test>
-        </articalBox>
-        <materialBox
+        </articalBox> -->
+        <!-- <materialBox
           :isPhone = isPhone
           :info = test>
-        </materialBox>
+        </materialBox> -->
+        <authBox
+          :isPhone = isPhone
+          :info = test2>
+        </authBox>
       </div>
     </div>
   </div>
@@ -44,6 +48,7 @@ import videoBox from '../../../components/videoBox';
 import imageBox from '../../../components/imageBox';
 import articalBox from '../../../components/articalBox';
 import materialBox from '../../../components/materialBox';
+import authBox from '../../../components/authBox';
 
 export default {
   name: 'excellentWorks',
@@ -52,7 +57,8 @@ export default {
     videoBox,
     imageBox,
     articalBox,
-    materialBox
+    materialBox,
+    authBox
   },
   data() {
     return {
@@ -61,12 +67,22 @@ export default {
         type: '0',
         uid: '000000',
         img: require('../../../assets/img/videoImg.png')
+      },
+      test2: {
+        name: '霜飔慕雪',
+        vid: '0',
+        img: '0',
+        art: '0',
+        type: '0',
+        title: '这人就是个废物什么都不会',
+        time: '2021-05-27 22:58',
+        head: require('../../../assets/img/myHead.png'),
+        authUid: ''
       }
     }
   },
   created() {
     let a = this.formatInfo(this.test);
-    console.log(a)
     this.test = a;
   }
 }
