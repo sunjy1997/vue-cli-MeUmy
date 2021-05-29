@@ -2,6 +2,7 @@
   <div
     class="image_body"
     :class="{phone_image_body: isPhone}">
+    <meta name="referrer" content="no-referrer">
     <img
       :src="imgPath"
       class="image_img"
@@ -113,7 +114,8 @@ export default {
   }
   .title_font {
     font-size: 1.2rem;
-    overflow: hidden;
+    overflow: hidden;;
+    text-align: left;
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     display: -webkit-box;

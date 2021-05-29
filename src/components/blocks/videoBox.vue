@@ -2,6 +2,7 @@
   <div
     class="video_body"
     :class="{phone_video_body: isPhone}">
+    <meta name="referrer" content="no-referrer">
     <img
       :src="vidImgPath"
       class="video_img"
@@ -108,6 +109,7 @@ export default {
     overflow: hidden;
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
+    text-align: left;
     display: -webkit-box;
     -webkit-box-orient: vertical;
   }

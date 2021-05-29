@@ -3,6 +3,7 @@
     class="auth_body"
     :class="{phone_auth_body: isPhone}">
     <div class="head">
+      <meta name="referrer" content="no-referrer">
       <img
         class="headImg"
         :class="{phone_headImg: isPhone}"
@@ -24,7 +25,7 @@
         <div
           class="items_left"
           :class="{phone_items_left: isPhone}">
-          <div>已创作</div>
+          <div style="writing-mode: vertical-rl">已创作</div>
           <div class="items_num">
             <span>视频：{{ vidNum }}条</span>
             <span>绘图：{{ imgNum }}幅</span>
@@ -68,7 +69,7 @@ export default {
     },
     // 处理作品类型的展示
     formatType() {
-      switch(this.info.type) {
+      switch(this.info.workType) {
         case '0':
           this.updateType = '视频';
           break;
@@ -124,7 +125,8 @@ export default {
   }
   .name {
     font-size: 1.2rem;
-    height: 20%;
+    height: 20%;;
+    text-align: left;
   }
   .name:hover {
     cursor: pointer;
@@ -143,7 +145,7 @@ export default {
   }
   .items_left {
     display: flex;
-    width: 45%;
+    width: 40%;
     margin-right: 0.6rem;
     padding: 0.5rem 0rem 0.5rem 0rem;
   }
@@ -154,14 +156,15 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    white-space: nowrap;
     margin-left: 0.5rem;
   }
   .items_right {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 50%;
-    padding-left: 0.4rem;
+    align-items: flex-end;
+    width: 55%;
   }
   .new_work {
     overflow: hidden;

@@ -1,5 +1,6 @@
 <template>
   <div class="artical_body" :class="{ phone_artical_body: isPhone }">
+    <meta name="referrer" content="no-referrer">
     <img
       v-if="artImg !== ''"
       :src="artImg"
@@ -132,7 +133,8 @@ export default {
 }
 .title_font {
   font-size: 1.2rem;
-  overflow: hidden;
+  overflow: hidden;;
+  text-align: left;
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   display: -webkit-box;

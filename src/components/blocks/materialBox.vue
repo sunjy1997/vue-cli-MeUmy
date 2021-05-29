@@ -39,13 +39,13 @@ export default {
   },
   data() {
     return {
-      // 文章标题
+      // 素材标题
       matTitle:
         "\xa0\xa0\xa0\xa0" + this.info.title,
-      matAuth: this.info.auth, // 文章作者
-      matTime: this.info.time, // 文章上传时间
+      matAuth: this.info.auth, // 素材作者
+      matTime: this.info.time, // 素材上传时间
       authUid: this.info.uid, // 作者地址
-      matPath: this.info.workPath, // 文章地址
+      matPath: this.info.workPath, // 素材地址
     };
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
       let path = "";
       this.$router.push(path, uid);
     },
-    // 跳转视频页面
+    // 跳转素材页面
     jumpToMaterial(path) {
       window.open(path);
     },

@@ -18,72 +18,23 @@
         :key="item.key"
         class="works_div"
         :class="{phone_works_div: isPhone}">
-        <videoBox
+        <showBox
           :isPhone = isPhone
-          :info = test>
-        </videoBox>
-        <!-- <imageBox
-          :isPhone = isPhone
-          :info = test>
-        </imageBox>
-        <articalBox
-          :isPhone = isPhone
-          :info = test>
-        </articalBox> -->
-        <!-- <materialBox
-          :isPhone = isPhone
-          :info = test>
-        </materialBox> -->
-        <authBox
-          :isPhone = isPhone
-          :info = test2>
-        </authBox>
+          :info = item>
+        </showBox>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import videoBox from '../../../components/videoBox';
-import imageBox from '../../../components/imageBox';
-import articalBox from '../../../components/articalBox';
-import materialBox from '../../../components/materialBox';
-import authBox from '../../../components/authBox';
+import showBox from '../../../components/showBox';
 
 export default {
   name: 'excellentWorks',
-  props: ['excellWorksInfo', 'isPhone'],
+  props: ['info', 'isPhone'],
   components: {
-    videoBox,
-    imageBox,
-    articalBox,
-    materialBox,
-    authBox
-  },
-  data() {
-    return {
-      info: this.excellWorksInfo,
-      test: {
-        type: '0',
-        uid: '000000',
-        img: require('../../../assets/img/videoImg.png')
-      },
-      test2: {
-        name: '霜飔慕雪',
-        vid: '0',
-        img: '0',
-        art: '0',
-        type: '0',
-        title: '这人就是个废物什么都不会',
-        time: '2021-05-27 22:58',
-        head: require('../../../assets/img/myHead.png'),
-        authUid: ''
-      }
-    }
-  },
-  created() {
-    let a = this.formatInfo(this.test);
-    this.test = a;
+    showBox
   }
 }
 </script>
@@ -110,7 +61,7 @@ export default {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    background: white;
+    background: #FAFAFA;
     width: 90%;
     padding: 0.5rem 0 0.5rem 0;
     margin-top: 1rem;

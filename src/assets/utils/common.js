@@ -56,7 +56,7 @@ export default {
         // 标题
         if (params.title && params.title !== "") {
           // 正文空两格，语文老师教我的
-          infoData.title = '\xa0\xa0\xa0\xa0' + params.title;
+          infoData.title = params.title;
         } else if (params.text && params.text !== '') {
           // 文章没有标题则展示正文内容；绘图展示正文内容
           infoData.text = '\xa0\xa0\xa0\xa0' + params.text;
@@ -67,7 +67,7 @@ export default {
         if (params.auth && params.auth !== '') {
           infoData.auth = params.auth;
           // 对作者名长度做出限制
-          if (auth.length > 10) {
+          if (infoData.auth.length > 10) {
             infoData.auth = infoData.auth.substring(0, 8) + '...';
           }
         }
@@ -98,10 +98,10 @@ export default {
             case '1':
               // 绘图可能会放在动态中或者专栏中，两种情况分别处理
               // 具体处理方式等接口完成
-              if (1) {
+              if (params.id.length > 10) {
                 infoData.workPath =
                   'https://t.bilibili.com/' + params.id;
-              } else if (2) {
+              } else {
                 infoData.workPath =
                   'https://www.bilibili.com/read/cv' + params.id;
               }
@@ -109,10 +109,10 @@ export default {
             case '2':
               // 文章有可能会放在动态或者专栏中，两种情况分别处理
               // 具体处理方式等接口完成
-              if (1) {
+              if (params.id.length > 10) {
                 infoData.workPath =
                   'https://t.bilibili.com/' + params.id;
-              } else if (2) {
+              } else {
                 infoData.workPath =
                   'https://www.bilibili.com/read/cv' + params.id;
               }
