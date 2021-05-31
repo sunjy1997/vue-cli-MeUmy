@@ -84,7 +84,7 @@ export default {
       if (newState === true) {
         setTimeout(() => {
           this.showMenu = false;
-        }, '3500')
+        }, '4000')
       }
     }
   },
