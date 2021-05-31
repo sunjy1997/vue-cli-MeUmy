@@ -1,5 +1,6 @@
 <template>
-  <div style="width: 100%">
+  <div style="width: 100%"
+  @contextmenu.prevent="rightClick">
     <!-- 视频框 -->
       <videoBox
         v-if="info.type === '0'"
@@ -30,6 +31,15 @@
         :isPhone = isPhone
         :info = showInfo></authBox>
     </div>
+    <rightMenu
+      :x="x_index"
+      :y="y_index"
+      :showMenu="showMenu"
+      @close="closeMenu"
+      @open="openWorks"
+      @report="reportWorks"
+      @clo="closeWorks">
+    </rightMenu>
   </div>
 </template>
 
@@ -39,6 +49,7 @@ import imageBox from './blocks/imageBox';
 import articalBox from './blocks/articalBox';
 import authBox from './blocks/authBox';
 import materialBox from './blocks/materialBox';
+import rightMenu from './rightMenu';
 
 export default {
   name: 'showBox',
@@ -47,7 +58,8 @@ export default {
     imageBox,
     articalBox,
     authBox,
-    materialBox
+    materialBox,
+    rightMenu
   },
   props: ['info', 'isPhone'],
   created() {
@@ -60,7 +72,48 @@ export default {
   data() {
     return {
       showInfo: this.info,
-      information: ''
+      information: '',
+      showMenu: false,
+      x_index: 0,
+      y_index: 0,
+    }
+  },
+  watch: {
+    // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
+    showMenu(newState) {
+      if (newState === true) {
+        setTimeout(() => {
+          this.showMenu = false;
+        }, '4000')
+      }
+    }
+  },
+  methods: {
+    rightClick(e) {
+      this.showMenu = true
+      this.x_index = e.pageX;
+      this.y_index = e.pageY;
+    },
+    // 关闭回调
+    closeMenu(state) {
+        this.showMenu = state;
+    },
+    // 跳转作品页
+    async openWorks() {
+      await this.closeWorks();
+      window.open(this.information.workPath);
+    },
+    // 跳转举报页
+    reportWorks() {
+      let param = {
+        workPath: this.information.workPath
+      }
+      this.$router.push('', param);
+      this.closeWorks();
+    },
+    // 关闭弹窗
+    closeWorks() {
+      this.showMenu = false;
     }
   }
 }

@@ -4,6 +4,7 @@ import router from './router';
 import animated from 'animate.css';
 import './font/font.css';
 import common from './assets/utils/common';
+import 'babel-polyfill'
 
 Vue.config.productionTip = false;
 Vue.use(animated);

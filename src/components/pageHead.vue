@@ -161,17 +161,17 @@
     },
     watch: {
       // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
-      showMenu(newState) {
-        // 手机不添加定时功能
-        if (this.isPhone) {
-          return;
-        }
-        if (newState === true) {
-          setTimeout(() => {
-            this.showMenu = false;
-          }, '4000')
-        }
-      }
+      // showMenu(newState) {
+      //   // 手机不添加定时功能
+      //   if (this.isPhone) {
+      //     return;
+      //   }
+      //   if (newState === true) {
+      //     setTimeout(() => {
+      //       this.showMenu = false;
+      //     }, '4000')
+      //   }
+      // }
     },
     methods: {
       // 跳转各个页面
