@@ -18,42 +18,23 @@
         :key="item.key"
         class="works_div"
         :class="{phone_works_div: isPhone}">
-        <videoBox
-          :isPhone = isPhone>
-        </videoBox>
-        <imageBox
-          :isPhone = isPhone>
-        </imageBox>
-        <articalBox
+        <showBox
           :isPhone = isPhone
-          :isImg = true>
-        </articalBox>
-        <articalBox
-          :isPhone = isPhone
-          :isImg = false>
-        </articalBox>
+          :info = item>
+        </showBox>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import videoBox from '../../../components/videoBox';
-import imageBox from '../../../components/imageBox';
-import articalBox from '../../../components/articalBox';
+import showBox from '../../../components/showBox';
 
 export default {
   name: 'excellentWorks',
-  props: ['excellWorksInfo', 'isPhone'],
+  props: ['info', 'isPhone'],
   components: {
-    videoBox,
-    imageBox,
-    articalBox
-  },
-  data() {
-    return {
-      info: this.excellWorksInfo
-    }
+    showBox
   }
 }
 </script>
@@ -80,7 +61,7 @@ export default {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    background: white;
+    background: #FAFAFA;
     width: 90%;
     padding: 0.5rem 0 0.5rem 0;
     margin-top: 1rem;

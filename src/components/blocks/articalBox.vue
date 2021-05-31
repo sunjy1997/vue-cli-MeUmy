@@ -1,7 +1,8 @@
 <template>
   <div class="artical_body" :class="{ phone_artical_body: isPhone }">
+    <meta name="referrer" content="no-referrer">
     <img
-      v-if="this.isImg === true"
+      v-if="artImg !== ''"
       :src="artImg"
       class="artical_img"
       oncontextmenu="return false"
@@ -13,12 +14,12 @@
       class="artical_text"
       :class="[
         { phone_artical_text: isPhone },
-        { no_img_artical_text: !isImg },
+        { no_img_artical_text: artTitle !== '' },
       ]"
     >
       <div class="title_text">
         <span
-          v-if="!isImg"
+          v-if="artTitle !== ''"
           class="title_font"
           :class="{ phone_title_font: isPhone }"
           @click="jumpToartical(artWorkPath)"
@@ -31,7 +32,7 @@
           :class="{ phone_title_font: isPhone }"
           @click="jumpToartical(artWorkPath)"
         >
-          图片的话边上没有字也好丑哦，要不要加点什么啊
+          {{ artText }}
         </span>
       </div>
       <div class="auth_text" :class="{ phone_auth_text: isPhone }">
@@ -50,7 +51,7 @@
 <script>
 export default {
   name: "articalBox",
-  props: ["info", "isPhone", "isImg"],
+  props: ["info", "isPhone"],
   mounted() {
     window.onresize = () => {
       this.switchFontSize();
@@ -58,44 +59,18 @@ export default {
   },
   data() {
     return {
-      showInfo: this.info, // 传入的适配数据
-      artTitle:
-        "\xa0\xa0\xa0\xa0这次这里是文章标题，虽然不一定有;如果没有展示正文内容，正文要空格.jpg", // 文章标题
-      artAuth: "那这里也得换成作者", // 文章作者
-      artTime: "不过这里还是时间", // 文章上传时间
-      artImg: require("../assets/img/videoImg.png"), // 文章图片
-      authUid: "2488613", // 作者地址
-      artWorkPath: "", // 绘图地址
+      artTitle: this.info.title, // 文章标题
+      // 如果没有标题，展示一部分文章内容
+      artText: this.info.text,
+      artAuth: this.info.auth, // 文章作者
+      artTime: this.info.time, // 文章上传时间
+      // 文章图片，若没有图片则为空
+      artImg: this.info.img,
+      authUid:  this.info.uid, // 作者地址
+      artWorkPath: this.info.workPath, // 文章地址
     };
   },
   methods: {
-    // 组件渲染时进行数据处理
-    controlInfo() {
-      // 处理标题，若无标题数据，使用默认值
-      if (this.showInfo.title && this.showInfo.title !== "") {
-        this.artTitle = this.showInfo.title;
-      }
-      // 处理作者名，若无作者名数据，使用默认值
-      if (this.showInfo.auth && this.showInfo.auth !== "") {
-        this.artAuth = this.showInfo.auth;
-        // 对作者名长度做出限制
-        if (this.artAuth.length > 10) {
-          this.artAuth = this.artAuth.substring(0, 8) + "...";
-        }
-      }
-      // 处理上传时间，若无上传时间数据，使用默认值
-      if (this.showInfo.time && this.showInfo.time !== "") {
-        this.artTime = this.showInfo.time;
-      }
-      // 处理作者uid跳转，若无作者数据，使用默认值
-      if (this.showInfo.uid && this.showInfo.uid !== "") {
-        this.authUid = this.showInfo.uid;
-      }
-      // 处理作品链接，若无链接数据，使用默认值
-      if (this.showInfo.artId && this.showInfo.artId !== "") {
-        this.artWorkPath = "https://t.bilibili.com/" + this.showInfo.artId;
-      }
-    },
     // 跳转创作者页面
     jumpToAuthPage(uid) {
       let path = "";
@@ -158,7 +133,8 @@ export default {
 }
 .title_font {
   font-size: 1.2rem;
-  overflow: hidden;
+  overflow: hidden;;
+  text-align: left;
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   display: -webkit-box;

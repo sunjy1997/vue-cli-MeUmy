@@ -9,24 +9,23 @@
       onselectstart="return false"
       draggable="false">
     <!-- 展示框 -->
-    <div v-if="!isPhone" class="newWorks_div">
+    <div class="newWorks_div">
       <!-- 框体组件 -->
       <div
-        v-for="item in newWorksInfo"
+        v-for="item in info"
         :key="item.key"
-        class="works_box">
-        <div class="title">{{ item.name }}</div>
-        <div class="works_body"></div>
-      </div>
-    </div>
-    <div v-else class="newWorks_div">
-      <!-- 移动端框体组件 -->
-      <div
-        v-for="item in newWorksInfo"
-        :key="item.key"
-        class="phone_works_box">
-        <div class="phone_title">{{ item.name }}</div>
-        <div class="phone_works_body">
+        class="works_box"
+        :class="{phone_works_box: isPhone}">
+        <div
+          class="title"
+          :class="{phone_title: isPhone}">
+          {{ item.name }}
+        </div>
+        <div v-for="i in item.works" :key="i.key" class="works_body">
+          <showBox
+            :isPhone = isPhone
+            :info = i>
+          </showBox>
         </div>
       </div>
     </div>
@@ -34,10 +33,14 @@
 </template>
 
 <script>
+import showBox from '../../../components/showBox';
 
 export default {
   name: 'newWorks',
-  props: [ 'newWorksInfo', 'isPhone']
+  props: [ 'info', 'isPhone'],
+  components: {
+    showBox
+  }
 }
 </script>
 
@@ -77,10 +80,7 @@ export default {
     margin-bottom: 2rem;
   }
   .phone_works_box {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-bottom: 2rem;
+    width: 90%;
   }
   .title {
     font-size: 2rem;
@@ -90,14 +90,5 @@ export default {
   }
   .works_body {
     width: 100%;
-    height: 10rem;
-    background: rgb(233, 233, 233);
-    margin-top: 1rem;
-  }
-  .phone_works_body {
-    width: 100%;
-    height: 10rem;
-    background: rgb(233, 233, 233);
-    margin-top: 1rem;
   }
 </style>

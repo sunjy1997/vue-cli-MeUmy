@@ -125,12 +125,11 @@
     align-self: center;
     font-size: 1rem;
     animation: fadeInTopLeft;
+    white-space: nowrap;
     animation-duration: 1s;
   }
   .phone_user {
     font-size: 2.5rem;
-    white-space: nowrap;
-    /* padding-left: 2rem; */
   }
   .line {
     background: #B8B8B8;
@@ -157,13 +156,14 @@
   .net {
     display: flex;
     flex-direction: column;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     align-items: flex-end;
     justify-content: flex-end;
+    white-space: nowrap;
     color: #B0B0B0;
     text-decoration: underline;
     width: 50%;
-    padding-left: 1.2rem;
+    padding-left: 1rem;
     padding-top: 0.3rem;
   }
   .phone_net {
@@ -192,13 +192,14 @@
     align-items: center;
     color: white;
     width: 20%;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     margin-left: 4%;
   }
   .phone_btn {
-    width: 8rem;
+    width: 7rem;
     height: 4rem;
-    margin-left: 1rem;
+    border-radius: 0.9rem;
+    margin-left: 1.5rem;
     font-size: 2.1rem;
   }
   .Umy_btn {
