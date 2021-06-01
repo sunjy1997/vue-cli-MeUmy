@@ -32,9 +32,10 @@
         :info = showInfo></authBox>
     </div>
     <rightMenu
-      :x="x_index"
-      :y="y_index"
-      :showMenu="showMenu"
+      :x = x_index
+      :y = y_index
+      :showMenu = showMenu
+      :isPhone = isPhone
       @close="closeMenu"
       @open="openWorks"
       @report="reportWorks"
@@ -84,7 +85,7 @@ export default {
       if (newState === true) {
         setTimeout(() => {
           this.showMenu = false;
-        }, '4000')
+        }, '5000')
       }
     }
   },
@@ -106,6 +107,7 @@ export default {
     // 跳转举报页
     reportWorks() {
       let param = {
+        workTitle: this.information.title,
         workPath: this.information.workPath
       }
       this.$router.push('', param);

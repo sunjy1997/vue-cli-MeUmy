@@ -2,6 +2,7 @@
   <div
     v-if="show"
     class="menu_style"
+    :class="{phone_menu_style: isPhone}"
     :style="{ top: y + 'px', left: x + 'px' }"
   >
     <ul>
@@ -42,16 +43,20 @@ export default {
   props: {
     x: {
       type: [Number],
-      default: 0,
+      default: 0
     },
     y: {
       type: [Number],
-      default: 0,
+      default: 0
     },
     showMenu: {
       type: [Boolean],
-      default: false,
+      default: false
     },
+    isPhone:{
+      type: [Boolean],
+      default: false
+    }
   },
   data() {
     return {
@@ -92,6 +97,9 @@ export default {
   box-shadow: 0.1rem 0.1rem 1rem #d0d0d0;
   z-index: 1;
 }
+.phone_menu_style {
+  width: 15rem;
+}
 .menu_style > ul > li {
   height: 2.5rem;
   line-height: 2.5rem;
@@ -99,6 +107,11 @@ export default {
   border-bottom: 1px dashed #f0f0f0;
   text-align: center;
   cursor: pointer;
+}
+.phone_menu_style > ul > li {
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 1.8rem;
 }
 .menu_style > ul > li:hover {
   background: #DEEDFF;
