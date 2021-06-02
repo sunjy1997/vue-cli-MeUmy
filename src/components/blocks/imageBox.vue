@@ -7,6 +7,7 @@
       <img
         :src="imgPath"
         class="image_img"
+        :class="{phone_image_img: isPhone}"
         oncontextmenu="return false"
         onselectstart="return false"
         draggable="false"
@@ -110,6 +111,9 @@ export default {
   }
   .image_img:hover {
     filter: blur(0.1rem);
+  }
+  .phone_image_img {
+    border-radius: 0.6rem;
   }
   .image_text {
     display: flex;

@@ -6,6 +6,7 @@
         v-if="artImg !== ''"
         :src="artImg"
         class="artical_img"
+        :class="{phone_artical_img: isPhone}"
         oncontextmenu="return false"
         onselectstart="return false"
         draggable="false"
@@ -123,6 +124,9 @@ export default {
   -ms-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+}
+.phone_artical_img {
+  border-radius: 0.6rem;
 }
 .artical_img:hover {
   filter: blur(0.1rem);
