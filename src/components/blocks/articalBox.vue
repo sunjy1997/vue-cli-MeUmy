@@ -1,15 +1,18 @@
 <template>
   <div class="artical_body" :class="{ phone_artical_body: isPhone }">
     <meta name="referrer" content="no-referrer">
-    <img
-      v-if="artImg !== ''"
-      :src="artImg"
-      class="artical_img"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false"
-      @click="jumpToartical(artWorkPath)"
-    />
+    <div class="img_div" :class="{phone_img_div: isPhone}">
+      <img
+        v-if="artImg !== ''"
+        :src="artImg"
+        class="artical_img"
+        :class="{phone_artical_img: isPhone}"
+        oncontextmenu="return false"
+        onselectstart="return false"
+        draggable="false"
+        @click="jumpToartical(artWorkPath)"
+      >
+    </div>
     <div
       class="artical_text"
       :class="[
@@ -98,12 +101,22 @@ export default {
 }
 .phone_artical_body {
   height: 12rem;
+  box-shadow: #adadad 0px 2px 3px 1px;
 }
 .artical_body:hover {
   cursor: default;
 }
-.artical_img {
+.img_div {
+  align-self: center;
   width: 40%;
+  height: 100%;
+}
+.phone_img_div {
+  padding-left: 0.1rem;
+  height: 97%;
+}
+.artical_img {
+  width: 100%;
   height: 100%;
   filter: blur(0.5rem);
   -moz-user-select: none;
@@ -111,6 +124,9 @@ export default {
   -ms-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+}
+.phone_artical_img {
+  border-radius: 0.6rem;
 }
 .artical_img:hover {
   filter: blur(0.1rem);

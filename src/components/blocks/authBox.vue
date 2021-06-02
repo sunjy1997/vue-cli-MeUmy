@@ -2,7 +2,7 @@
   <div
     class="auth_body"
     :class="{phone_auth_body: isPhone}">
-    <div class="head">
+    <div class="head" :class="{phone_head: isPhone}">
       <meta name="referrer" content="no-referrer">
       <img
         class="headImg"
@@ -10,7 +10,8 @@
         oncontextmenu="return false"
         onselectstart="return false"
         draggable="false"
-        :src="headImg">
+        :src="headImg"
+      >
     </div>
     <div class="info">
       <div
@@ -25,7 +26,7 @@
         <div
           class="items_left"
           :class="{phone_items_left: isPhone}">
-          <div style="writing-mode: vertical-rl">已创作</div>
+          <div>已创作</div>
           <div class="items_num">
             <span>视频：{{ vidNum }}条</span>
             <span>绘图：{{ imgNum }}幅</span>
@@ -99,15 +100,22 @@ export default {
   }
   .phone_auth_body {
     height: 12rem;
+    box-shadow: #adadad 0px 2px 3px 1px;
   }
   .auth_body:hover {
     cursor: default;
   }
   .head {
-    width: 30%;
+    width: 23%;
+  }
+  .phone_head {
+    align-self: center;
+    height: 97%;
+    padding-left: 0.1rem;
   }
   .headImg {
-    width: 7rem;
+    width: 100%;
+    height: 100%;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -116,11 +124,13 @@ export default {
   }
   .phone_headImg {
     width: 12rem;
+    border-radius: 0.6rem;
   }
   .info {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 76%;
+    margin-left: 0.7rem;
     padding: 0.5rem;
   }
   .name {
@@ -138,6 +148,7 @@ export default {
   .items {
     display: flex;
     font-size: 0.9rem;
+    width: 100%;
     height: 80%;
   }
   .phone_items {
@@ -145,7 +156,8 @@ export default {
   }
   .items_left {
     display: flex;
-    width: 40%;
+    white-space: nowrap;
+    width: 42%;
     margin-right: 0.6rem;
     padding: 0.5rem 0rem 0.5rem 0rem;
   }

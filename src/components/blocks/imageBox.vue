@@ -3,14 +3,17 @@
     class="image_body"
     :class="{phone_image_body: isPhone}">
     <meta name="referrer" content="no-referrer">
-    <img
-      :src="imgPath"
-      class="image_img"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false"
-      @click="jumpToImage(imgWorkPath)"
-    >
+    <div class="img_div" :class="{phone_img_div: isPhone}">
+      <img
+        :src="imgPath"
+        class="image_img"
+        :class="{phone_image_img: isPhone}"
+        oncontextmenu="return false"
+        onselectstart="return false"
+        draggable="false"
+        @click="jumpToImage(imgWorkPath)"
+      >
+    </div>
     <div
       class="image_text"
       :class="{phone_image_text: isPhone}">
@@ -82,12 +85,22 @@ export default {
   }
   .phone_image_body {
     height: 12rem;
+    box-shadow: #adadad 0px 2px 3px 1px;
   }
   .image_body:hover {
     cursor: default;
   }
-  .image_img {
+  .img_div {
+    align-self: center;
     width: 40%;
+    height: 100%;
+  }
+  .phone_img_div {
+    padding-left: 0.1rem;
+    height: 97%;
+  }
+  .image_img {
+    width: 100%;
     height: 100%;
     filter: blur(0.5rem);
     -moz-user-select: none;
@@ -98,6 +111,9 @@ export default {
   }
   .image_img:hover {
     filter: blur(0.1rem);
+  }
+  .phone_image_img {
+    border-radius: 0.6rem;
   }
   .image_text {
     display: flex;
