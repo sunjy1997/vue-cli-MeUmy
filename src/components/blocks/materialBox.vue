@@ -76,6 +76,7 @@ export default {
 }
 .phone_material_body {
   height: 12rem;
+  box-shadow: #adadad 0px 2px 3px 1px;
 }
 .material_body:hover {
   cursor: default;

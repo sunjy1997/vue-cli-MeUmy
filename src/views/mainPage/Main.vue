@@ -316,7 +316,8 @@
                 workType: '0',
                 title: '这人就是个废物什么都不会',
                 time: '2021-05-27 22:58',
-                head: require('../../assets/img/myHead.png'),
+                head:
+                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
                 authUid: ''
               }
             ]
@@ -329,6 +330,16 @@
 </script>
 
 <style scoped>
+  * {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+  input , textarea{
+    -webkit-user-select:auto;
+  }
   .namePage {
     display: flex;
     flex-direction: column;

@@ -3,13 +3,17 @@
     class="video_body"
     :class="{phone_video_body: isPhone}">
     <meta name="referrer" content="no-referrer">
-    <img
-      :src="vidImgPath"
-      class="video_img"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false"
-      @click="jumpToVideo(vidPath)">
+    <div class="img_div" :class="{phone_img_div: isPhone}">
+      <img
+        :src="vidImgPath"
+        class="video_img"
+        :class="{phone_video_img: isPhone}"
+        oncontextmenu="return false"
+        onselectstart="return false"
+        draggable="false"
+        @click="jumpToVideo(vidPath)"
+      >
+    </div>
     <div
       class="video_text"
       :class="{phone_video_text: isPhone}">
@@ -78,18 +82,31 @@ export default {
   }
   .phone_video_body {
     height: 12rem;
+    box-shadow: #adadad 0px 2px 3px 1px;
   }
   .video_body:hover {
     cursor: default;
   }
-  .video_img {
+  .img_div {
+    align-self: center;
     width: 40%;
+    height: 100%;
+  }
+  .phone_img_div {
+    padding-left: 0.1rem;
+    height: 97%;
+  }
+  .video_img {
+    width: 100%;
     height: 100%;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     -khtml-user-select: none;
     user-select: none;
+  }
+  .phone_video_img {
+    border-radius: 0.6rem;
   }
   .video_text {
     display: flex;
