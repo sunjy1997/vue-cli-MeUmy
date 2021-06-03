@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="namePage">
+  <div class="namePage">
     <!-- 页面头部 -->
     <pageHead
       pageNum = ''
