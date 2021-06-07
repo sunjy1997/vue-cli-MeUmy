@@ -57,6 +57,8 @@
   }
 
   直接将对象传入即可
+
+  ————霜飔慕雪 2021/6/7
  -->
   <div style="width: 100%"
   @contextmenu.prevent="rightClick">
