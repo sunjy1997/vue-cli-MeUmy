@@ -1,15 +1,30 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import pageRouters from './config'
-import VueResource from 'vue-resource'
+import Vue from 'vue';
+import Router from 'vue-router';
+import VueResource from 'vue-resource';
 
+import mainPage from '../views/mainPage/Main.vue'; // 引入主页
+// import testPage from '../views/testPage/test.vue'; // 测试页
 Vue.use(Router);
 Vue.use(VueResource);
 
-const router = new Router({
-  mode: 'history',
-  base: __dirname,
-  routers: format(pageRouters)
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'mainPage',
+      component: mainPage
+    },
+    {
+      path: '/mainPage',
+      name: 'mainPage',
+      component: mainPage
+    },
+    // {
+    //   path: '/testPage',
+    //   name: 'testPage',
+    //   component: testPage
+    // }
+  ]
 });
 
 function format(data) {
@@ -34,5 +49,3 @@ function format(data) {
     return result;
   })
 }
-
-export default router;
