@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import VueResource from 'vue-resource';
 
 import mainPage from '../views/mainPage/Main.vue'; // 引入主页
-import testPage from '../views/testPage/test.vue'; // 测试页
+// import testPage from '../views/testPage/test.vue'; // 测试页
 Vue.use(Router);
 Vue.use(VueResource);
 
@@ -19,11 +19,11 @@ export default new Router({
       name: 'mainPage',
       component: mainPage
     },
-    {
-      path: '/testPage',
-      name: 'testPage',
-      component: testPage
-    }
+    // {
+    //   path: '/testPage',
+    //   name: 'testPage',
+    //   component: testPage
+    // }
   ]
 });
 
