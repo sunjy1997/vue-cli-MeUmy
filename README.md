@@ -13,6 +13,22 @@
 ### 依赖下载及项目启动
 
 ``` bash
+# git clone 过慢处理方式
+> git clone https://gitclone.com/github.com/sunjy1997/vue-cli-MeUmy.git
+
+# 使用gitclone.com路径会导致push路径也是gitclone.com,处理方式如下
+  # git 删除远程地址
+> git remote rm origin
+
+  # git 更换远程地址
+> git remote add origin https://github.com/sunjy1997/vue-cli-MeUmy.git
+
+  # 把当前分支与远程分支进行关联(branchname要改成你的当前分支名称)
+> git push --set-upstream origin branchname
+
+# 如果报错OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+> git config --global --unset http.proxy
+
 # 下载依赖，在package.json中查看
 > npm install
 
@@ -20,7 +36,7 @@
 > npm run dev
 
 # 测试手机端时，手机连接本地项目的方法
-> 在package.json中，script => dev ，末尾添加 -- host (你的本地地址)
+> 在package.json中，script => dev ，末尾添加 -- host 你的本地地址（查看方式：ipconfig）
 ```
 
 ### 项目结构
