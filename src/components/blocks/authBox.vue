@@ -80,6 +80,8 @@ export default {
         case '2':
           this.updateType = '文章';
           break;
+        default:
+          break;
       }
     }
   }
