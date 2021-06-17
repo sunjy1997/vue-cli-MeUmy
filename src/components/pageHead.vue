@@ -82,7 +82,7 @@
         class="more_img"
         src="../assets/img/more.png"
         :class="{right_div_animate: pageNum === ''}"
-        @click="showMenu = !showMenu">
+        @click="clickMenuBtn">
       <transition
           enter-active-class="animate__bounceIn"
           leave-active-class="animate__bounceOut">
@@ -143,6 +143,7 @@
           }
         ],
         showMenu: false, // 是否展示子菜单
+        clickMenu: false, // 控制点击监听让展示框消失
         menuList: [ // 遍历创作素材按钮
           {
             name: '素材库',
@@ -158,20 +159,13 @@
           }
         ]
       }
+    },mounted() {
+      // 监听body上的点击
+      document.querySelector("body").addEventListener("click", this.closeMenu);
     },
-    watch: {
-      // 在手机版测试遇到问题，手机版点击后会立刻触发onmouseleave事件
-      // showMenu(newState) {
-      //   // 手机不添加定时功能
-      //   if (this.isPhone) {
-      //     return;
-      //   }
-      //   if (newState === true) {
-      //     setTimeout(() => {
-      //       this.showMenu = false;
-      //     }, '4000')
-      //   }
-      // }
+    beforeDestroy() {
+      // 移除监听
+      document.querySelector("body").removeEventListener("click", this.closeMenu);
     },
     methods: {
       // 跳转各个页面
@@ -187,6 +181,20 @@
       // 跳转关于页面，由于是项目内页面，使用$router跳转
       jumpToAboutPage() {
         this.$router.push('');
+      },
+      // 点击别处时隐藏目录
+      closeMenu(e) {
+        if (this.showMenu === true && this.clickMenu === true) {
+          this.showMenu = false;
+          this.clickMenu = false;
+        }
+      },
+      // 延时改变clickMenu的值实现点击别处让弹窗消失
+      clickMenuBtn() {
+        this.showMenu = true;
+        setTimeout(() => {
+          this.clickMenu = true;
+        }, 10)
       }
     }
   }
