@@ -619,7 +619,7 @@ export default {
     left: 28.5vw;
   }
   .month_body {
-    left: 47.5vw;
+    left: 47.1vw;
   }
   .phone_month_body {
     left: 46.2vw;
@@ -631,7 +631,7 @@ export default {
      width: 0 !important;height: 0;
    }
   .day_body {
-    left: 58.5vw;
+    left: 57.5vw;
   }
   .phone_day_body {
     left: 63.9vw;
