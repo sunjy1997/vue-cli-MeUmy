@@ -35,8 +35,8 @@ export default {
     // 判断平年闰年
     Vue.prototype.isLeapYear = function (year) {
       if(
-        ( year % 4 == 0 && year % 100 != 0 ) ||
-        ( year % 400 == 0 )
+        ( Number(year) % 4 == 0 && Number(year) % 100 != 0 ) ||
+        ( Number(year) % 400 == 0 )
       ) {
         return true;
       }
