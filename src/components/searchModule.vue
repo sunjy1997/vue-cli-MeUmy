@@ -71,7 +71,11 @@
           @click="clickMenuBtn(1)"
         >
           <span> {{ year }} </span>
-          <img src="../../../assets/img/pull.png" class="pull_img_date">
+          <img
+            src="../../../assets/img/pull.png"
+            class="pull_img_date"
+            :class="{phone_pull_img_date: isPhone}"
+          >
         </div>
         <div
           class="pull_box pull_box_date"
@@ -79,7 +83,11 @@
           @click="clickMenuBtn(2)"
         >
           <span> {{ month }} </span>
-          <img src="../../../assets/img/pull.png" class="pull_img_date">
+          <img
+            src="../../../assets/img/pull.png"
+            class="pull_img_date"
+            :class="{phone_pull_img_date: isPhone}"
+          >
         </div>
         <div
           class="pull_box pull_box_date"
@@ -87,7 +95,11 @@
           @click="clickMenuBtn(3)"
         >
           <span> {{ day }} </span>
-          <img src="../../../assets/img/pull.png" class="pull_img_date">
+          <img
+            src="../../../assets/img/pull.png"
+            class="pull_img_date"
+            :class="{phone_pull_img_date: isPhone}"
+          >
         </div>
         <div
           class="search_btn"
@@ -499,6 +511,9 @@ export default {
   }
   .pull_img_date {
     width: 0.7rem;
+  }
+  .phone_pull_img_date {
+    width: 1.2rem;
   }
   .menu_box {
     display: flex;
