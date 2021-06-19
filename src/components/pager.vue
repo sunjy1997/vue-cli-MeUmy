@@ -18,7 +18,12 @@
     <template>
       <div>
         // html调用 参数:pageSize(总页数);pageNo(当前页)
-        <pager :pageSize="pageSize" v-model="pageNo" @on-jump="jump"></pager>
+        <pager
+          :pageSize="pageSize"
+          v-model="pageNo"
+          @on-jump="jump"
+          :isPhone="isPhone">
+        </pager>
       </div>
     </template>
 
@@ -26,6 +31,7 @@
       return {
         pageSize: 15,
         pageNo: 1,
+        isPhone: true
       };
     },
     //接收跳转事件
@@ -37,11 +43,17 @@
 
     ————霜飔慕雪 2021/6/7
  -->
-  <div class="pager-body" ref="pager">
-    <div class="pager-box">
+  <div
+    class="pager_body"
+    :class="{phone_pager_body: isPhone}"
+    ref="pager">
+    <div class="pager_box" :class="{phone_pager_box: isPhone}">
       <div
-        class="last-page"
-        :class="{ 'pager-disabled': prevDisable }"
+        class="last_page"
+        :class="[
+          { pager_disabled: prevDisable },
+          { phone_switch_page: isPhone }
+        ]"
         href=""
         @click="jumpPrev()"
       >
@@ -59,15 +71,17 @@
           :key="i"
           @click="jump(i)"
           class="pages"
-          :class="{
-            dont_show:
+          :class="[
+            {dont_show:
               (pageNo < 5 && i > 7 && i !== pageSize) ||
               (pageNo >= 5 && i <= pageSize - 1 && i >= pageNo + 4) ||
               (pageNo <= pageSize - 3 && i <= pageNo -4 && i !== 1) ||
               (pageNo == pageSize -2 && i <= pageNo - 5 && i !== 1) ||
               (pageNo == pageSize -1 && i <= pageNo - 6 && i !== 1) ||
               (pageNo == pageSize && i <= pageNo - 7 && i !== 1)
-          }">
+            },
+            { phone_pages: isPhone }
+          ]">
           <!-- 被选中的页码 -->
           <div
             class="on_choose"
@@ -111,7 +125,10 @@
       </div>
       <div
         class="next_page"
-        :class="{ 'pager-disabled': nextDisable }"
+        :class="[
+          { pager_disabled: prevDisable },
+          { phone_switch_page: isPhone }
+        ]"
         href=""
         @click="jumpNext()"
       >
@@ -120,9 +137,20 @@
       </div>
     </div>
     <!-- 输入页码及跳转按钮 -->
-    <div class="pager-input">
-      <input type="text" v-model="jumpPage" class="input_box" />
-      <div class="pager-btn-go" href="" @click="Go()">GO</div>
+    <div class="pager_input" :class="{phone_pager_input: isPhone}">
+      <input
+        type="text"
+        v-model="jumpPage"
+        class="input_box"
+        :class="{phone_input_box: isPhone}"
+      />
+      <div
+        class="pager_btn_go"
+        :class="{phone_pager_btn_go: isPhone}"
+        @click="Go()"
+      >
+        GO
+      </div>
     </div>
   </div>
 </template>
@@ -144,6 +172,11 @@ export default {
       type: Number,
       default: 1,
     },
+    isPhone: {
+      // 是否是移动端进入页面
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -227,20 +260,27 @@ export default {
     -ms-user-select:none; /*IE10*/
     user-select:none;
   }
-  .pager-body {
+  .pager_body {
     display: flex;
     cursor: pointer;
     align-items: center;
     justify-content: center;
     color: #77797A;
+    height: 5vw;
   }
-  .pager-box {
+  .phone_pager_body {
+    height: 10vw;
+  }
+  .pager_box {
     display: flex;
     justify-content: space-between;
     width: 50vw;
-    height: 5vw;
+    height: 100%;
   }
-  .last-page,
+  .phone_pager_box {
+    width: 70vw;
+  }
+  .last_page,
   .next_page {
     display: flex;
     justify-content: center;
@@ -251,7 +291,11 @@ export default {
     font-weight: 900;
     border-radius: 50%;
   }
-  .pager-disabled {
+  .phone_switch_page {
+    width: 10vw;
+    font-size: 2.5rem;
+  }
+  .pager_disabled {
     cursor: not-allowed;
   }
   .pages_box {
@@ -270,6 +314,9 @@ export default {
     width: 15%;
     height: 100%;
   }
+  .phone_pages {
+    font-size: 2.5rem;
+  }
   .dont_show {
     display: none;
   }
@@ -284,29 +331,32 @@ export default {
     border-radius: 0.7rem;
   }
   .on_choose_first {
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 5rem;
+    border-bottom-left-radius: 5rem;
   }
   .on_choose_last {
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 5rem;
+    border-bottom-right-radius: 5rem;
   }
-  .pager-input {
+  .pager_input {
     display: flex;
     justify-content: space-around;
     align-items: center;
     background: #f0f0ef;
     border-radius: 0.7rem;
-    width: 9%;
-    height: 5vw;
+    width: 9vw;
+    height: 100%;
     margin-left: 0.5rem;
     padding: 0 0.5rem;
+  }
+  .phone_pager_input {
+    width: 15vw;
   }
   .input_box {
     text-align: center;
     background: #f0f0ef;
-    width: 3rem;
-    height: 3vw;
+    width: 50%;
+    height: 75%;
     font-size: 1.3rem;
     border: 1px solid #d4d1d1;
     border-radius: 0.3rem;
@@ -314,7 +364,14 @@ export default {
   .input_box:focus {
     outline: none;
   }
-  .pager-btn-go {
+  .phone_input_box {
+    font-size: 2.5rem;
+  }
+  .pager_btn_go {
     font-weight: 900;
+    font-size: 1.3rem;
+  }
+  .phone_pager_btn_go {
+    font-size: 2.3rem;
   }
 </style>

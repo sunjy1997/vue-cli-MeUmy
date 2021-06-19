@@ -2,8 +2,13 @@
   <!--
     分页组件导入方法
 
-    <searchModule @on-search='search'></searchModule>
+    <searchModule @on-search='search' :isPhone='isPhone'></searchModule>
 
+    data() {
+      return {
+        isPhone: false
+      };
+    },
     search(param) {
       console.log(param)
     }
@@ -14,57 +19,104 @@
   霜飔慕雪  ————2021/6/17
    -->
   <div class="all">
-    <div class="search_body">
+    <div class="search_body" :class="{phone_search_body: isPhone}">
       <!-- 下拉框 -->
-      <div class="pull_box" @click="clickMenuBtn(0)">
+      <div
+        class="pull_box"
+        :class="{phone_pull_box: isPhone}"
+        @click="clickMenuBtn(0)">
         <span> {{ searchTypeList[placeNum].name }} </span>
-        <img src="../../../assets/img/pull.png" class="pull_img">
+        <img
+          src="../../../assets/img/pull.png"
+          class="pull_img"
+          :class="{phone_pull_img: isPhone}"
+        >
       </div>
       <!-- 输入框 -->
       <!-- 标题、时间 -->
-      <div class="search_box" v-if="placeNum !== '2'">
+      <div
+        class="search_box"
+        :class="{phone_search_box: isPhone}"
+        v-if="placeNum !== '2'"
+      >
         <input
           type="text"
           class="input_box"
+          :class="{phone_input_box: isPhone}"
           v-model="search"
           :placeholder="placeholderList[placeNum]"
         >
         <!-- 搜索按钮 -->
         <div class='right_btn' @click="searchWorks(search)">
-          <img src="../../../assets/img/line.png" class="search_img line">
-          <img src="../../../assets/img/search.png" class="search_img">
+          <img
+            src="../../../assets/img/line.png"
+            class="search_img line"
+            :class="{phone_search_img: isPhone}"
+          >
+          <img
+            src="../../../assets/img/search.png"
+            class="search_img"
+            :class="{phone_search_img: isPhone}"
+          >
         </div>
       </div>
-      <div class="right_btn_date" v-else>
-        <div class="pull_box pull_box_date" @click="clickMenuBtn(1)">
+      <div
+        class="right_btn_date"
+        :class="{phone_right_btn_date: isPhone}"
+        v-else
+      >
+        <div
+          class="pull_box pull_box_date"
+          :class="{phone_pull_box_date: isPhone}"
+          @click="clickMenuBtn(1)"
+        >
           <span> {{ year }} </span>
           <img src="../../../assets/img/pull.png" class="pull_img_date">
         </div>
-        <div class="pull_box pull_box_date" @click="clickMenuBtn(2)">
+        <div
+          class="pull_box pull_box_date"
+          :class="{phone_pull_box_date: isPhone}"
+          @click="clickMenuBtn(2)"
+        >
           <span> {{ month }} </span>
           <img src="../../../assets/img/pull.png" class="pull_img_date">
         </div>
-        <div class="pull_box pull_box_date" @click="clickMenuBtn(3)">
+        <div
+          class="pull_box pull_box_date"
+          :class="{phone_pull_box_date: isPhone}"
+          @click="clickMenuBtn(3)"
+        >
           <span> {{ day }} </span>
           <img src="../../../assets/img/pull.png" class="pull_img_date">
         </div>
-        <div class="search_btn" @click="searchDate()">搜索</div>
+        <div
+          class="search_btn"
+          :class="{phone_search_btn: isPhone}"
+          @click="searchDate()"
+        >
+          搜索
+        </div>
         <transition
           enter-active-class="animate__animated animate__fadeIn"
           leave-active-class="animate__animated animate__fadeOut">
-          <div class="alert_text" v-show="showAlertText">
+          <div
+            class="alert_text"
+            :class="{phone_alert_text: isPhone}"
+            v-show="showAlertText"
+          >
             {{ alertText }}
           </div>
         </transition>
       </div>
     </div>
-    <div class="menu_box">
+    <div class="menu_box" :class="{phone_menu_box: isPhone}">
       <!-- 搜索方式选择框 -->
       <transition
         enter-active-class="animate__animated animate__fadeIn"
         leave-active-class="animate__animated animate__fadeOut">
         <div
           class="menu_body"
+          :class="{phone_menu_body: isPhone}"
           v-show="showMenu">
           <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
           <div
@@ -72,6 +124,7 @@
             :key="item.id"
             @click="switchsearch(item.id)"
             class="list_font"
+            :class="{phone_list_font: isPhone}"
           >
             {{ item.name }}
           </div>
@@ -83,6 +136,7 @@
         leave-active-class="animate__animated animate__fadeOut">
         <div
           class="year_body"
+          :class="{phone_year_body: isPhone}"
           v-show="showYear">
           <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
           <div
@@ -90,6 +144,7 @@
             :key="item.id"
             @click="switchdate(0, item)"
             class="list_font"
+            :class="{phone_list_font: isPhone}"
           >
             {{ item }}
           </div>
@@ -101,6 +156,7 @@
         leave-active-class="animate__animated animate__fadeOut">
         <div
           class="year_body month_body"
+          :class="{phone_year_body: isPhone, phone_month_body: isPhone}"
           v-show="showMonth">
           <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
           <div
@@ -108,6 +164,7 @@
             :key="item.id"
             @click="switchdate(1, item)"
             class="list_font"
+            :class="{phone_list_font: isPhone}"
           >
             {{ item }}
           </div>
@@ -119,6 +176,7 @@
         leave-active-class="animate__animated animate__fadeOut">
         <div
           class="year_body day_body"
+          :class="{phone_year_body: isPhone, phone_day_body: isPhone}"
           v-show="showDay">
           <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
           <div
@@ -126,6 +184,7 @@
             :key="item.id"
             @click="switchdate(2, item)"
             class="list_font"
+            :class="{phone_list_font: isPhone}"
           >
             {{ item }}
           </div>
@@ -138,6 +197,13 @@
 <script>
 export default {
   name: 'searchModule',
+  props: {
+    isPhone: {
+      // 是否是移动端进入页面
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       searchTypeList: [
@@ -173,7 +239,7 @@ export default {
       dayList: '',
       showDay: false,
       clickDay: false,
-      alertText: '咩啊，这不好搜啊，请缩小点范围吧，斯米妈三~~',
+      alertText: '咩啊，这不好搜啊，请缩小点范围吧，斯米马三~~',
       showAlertText: false
     }
   },
@@ -202,28 +268,36 @@ export default {
     clickMenuBtn(i) {
       switch(i) {
         case 0:
-          this.showMenu = true;
-          setTimeout(() => {
-            this.clickMenu = true;
-          }, 30)
+          if ( this.showMenu === false ) {
+            this.showMenu = true;
+            setTimeout(() => {
+              this.clickMenu = true;
+            }, 30)
+          }
           break;
         case 1:
-          this.showYear = true;
-          setTimeout(() => {
-            this.clickYear = true;
-          }, 30)
+          if ( this.showYear === false ) {
+            this.showYear = true;
+            setTimeout(() => {
+              this.clickYear = true;
+            }, 30)
+          }
           break;
         case 2:
-          this.showMonth = true;
-          setTimeout(() => {
-            this.clickMonth = true;
-          }, 30)
+          if ( this.showMonth === false ) {
+            this.showMonth = true;
+            setTimeout(() => {
+              this.clickMonth = true;
+            }, 30)
+          }
           break;
         case 3:
-          this.showDay = true;
-          setTimeout(() => {
-            this.clickDay = true;
-          }, 30)
+          if ( this.showDay === false ) {
+            this.showDay = true;
+            setTimeout(() => {
+              this.clickDay = true;
+            }, 30)
+          }
           break;
         default:
           break;
@@ -389,6 +463,10 @@ export default {
     height: 4vw;
     cursor: default;
   }
+  .phone_search_body {
+    width: 90vw;
+    height: 8vw;
+  }
   .pull_box {
     font-family: cjkFonts;
     display: flex;
@@ -396,18 +474,28 @@ export default {
     align-items: center;
     color: #8B8B8B;
     width: 10vw;
-    height: 3vw;
     border: 2px solid #757575;
-    border-radius: 1rem;
+    border-radius: 5rem;
     margin-right: 3vw;
     font-size: 1.3rem;
+  }
+  .phone_pull_box {
+    width: 20vw;
+    font-size: 2.5rem;
   }
   .pull_box_date {
     font-size: 1.2rem;
     margin-right: 1vw;
   }
+  .phone_pull_box_date {
+    width: 17vw;
+    font-size: 2.1rem;
+  }
   .pull_img {
     width: 1rem;
+  }
+  .phone_pull_img {
+    width: 1.9rem
   }
   .pull_img_date {
     width: 0.7rem;
@@ -416,13 +504,22 @@ export default {
     display: flex;
     width: 53vw;
   }
+  .phone_menu_box {
+    width: 90vw;
+  }
   .menu_body {
     overflow: auto;
     background: rgba(245, 245, 245, 0.5);
-    width: 7.5rem;
+    width: 10vw;
     border-radius: 0.5rem;
     z-index: 1;
     font-size: 1.3rem;
+    margin-left: 0.2vw;
+  }
+  .phone_menu_body {
+    width: 20vw;
+    font-size: 2.4rem;
+    margin-left: 0.2vw;
   }
   .list_font {
     font-family: cjkFonts;
@@ -437,41 +534,54 @@ export default {
     cursor: pointer;
     border-radius: 0.5rem;
   }
+  .phone_list_font {
+    height: 4rem;
+  }
   .search_box {
     display: flex;
-    width: 40vw;
-    height: 3vw;
+    width: 39vw;
     border: 2px solid #757575;
-    border-radius: 1rem;
+    border-radius: 5rem;
+  }
+  .phone_search_box {
+    width: 65vw;
   }
   .input_box {
     font-family: cjkFonts;
     width: 85%;
     padding-left: 1rem;
     border: none;
-    border-radius: 1rem;
+    border-radius: 5rem;
     font-size: 1.2rem;
   }
   .input_box:focus {
     outline: none;
   }
+  .phone_input_box {
+    font-size: 2.5rem;
+  }
   .right_btn {
     display: flex;
     color: #8B8B8B;
-    font-size: 1.3rem;
   }
   .search_img {
     align-self: center;
     width: 2.6vw;
     height: 2.6vw;
   }
+  .phone_search_img {
+    width: 5vw;
+    height: 5vw;
+  }
   .line {
     width: 0.8rem;
   }
   .right_btn_date {
     display: flex;
-    width: 40vw;
-    height: 3vw;
+    width: 39vw;
+  }
+  .phone_right_btn_date {
+    width: 65.5vw;
   }
   .search_btn {
     font-family: cjkFonts;
@@ -480,36 +590,68 @@ export default {
     align-items: center;
     color: #8B8B8B;
     width: 8vw;
-    height: 3vw;
     border: 2px solid #757575;
-    border-radius: 1rem;
+    border-radius: 5rem;
     font-size: 1.3rem;
   }
   .search_btn:hover {
     background: #F0F0EF;
     color: #646464;
   }
+  .phone_search_btn {
+    width: 12vw;
+    font-size: 2.2rem;
+  }
   .year_body {
     position: absolute;
     overflow: auto;
     background: rgba(245, 245, 245, 0.5);
-    width: 6.7rem;
+    width: 10vw;
     border-radius: 0.5rem;
     z-index: 1;
     font-size: 1.3rem;
-    left: 36.5vw;
+    left: 36.7vw;
     max-height: 15rem;
+  }
+  .phone_year_body {
+    width: 17vw;
+    font-size: 2.4rem;
+    left: 28.5vw;
   }
   .month_body {
     left: 47.5vw;
   }
-  .day_body {
-    left: 58.5vw
+  .phone_month_body {
+    left: 46.2vw;
   }
+  .month_body::-webkit-scrollbar {
+     width: 0 !important;
+  }
+  .month_body::-webkit-scrollbar {
+     width: 0 !important;height: 0;
+   }
+  .day_body {
+    left: 58.5vw;
+  }
+  .phone_day_body {
+    left: 63.9vw;
+  }
+  .day_body::-webkit-scrollbar {
+     width: 0 !important;
+  }
+  .day_body::-webkit-scrollbar {
+     width: 0 !important;height: 0;
+   }
   .alert_text {
     position: absolute;
     color: #ff565b;
     font-size: 1.3rem;
-    margin-top: 4vw;
+    margin-top: 4.4vw;
+  }
+  .phone_alert_text {
+    font-size: 2.4rem;
+    margin-top: 8.4vw;
+    right: 0;
+    margin-right: 6.5vw;
   }
 </style>
