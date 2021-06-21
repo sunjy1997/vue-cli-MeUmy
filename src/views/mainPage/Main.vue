@@ -1,5 +1,5 @@
 <template>
-  <div class="namePage">
+  <div class="namePage" :class="{phone_namePage: isPhone}">
     <!-- 页面头部 -->
     <pageHead
       pageNum = ''
@@ -336,9 +336,7 @@
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
-  }
-  input , textarea{
-    -webkit-user-select:auto;
+    -o-user-select:none;
   }
   .namePage {
     display: flex;
@@ -346,6 +344,9 @@
     font-family: 'cjkFonts';
     background: #F5F5F5;
     height: 100%;
+  }
+  .phone_namePage {
+    pointer-events: none;
   }
   .body {
     align-self: center;
