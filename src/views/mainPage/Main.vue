@@ -1,5 +1,5 @@
 <template>
-  <div class="namePage" :class="{phone_namePage: isPhone}">
+  <div class="namePage">
     <!-- 页面头部 -->
     <pageHead
       pageNum = ''
@@ -337,6 +337,7 @@
     -ms-user-select:none;
     user-select:none;
     -o-user-select:none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .namePage {
     display: flex;
@@ -345,11 +346,9 @@
     background: #F5F5F5;
     height: 100%;
   }
-  .phone_namePage {
-    pointer-events: none;
-  }
   .body {
     align-self: center;
+    padding-top: 0.2rem;
     max-width: 1250px;
   }
 </style>

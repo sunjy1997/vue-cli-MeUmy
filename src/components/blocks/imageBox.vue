@@ -4,15 +4,17 @@
     :class="{phone_image_body: isPhone}">
     <meta name="referrer" content="no-referrer">
     <div class="img_div" :class="{phone_img_div: isPhone}">
-      <img
-        :src="imgPath"
-        class="image_img"
-        :class="{phone_image_img: isPhone}"
-        oncontextmenu="return false"
-        onselectstart="return false"
-        draggable="false"
-        @click="jumpToImage(imgWorkPath)"
-      >
+      <figure class="image_img">
+        <img
+          :src="imgPath"
+          class="image_img"
+          :class="{phone_image_img: isPhone, phone_img: isPhone}"
+          oncontextmenu="return false"
+          onselectstart="return false"
+          draggable="false"
+          @click="jumpToImage(imgWorkPath)"
+        >
+      </figure>
     </div>
     <div
       class="image_text"
@@ -72,6 +74,9 @@ export default {
 </script>
 
 <style scoped>
+  .phone_img {
+    pointer-events: none;
+  }
   .image_body {
     display: flex;
     background: white;
@@ -103,6 +108,7 @@ export default {
     width: 100%;
     height: 100%;
     filter: blur(0.5rem);
+    margin: 0;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

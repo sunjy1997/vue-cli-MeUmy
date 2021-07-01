@@ -7,7 +7,8 @@
       :class="{phone_newWorks_img: isPhone}"
       oncontextmenu="return false"
       onselectstart="return false"
-      draggable="false">
+      draggable="false"
+    >
     <!-- 展示框 -->
     <div class="newWorks_div">
       <!-- 框体组件 -->
@@ -45,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+  img {
+    pointer-events: none;
+  }
   .newWorks_body {
     display: flex;
     flex-direction: column;

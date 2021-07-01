@@ -78,11 +78,10 @@
       onselectstart="return false"
       draggable="false">
     <div class="more_img">
-      <img
-        class="more_img"
-        src="../assets/img/more.png"
+      <div
+        class="more_imgs"
         :class="{right_div_animate: pageNum === ''}"
-        @click="clickMenuBtn">
+        @click="clickMenuBtn"></div>
       <transition
           enter-active-class="animate__bounceIn"
           leave-active-class="animate__bounceOut">
@@ -124,7 +123,7 @@
           {
             name: '视频',
             page: '0',
-            path: ''
+            path: 'videoPage'
           },
           {
             name: '绘图',
@@ -169,10 +168,12 @@
     },
     methods: {
       // 跳转各个页面
-      jumpToMenuPage(path) {
-        if (path.indexOf('https') === -1) {
+      jumpToMenuPage(paths) {
+        if (paths.indexOf('https') === -1) {
           // 视频等菜单为项目内页面，使用$router跳转
-          this.$router.push(path);
+          this.$router.push({
+            name: paths
+          });
         } else {
           // 路灯、录播为外链，用https作为判断依据，打开新页面跳转
           window.open(path);
@@ -180,7 +181,7 @@
       },
       // 跳转关于页面，由于是项目内页面，使用$router跳转
       jumpToAboutPage() {
-        this.$router.push('');
+        this.$router.push('', this.isPhone);
       },
       // 点击别处时隐藏目录
       closeMenu(e) {
@@ -191,21 +192,26 @@
       },
       // 延时改变clickMenu的值实现点击别处让弹窗消失
       clickMenuBtn() {
-        this.showMenu = true;
-        setTimeout(() => {
-          this.clickMenu = true;
-        }, 10)
+        if ( this.showMenu === false ) {
+          this.showMenu = true;
+          setTimeout(() => {
+            this.clickMenu = true;
+          }, 30)
+        }
       }
     }
   }
 </script>
 
 <style scoped>
+  img {
+    pointer-events: none;
+  }
   .header-body {
     display: flex;
     padding-right: 1rem;
     padding-top: 0.3rem;
-    box-shadow: #616161 1px 2px 3px 1px;
+    box-shadow: #9e9e9e 1px 2px 3px 1px;
   }
   .phone_header_body {
     display: flex;
@@ -248,6 +254,12 @@
     width: 5rem;
     height: 5rem;
     padding-right: 2rem;
+  }
+  .more_imgs {
+    background: url('../assets/img/more.png');
+    width: 5rem;
+    height: 5rem;
+    background-size: cover;
   }
   .header_img_animate {
     animation: zoomIn;

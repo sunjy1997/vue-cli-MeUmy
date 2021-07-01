@@ -27,7 +27,7 @@
         @click="clickMenuBtn(0)">
         <span> {{ searchTypeList[placeNum].name }} </span>
         <img
-          src="../../../assets/img/pull.png"
+          src="../assets/img/pull.png"
           class="pull_img"
           :class="{phone_pull_img: isPhone}"
         >
@@ -49,12 +49,12 @@
         <!-- 搜索按钮 -->
         <div class='right_btn' @click="searchWorks(search)">
           <img
-            src="../../../assets/img/line.png"
+            src="../assets/img/line.png"
             class="search_img line"
             :class="{phone_search_img: isPhone}"
           >
           <img
-            src="../../../assets/img/search.png"
+            src="../assets/img/search.png"
             class="search_img"
             :class="{phone_search_img: isPhone}"
           >
@@ -72,7 +72,7 @@
         >
           <span> {{ year }} </span>
           <img
-            src="../../../assets/img/pull.png"
+            src="../assets/img/pull.png"
             class="pull_img_date"
             :class="{phone_pull_img_date: isPhone}"
           >
@@ -84,7 +84,7 @@
         >
           <span> {{ month }} </span>
           <img
-            src="../../../assets/img/pull.png"
+            src="../assets/img/pull.png"
             class="pull_img_date"
             :class="{phone_pull_img_date: isPhone}"
           >
@@ -96,7 +96,7 @@
         >
           <span> {{ day }} </span>
           <img
-            src="../../../assets/img/pull.png"
+            src="../assets/img/pull.png"
             class="pull_img_date"
             :class="{phone_pull_img_date: isPhone}"
           >
@@ -383,7 +383,7 @@ export default {
       // 0：标题；1：作者
       let param = {
         type: this.placeNum,
-        work: data
+        word: data
       }
       this.$emit('on-search', param);
       // 点击搜索后清空搜索内容
@@ -420,7 +420,7 @@ export default {
         let time = sYear + '-';
         let param = {
           type: '2',
-          work: time
+          word: time
         }
         this.$emit('on-search', param);
         // 点击搜索后清空搜索内容
@@ -469,6 +469,9 @@ export default {
     -ms-user-select:none; /*IE10*/
     user-select:none;
   }
+  img {
+    pointer-events: none;
+  }
   .search_body {
     display: flex;
     width: 53vw;
@@ -476,7 +479,7 @@ export default {
     cursor: default;
   }
   .phone_search_body {
-    width: 90vw;
+    width: 80vw;
     height: 8vw;
   }
   .pull_box {
@@ -523,6 +526,7 @@ export default {
     width: 90vw;
   }
   .menu_body {
+    position: absolute;
     overflow: auto;
     background: rgba(245, 245, 245, 0.5);
     width: 10vw;
@@ -625,7 +629,7 @@ export default {
     border-radius: 0.5rem;
     z-index: 1;
     font-size: 1.3rem;
-    left: 36.7vw;
+    left: 36vw;
     max-height: 15rem;
   }
   .phone_year_body {
@@ -634,7 +638,7 @@ export default {
     left: 28.5vw;
   }
   .month_body {
-    left: 47.1vw;
+    left: 46.4vw;
   }
   .phone_month_body {
     left: 46.2vw;
@@ -646,7 +650,7 @@ export default {
      width: 0 !important;height: 0;
    }
   .day_body {
-    left: 57.5vw;
+    left: 56.7vw;
   }
   .phone_day_body {
     left: 63.9vw;

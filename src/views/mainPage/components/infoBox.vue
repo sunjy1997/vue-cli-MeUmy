@@ -91,10 +91,13 @@
     width: 50%;
     height: 100%;
     margin-top: 0;
+    pointer-events: auto;
   }
   .phone_info_body {
     width: 58%;
     height: 13rem;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .info_body:hover {
     cursor: pointer;

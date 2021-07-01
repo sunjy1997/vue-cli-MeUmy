@@ -1,10 +1,10 @@
 <template>
-  <div class="height_box">
+  <div class="height_box phone_img">
     <!-- 手机版背景图 -->
     <img
       v-if="isPhone"
       src="../../../assets/img/anchor.png"
-      class="background"
+      class="background phone_img"
       oncontextmenu="return false"
       onselectstart="return false"
       draggable="false">
@@ -23,7 +23,7 @@
           <img
             :src="UmyHead"
             class="head_img"
-            :class="{phone_head_img: isPhone}"
+            :class="{ phone_head_img: isPhone }"
             oncontextmenu="return false"
             onselectstart="return false"
             draggable="false">
@@ -31,7 +31,8 @@
         <!-- 呜米信息框 -->
         <infoBox
           :info = Umy
-          :isPhone = isPhone></infoBox>
+          :isPhone = isPhone>
+        </infoBox>
       </div>
       <div :class="[
         isPhone === false ?
@@ -49,7 +50,7 @@
           <img
             :src="MerryHead"
             class="head_img"
-            :class="{phone_head_img: isPhone}"
+            :class="{ phone_head_img: isPhone }"
             oncontextmenu="return false"
             onselectstart="return false"
             draggable="false">
@@ -109,6 +110,9 @@
 </script>
 
 <style scoped>
+  .phone_img {
+    pointer-events: none;
+  }
   .height_box {
     width: 100%;
     position: relative;
@@ -187,7 +191,7 @@
   }
   .phone_merry_head {
     margin-left: 1rem;
-    
+    margin-bottom: 1rem;
   }
   .head_img:hover {
     animation: heartBeat;

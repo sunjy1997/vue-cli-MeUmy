@@ -259,6 +259,7 @@ export default {
     -moz-user-select:none; /*火狐*/
     -ms-user-select:none; /*IE10*/
     user-select:none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .pager_body {
     display: flex;
@@ -269,7 +270,7 @@ export default {
     height: 5vw;
   }
   .phone_pager_body {
-    height: 10vw;
+    height: 8vw;
   }
   .pager_box {
     display: flex;
@@ -278,7 +279,7 @@ export default {
     height: 100%;
   }
   .phone_pager_box {
-    width: 70vw;
+    width: 80vw;
   }
   .last_page,
   .next_page {
@@ -292,7 +293,7 @@ export default {
     border-radius: 50%;
   }
   .phone_switch_page {
-    width: 10vw;
+    width: 8vw;
     font-size: 2.5rem;
   }
   .pager_disabled {
@@ -310,12 +311,13 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
     font-size: 1.3rem;
     width: 15%;
     height: 100%;
   }
   .phone_pages {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
   .dont_show {
     display: none;
@@ -360,18 +362,20 @@ export default {
     font-size: 1.3rem;
     border: 1px solid #d4d1d1;
     border-radius: 0.3rem;
+    -webkit-user-select:text !important;
   }
   .input_box:focus {
     outline: none;
   }
   .phone_input_box {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .pager_btn_go {
     font-weight: 900;
     font-size: 1.3rem;
   }
   .phone_pager_btn_go {
-    font-size: 2.3rem;
+    white-space: nowrap;
+    font-size: 2.4rem;
   }
 </style>
