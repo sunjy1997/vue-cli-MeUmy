@@ -4,15 +4,17 @@
     :class="{phone_video_body: isPhone}">
     <meta name="referrer" content="no-referrer">
     <div class="img_div" :class="{phone_img_div: isPhone}">
-      <img
-        :src="vidImgPath"
-        class="video_img"
-        :class="{phone_video_img: isPhone}"
-        oncontextmenu="return false"
-        onselectstart="return false"
-        draggable="false"
-        @click="jumpToVideo(vidPath)"
-      >
+      <figure class="video_img">
+        <img
+          :src="vidImgPath"
+          class="video_img"
+          :class="{phone_video_img: isPhone, phone_img: isPhone}"
+          oncontextmenu="return false"
+          onselectstart="return false"
+          draggable="false"
+          @click="jumpToVideo(vidPath)"
+        >
+      </figure>
     </div>
     <div
       class="video_text"
@@ -69,6 +71,9 @@ export default {
 </script>
 
 <style scoped>
+  .phone_img {
+    pointer-events: none;
+  }
   .video_body {
     display: flex;
     background: white;
@@ -99,6 +104,7 @@ export default {
   .video_img {
     width: 100%;
     height: 100%;
+    margin: 0;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

@@ -4,14 +4,16 @@
     :class="{phone_auth_body: isPhone}">
     <div class="head" :class="{phone_head: isPhone}">
       <meta name="referrer" content="no-referrer">
-      <img
-        class="headImg"
-        :class="{phone_headImg: isPhone}"
-        oncontextmenu="return false"
-        onselectstart="return false"
-        draggable="false"
-        :src="headImg"
-      >
+      <figure class="headImg">
+        <img
+          class="headImg"
+          :class="{phone_headImg: isPhone, phone_img:isPhone}"
+          oncontextmenu="return false"
+          onselectstart="return false"
+          draggable="false"
+          :src="headImg"
+        >
+      </figure>
     </div>
     <div class="info">
       <div
@@ -89,6 +91,9 @@ export default {
 </script>
 
 <style scoped>
+  .phone_img {
+    pointer-events: none;
+  }
   .auth_body {
     display: flex;
     background: white;
@@ -118,6 +123,7 @@ export default {
   .headImg {
     width: 100%;
     height: 100%;
+    margin: 0;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

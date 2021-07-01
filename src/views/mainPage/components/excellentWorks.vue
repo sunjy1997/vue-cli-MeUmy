@@ -40,6 +40,9 @@ export default {
 </script>
 
 <style scoped>
+  img {
+    pointer-events: none;
+  }
   .excellent_body {
     display: flex;
     flex-direction: column;

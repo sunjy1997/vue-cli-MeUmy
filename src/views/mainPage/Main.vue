@@ -336,9 +336,8 @@
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
-  }
-  input , textarea{
-    -webkit-user-select:auto;
+    -o-user-select:none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .namePage {
     display: flex;
@@ -349,6 +348,7 @@
   }
   .body {
     align-self: center;
+    padding-top: 0.2rem;
     max-width: 1250px;
   }
 </style>
