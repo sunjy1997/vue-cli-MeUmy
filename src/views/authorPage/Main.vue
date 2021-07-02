@@ -1,0 +1,425 @@
+<template>
+  <div  class="namePage" :class="{phone_namePage: isPhone}">
+    <!-- 页面头部 -->
+    <pageHead
+      pageNum = '3'
+      :isPhone = isPhone>
+    </pageHead>
+    <div class="body" :class="{phone_body: isPhone}">
+      <div class="title" :class="{phone_title: isPhone}">
+        <!-- 标题框 -->
+        <div
+          class="title_background"
+          :class="{phone_title_background: isPhone}"
+        >
+          <!-- 单纯的背景渐变 -->
+          <div class="title_top">
+            <div class="top_left"></div>
+            <div class="top_middle"></div>
+            <div class="top_right"></div>
+          </div>
+          <!-- 标题图 -->
+          <img
+            src="../../assets/img/author.png"
+            class="title_img"
+            :class="{phone_title_img: isPhone}"
+            oncontextmenu="return false"
+            onselectstart="return false"
+            draggable="false"
+          >
+          <!-- 搜索框 -->
+          <searchModule
+            @on-search='search'
+            :isPhone='isPhone'>
+          </searchModule>
+          <!-- 底部边框 -->
+          <div class="title_bottom"></div>
+        </div>
+      </div>
+      <!-- 视频框 -->
+      <div class="works">
+        <!-- 展示区域 -->
+        <div
+          class="excellent_div"
+          :class="{phone_excellent_div: isPhone}">
+          <!-- 框体组件 -->
+          <div
+            v-for="item in showWorks"
+            :key="item.key"
+            class="works_div"
+            :class="{phone_works_div: isPhone}">
+            <showBox
+              :isPhone = isPhone
+              :info = item>
+            </showBox>
+          </div>
+        </div>
+        <div class="pager" :class="{phone_pager: isPhone}">
+          <pager
+            :pageSize="pageSize"
+            v-model="pageNo"
+            @on-jump="jump"
+            :isPhone="isPhone">
+          </pager>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import pageHead from '../../components/pageHead';
+  import searchModule from '../../components/searchModule';
+  import showBox from '../../components/showBox';
+  import pager from '../../components/pager';
+  export default {
+    name: 'authorPage',
+    components: {
+      pageHead,
+      searchModule,
+      showBox,
+      pager
+    },
+    created() {
+      this.userIsPhone();
+    },
+    mounted() {
+      window.onresize = () => { // 实时检测页面宽度
+        this.userIsPhone();
+      };
+    },
+    data() {
+      return {
+        isPhone: false, // 是否移动设备
+        showWorks: [
+          {
+                type: '4',
+                name: '努力的灵风',
+                vid: '639',
+                img: '0',
+                art: '8',
+                workType: '0',
+                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
+                time: '2021-05-28 20:45:28',
+                head:
+                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
+                authUid: '62921501'
+              },
+              {
+                type: '4',
+                name: '73先生',
+                vid: '42',
+                img: '0',
+                art: '21',
+                workType: '0',
+                title: '【MMD/呜米三点式】沙滩性感热舞',
+                time: '2021-05-28 00:00:10',
+                head:
+                  'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
+                authUid: '973299388'
+              },
+              {
+                type: '4',
+                name: '霜飔慕雪',
+                vid: '0',
+                img: '0',
+                art: '0',
+                workType: '0',
+                title: '这人就是个废物什么都不会',
+                time: '2021-05-27 22:58',
+                head:
+                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
+                authUid: ''
+              },
+              {
+                type: '4',
+                name: '努力的灵风',
+                vid: '639',
+                img: '0',
+                art: '8',
+                workType: '0',
+                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
+                time: '2021-05-28 20:45:28',
+                head:
+                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
+                authUid: '62921501'
+              },
+              {
+                type: '4',
+                name: '73先生',
+                vid: '42',
+                img: '0',
+                art: '21',
+                workType: '0',
+                title: '【MMD/呜米三点式】沙滩性感热舞',
+                time: '2021-05-28 00:00:10',
+                head:
+                  'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
+                authUid: '973299388'
+              },
+              {
+                type: '4',
+                name: '霜飔慕雪',
+                vid: '0',
+                img: '0',
+                art: '0',
+                workType: '0',
+                title: '这人就是个废物什么都不会',
+                time: '2021-05-27 22:58',
+                head:
+                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
+                authUid: ''
+              },
+              {
+                type: '4',
+                name: '努力的灵风',
+                vid: '639',
+                img: '0',
+                art: '8',
+                workType: '0',
+                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
+                time: '2021-05-28 20:45:28',
+                head:
+                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
+                authUid: '62921501'
+              },
+              {
+                type: '4',
+                name: '73先生',
+                vid: '42',
+                img: '0',
+                art: '21',
+                workType: '0',
+                title: '【MMD/呜米三点式】沙滩性感热舞',
+                time: '2021-05-28 00:00:10',
+                head:
+                  'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
+                authUid: '973299388'
+              },
+              {
+                type: '4',
+                name: '霜飔慕雪',
+                vid: '0',
+                img: '0',
+                art: '0',
+                workType: '0',
+                title: '这人就是个废物什么都不会',
+                time: '2021-05-27 22:58',
+                head:
+                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
+                authUid: ''
+              },
+              {
+                type: '4',
+                name: '努力的灵风',
+                vid: '639',
+                img: '0',
+                art: '8',
+                workType: '0',
+                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
+                time: '2021-05-28 20:45:28',
+                head:
+                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
+                authUid: '62921501'
+              }
+        ],  // 当前页展示的作品
+        pageSize: 100, // 作品总页数
+        pageNo: 1, // 当前页
+        onSearch: [], // 搜索框正在搜索的内容
+      }
+    },
+    methods: {
+      // 获取浏览器宽度，动态调整样式
+      userIsPhone() {
+        // 获取屏幕宽度
+        let w = document.documentElement.clientWidth;
+        if ( w < 1000 ) {
+          this.isPhone = true;
+        } else {
+          this.isPhone = false;
+        }
+      },
+      // 获取总页数及加载页面是展示内容
+      wholePageNum() {
+        // 发送接口
+      },
+      // 搜索并更新展示内容
+      searchWorks() {
+        // 发送接口搜索
+        let param = {
+          type: this.onSearch.type,
+          word: this.onSearch.word,
+          page: this.pageNo
+        }
+      },
+      // 搜索框组件返回信息
+      search(param) {
+        this.onSearch = param;
+        this.pageNo = 1;
+        this.searchWorks();
+        // console.log(param)
+      },
+      // 页面跳转
+      jump(id) {
+        // console.log(id);
+        // 页码切换时搜索该页内容
+        this.searchWorks();
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  * {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .namePage {
+    display: flex;
+    flex-direction: column;
+    font-family: 'cjkFonts';
+    background: #F5F5F5;
+    height: 100%;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    max-width: 1250px;
+  }
+  .phone_body {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .title {
+    width: 90%;
+  }
+  .phone_title {
+    width: 95%;
+  }
+  .title_background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 14rem;
+    background:
+      repeating-linear-gradient(
+        to right,#F5F5F5,white 5%,white 95%,#F5F5F5
+      );
+  }
+  .phone_title_background {
+    height: 20rem;
+  }
+  .title_top {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+  }
+  .top_left {
+    width: 5%;
+    height: 100%;
+    background:
+      radial-gradient(circle  at 100% 100%, white, #F2F2F2);
+  }
+  .top_middle {
+    text-align: center;
+    width: 90%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(to bottom,#F5F5F5,#FFFFFF);
+  }
+  .top_right {
+    width: 5%;
+    height: 100%;
+    background:
+      radial-gradient(circle  at 0% 100%, white, #F2F2F2);
+  }
+  .title_img {
+    position: relative;
+    width: 40%;
+    top: -3.5rem;
+  }
+  .phone_title_img {
+    width: 60%;
+  }
+  .classify_div {
+    position: relative;
+    display: flex;
+    font-size: 2.3rem;
+    top: -2rem;
+  }
+  .phone_classify_div {
+    font-size: 2.8rem;
+  }
+  .classify_choice {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .classify_img {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .name {
+    color: #b072f2;
+  }
+  .not_name {
+    color: #5E5E5E;
+  }
+  .not_name:hover {
+    cursor: default;
+    color: #ff3b41;
+  }
+  .title_bottom {
+    width: 100%;
+    height: 4rem;
+    bottom: 0;
+    box-shadow: #afafaf 0px 20px 25px -10px;
+  }
+  .works {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .excellent_div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background: #FAFAFA;
+    width: 90%;
+    padding: 2rem 0 2rem 0;
+    margin-top: 1rem;
+  }
+  .phone_excellent_div {
+    width: 95%;
+  }
+  .works_div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+  }
+  .phone_works_div {
+    width: 90%;
+  }
+  .pager {
+    width: 90%;
+    background: #FAFAFA;
+    padding: 1rem 0 3rem 0;
+  }
+  .phone_pager {
+    width: 95%;
+  }
+</style>

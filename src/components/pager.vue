@@ -126,7 +126,7 @@
       <div
         class="next_page"
         :class="[
-          { pager_disabled: prevDisable },
+          { pager_disabled: nextDisable },
           { phone_switch_page: isPhone }
         ]"
         href=""

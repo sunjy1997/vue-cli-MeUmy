@@ -17,7 +17,8 @@
             pageNum === item.page ?
             'btn_choose' :
             '']"
-          @click="jumpToMenuPage(item.path)">
+          @click="jumpToMenuPage(item.path)"
+        >
           {{ item.name }}
         </div>
         <!-- 仅在绘图按钮右边展示标题图片 -->
@@ -28,7 +29,8 @@
           src="../assets/img/head_title.png"
           oncontextmenu="return false"
           onselectstart="return false"
-          draggable="false">
+          draggable="false"
+        >
       </div>
     </div>
     <!-- 右侧创作素材及关于按钮 -->
@@ -128,17 +130,17 @@
           {
             name: '绘图',
             page: '1',
-            path: ''
+            path: 'imagePage'
           },
           {
             name: '文章',
             page: '2',
-            path: ''
+            path: 'articlePage'
           },
           {
             name: '创作者',
             page: '3',
-            path: ''
+            path: 'authorPage'
           }
         ],
         showMenu: false, // 是否展示子菜单
@@ -146,7 +148,7 @@
         menuList: [ // 遍历创作素材按钮
           {
             name: '素材库',
-            path: ''
+            path: 'materialPage'
           },
           {
             name: '草原录播',
@@ -155,6 +157,10 @@
           {
             name: '草原路灯',
             path: 'https://meumy.club/'
+          },
+          {
+            name: '主页',
+            path: 'mainPage'
           }
         ]
       }
@@ -176,7 +182,7 @@
           });
         } else {
           // 路灯、录播为外链，用https作为判断依据，打开新页面跳转
-          window.open(path);
+          window.open(paths);
         }
       },
       // 跳转关于页面，由于是项目内页面，使用$router跳转

@@ -254,8 +254,7 @@
                 auth: '努力的灵风',
                 time: '2021-5-24',
                 uid: '62921501',
-                img:
-                  'https://i0.hdslb.com/bfs/article/4ebca0465b042df1adeb64fa749c0ef72eb43866.png',
+                img: '',
                 id: '11413342'
               },
               {
