@@ -1,7 +1,9 @@
 <template>
   <div
     class="auth_body"
-    :class="{phone_auth_body: isPhone}">
+    :class="{phone_auth_body: isPhone}"
+    @click="jumpToAuthPage()"
+  >
     <div class="head" :class="{phone_head: isPhone}">
       <meta name="referrer" content="no-referrer">
       <figure class="headImg">
@@ -24,7 +26,7 @@
       <div
         class="items"
         :class="{phone_items: isPhone}"
-        @click="jumpToAuthPage(authUid)">
+      >
         <div
           class="items_left"
           :class="{phone_items_left: isPhone}">
@@ -66,9 +68,13 @@ export default {
   },
   methods: {
     // 跳转创作者页面
-    jumpToAuthPage(uid) {
-      let path = '';
-      this.$router.push(path, uid);
+    jumpToAuthPage() {
+      this.$router.push({
+        name: 'authorInfoPage',
+        params: {
+          info: this.info
+        }
+      })
     },
     // 处理作品类型的展示
     formatType() {

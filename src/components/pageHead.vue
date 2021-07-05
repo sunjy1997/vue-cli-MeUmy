@@ -177,7 +177,7 @@
       jumpToMenuPage(paths) {
         if (paths.indexOf('https') === -1) {
           // 视频等菜单为项目内页面，使用$router跳转
-          this.$router.push({
+          this.$router.replace({
             name: paths
           });
         } else {
@@ -187,7 +187,7 @@
       },
       // 跳转关于页面，由于是项目内页面，使用$router跳转
       jumpToAboutPage() {
-        this.$router.push('', this.isPhone);
+        this.$router.replace('', this.isPhone);
       },
       // 点击别处时隐藏目录
       closeMenu(e) {

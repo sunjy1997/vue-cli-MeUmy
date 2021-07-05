@@ -479,7 +479,7 @@ export default {
     cursor: default;
   }
   .phone_search_body {
-    width: 80vw;
+    width: 90vw;
     height: 8vw;
   }
   .pull_box {

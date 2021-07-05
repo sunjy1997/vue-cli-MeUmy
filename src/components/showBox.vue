@@ -152,9 +152,11 @@ export default {
   },
   methods: {
     rightClick(e) {
-      this.showMenu = true
-      this.x_index = e.pageX;
-      this.y_index = e.pageY;
+      if (this.info.type !== '4') {
+        this.showMenu = true
+        this.x_index = e.pageX;
+        this.y_index = e.pageY;
+      }
     },
     // 关闭回调
     closeMenu(state) {
