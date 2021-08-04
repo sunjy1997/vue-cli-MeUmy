@@ -22,15 +22,17 @@
           {{ item.name }}
         </div>
         <!-- 仅在绘图按钮右边展示标题图片 -->
-        <img
-          v-if="item.name === '绘图'"
-          class="header_img"
-          :class="{header_img_animate: pageNum === ''}"
-          src="../assets/img/head_title.png"
-          oncontextmenu="return false"
-          onselectstart="return false"
-          draggable="false"
-        >
+        <div @click="jumpToMenuPage('mainPage')">
+          <img
+            v-if="item.name === '绘图'"
+            class="header_img"
+            :class="{header_img_animate: pageNum === ''}"
+            src="../assets/img/head_title.png"
+            oncontextmenu="return false"
+            onselectstart="return false"
+            draggable="false"
+          >
+        </div>
       </div>
     </div>
     <!-- 右侧创作素材及关于按钮 -->
@@ -61,24 +63,29 @@
           </div>
         </transition>
       </div>
-      <img
-        src="../assets/img/icon.png"
-        class="icon_img"
-        oncontextmenu="return false"
-        onselectstart="return false"
-        draggable="false"
-        @click="jumpToAboutPage()">
+      <div @click="jumpToMenuPage('aboutPage')">
+        <img
+          src="../assets/img/icon.png"
+          class="icon_img"
+          oncontextmenu="return false"
+          onselectstart="return false"
+          draggable="false"
+        >
+      </div>
     </div>
   </div>
   <!-- 移动端头部样式 -->
   <div v-else class="phone_header_body">
-    <img
-      class="phone_header_img"
-      :class="{header_img_animate: pageNum === ''}"
-      src="../assets/img/head_title.png"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false">
+    <div style="width: 100%" @click="jumpToMenuPage('mainPage')">
+      <img
+        class="phone_header_img"
+        :class="{header_img_animate: pageNum === ''}"
+        src="../assets/img/head_title.png"
+        oncontextmenu="return false"
+        onselectstart="return false"
+        draggable="false"
+      >
+    </div>
     <div class="more_img">
       <div
         class="more_imgs"
@@ -108,7 +115,7 @@
             </div>
             <div
               class="list_font phone_list_font"
-              @click="jumpToAboutPage()">关于</div>
+              @click="jumpToMenuPage('aboutPage')">关于</div>
           </div>
         </transition>
     </div>
@@ -177,17 +184,14 @@
       jumpToMenuPage(paths) {
         if (paths.indexOf('https') === -1) {
           // 视频等菜单为项目内页面，使用$router跳转
-          this.$router.replace({
+          this.$router.push({
+            path: paths,
             name: paths
           });
         } else {
           // 路灯、录播为外链，用https作为判断依据，打开新页面跳转
           window.open(paths);
         }
-      },
-      // 跳转关于页面，由于是项目内页面，使用$router跳转
-      jumpToAboutPage() {
-        this.$router.replace('', this.isPhone);
       },
       // 点击别处时隐藏目录
       closeMenu(e) {

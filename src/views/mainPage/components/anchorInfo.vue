@@ -118,7 +118,7 @@
     position: relative;
   }
   .background {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     -moz-user-select: none;
     -webkit-user-select: none;

@@ -1,5 +1,5 @@
 <template>
-  <div class="namePage" :class="{phone_namePage: isPhone}">
+  <div class="namePage">
     <!-- 页面头部 -->
     <pageHead
       pageNum = '5'

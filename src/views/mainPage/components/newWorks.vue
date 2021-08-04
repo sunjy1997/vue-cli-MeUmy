@@ -22,12 +22,19 @@
           :class="{phone_title: isPhone}">
           {{ item.name }}
         </div>
-        <div v-for="i in item.works" :key="i.key" class="works_body">
-          <showBox
-            :isPhone = isPhone
-            :info = i>
-          </showBox>
+        <div v-if="item.works.length !== 0">
+          <div v-for="i in item.works" :key="i.key" class="works_body">
+            <showBox
+              :isPhone = isPhone
+              :info = i>
+            </showBox>
+          </div>
         </div>
+        <img
+          v-else-if="item.name === '视频' || item.name === '创作者'"
+          src="../../../assets/img/merry.png"
+          class="no_works_img"
+        >
       </div>
     </div>
   </div>
@@ -93,6 +100,10 @@ export default {
     font-size: 2.8rem;
   }
   .works_body {
+    width: 100%;
+  }
+  .no_works_img {
+    margin-top: 2rem;
     width: 100%;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="namePage" :class="{phone_namePage: isPhone}">
+  <div class="namePage">
     <!-- 页面头部 -->
     <pageHead
       pageNum = '5'
@@ -31,7 +31,11 @@
                   :src="info.head"
                 >
               </figure>
-              <div class="btn">
+              <div
+                class="btn"
+                :class="{phone_btn: isPhone}"
+                @click="jumpToAuth()"
+              >
                 <span>主页</span>
               </div>
             </div>
@@ -170,6 +174,23 @@
         } else {
           this.isPhone = false;
         }
+      },
+      jumpToAuth() {
+        let url = 'https://space.bilibili.com/' + this.info.authUid + '/'
+        window.open(url)
+      },
+      // 页面跳转
+      jump(id) {
+        // console.log(id);
+        // 页码切换时搜索该页内容
+        this.searchWorks();
+      },
+      // 搜索并更新展示内容
+      searchWorks() {
+        // 发送接口搜索
+        let param = {
+          page: this.pageNo
+        }
       }
     }
   }
@@ -194,7 +215,6 @@
     font-family: 'cjkFonts';
     background: #F5F5F5;
     height: 100%;
-    min-height: 100vh;
   }
   .body {
     display: flex;
@@ -209,7 +229,6 @@
   }
   .phone_body {
     padding-top: 5rem;
-    padding-bottom: 5rem;
   }
   .title {
     width: 90%;
@@ -322,10 +341,11 @@
     background: linear-gradient( to right, #FAC282, #EBD336);
   }
   .phone_btn {
-    width: 7rem;
-    height: 4rem;
+    width: 6.4rem;
+    height: 3.4rem;
     border-radius: 0.9rem;
-    margin-left: 1.5rem;
+    margin-left: -1rem;
+    margin-top: -0.5rem;
     font-size: 2.1rem;
   }
   .info_body {
@@ -381,6 +401,7 @@
   }
   .phone_excellent_div {
     width: 95%;
+    min-height: 55vh;
   }
   .works_div {
     display: flex;
@@ -388,6 +409,7 @@
     width: 45%;
   }
   .phone_works_div {
+    height: 100%;
     width: 90%;
   }
   .pager {

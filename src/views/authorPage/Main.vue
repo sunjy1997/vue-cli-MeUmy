@@ -1,5 +1,5 @@
 <template>
-  <div  class="namePage" :class="{phone_namePage: isPhone}">
+  <div  class="namePage">
     <!-- 页面头部 -->
     <pageHead
       pageNum = '3'
@@ -116,7 +116,7 @@
                 time: '2021-05-28 00:00:10',
                 head:
                   'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
-                authUid: '973299388'
+                authUid: '19291133'
               },
               {
                 type: '4',
@@ -155,7 +155,7 @@
                 time: '2021-05-28 00:00:10',
                 head:
                   'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
-                authUid: '973299388'
+                authUid: '19291133'
               },
               {
                 type: '4',
@@ -194,7 +194,7 @@
                 time: '2021-05-28 00:00:10',
                 head:
                   'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
-                authUid: '973299388'
+                authUid: '19291133'
               },
               {
                 type: '4',
