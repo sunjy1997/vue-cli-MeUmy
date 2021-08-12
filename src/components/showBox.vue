@@ -12,7 +12,7 @@
     time: '', // 作品上传时间，时间格式为年-月-日 时:分:秒
     uid: '', // 作者uid
     img: '', // 图片地址，直接用图片的网络地址即可
-    id: '' // 作品id（具体对av、cv和普通动态id分类方法还不明确）
+    id: '' // 作品id
   }
 
   例：
@@ -93,6 +93,7 @@
         :info = showInfo></authBox>
     </div>
     <rightMenu
+      v-if="right !== '0'"
       :x = x_index
       :y = y_index
       :showMenu = showMenu
@@ -123,7 +124,7 @@ export default {
     materialBox,
     rightMenu
   },
-  props: ['info', 'isPhone'],
+  props: ['info', 'isPhone', 'right'],
   created() {
     if (this.showInfo.type !== '4') {
       this.information = this.formatInfo(this.info)
@@ -169,11 +170,7 @@ export default {
     },
     // 跳转举报页
     reportWorks() {
-      let param = {
-        workTitle: this.information.title,
-        workPath: this.information.workPath
-      }
-      this.$router.push('', param);
+      window.open('https://message.bilibili.com/#/whisper/mid2488613');
       this.closeWorks();
     },
     // 关闭弹窗

@@ -122,23 +122,23 @@
         isPhone: false, // 是否移动设备
         classifyList: [
           {
-            id: 0,
+            id: '0',
             name: '全部'
           },
           {
-            id: 1,
+            id: '1',
             name: '切片'
           },
           {
-            id: 2,
+            id: '2',
             name: 'MMD'
           },
           {
-            id: 3,
+            id: '3',
             name: '其他'
           }
         ], // 作品分类
-        classifyChoice: 0, // 现在选择的视频分类
+        classifyChoice: '0', // 现在选择的视频分类
         showWorks: [
           {
             type: '0',
@@ -265,10 +265,13 @@
       searchWorks() {
         // 发送接口搜索
         let param = {
-          type: this.onSearch.type,
-          word: this.onSearch.word,
-          page: this.pageNo,
-          choice: this.classifyChoice
+          getWorks: {
+            workType: '0',
+            searchType: this.onSearch.type,
+            searchWord: this.onSearch.word,
+            pageNum: this.pageNo,
+            classifyChoice: this.classifyChoice
+          }
           // 选择的视频类型，0全部，1切片，2MMD，3其他
         }
       },

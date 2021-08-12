@@ -214,9 +214,11 @@
       searchWorks() {
         // 发送接口搜索
         let param = {
-          type: this.onSearch.type,
-          word: this.onSearch.word,
-          page: this.pageNo
+          workType: '1',
+          searchType: this.onSearch.type,
+          searchWord: this.onSearch.word,
+          pageNum: this.pageNo,
+          classifyChoice: '0'
         }
       },
       // 搜索框组件返回信息

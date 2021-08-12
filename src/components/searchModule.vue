@@ -380,14 +380,12 @@ export default {
         return;
       }
       // 将搜索类型和关键字传递到父组件
-      // 0：标题；1：作者
+      // 0：标题；1：作者；2：时间
       let param = {
         type: this.placeNum,
         word: data
       }
       this.$emit('on-search', param);
-      // 点击搜索后清空搜索内容
-      this.search = '';
     },
     // 搜索时间
     searchDate() {

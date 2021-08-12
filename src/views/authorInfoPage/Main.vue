@@ -62,7 +62,7 @@
                 <!-- 最新作品 -->
                 <div class="works_new">
                   <span>最新作品：</span>
-                  <showBox :info="showWorks[0]"></showBox>
+                  <showBox :info="showWorks[0]" right = '0'></showBox>
                 </div>
               </div>
             </div>

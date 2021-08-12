@@ -1,5 +1,5 @@
 <template>
-  <div class="excellent_body">
+  <div class="excellent_body" v-if="info.length !== 0">
     <!-- MeUmy推荐标题 -->
     <img
       src="../../../assets/img/excellentWork.png"
@@ -24,6 +24,10 @@
         </showBox>
       </div>
     </div>
+    <div class="more_btn_div" v-if="info.length !== 0">
+      <div class="more_text">查看往期精选内容请戳这里哦~</div>
+      <div class="more_img" @click="goMore()"></div>
+    </div>
   </div>
 </template>
 
@@ -35,6 +39,11 @@ export default {
   props: ['info', 'isPhone'],
   components: {
     showBox
+  },
+  methods: {
+    goMore() {
+      window.open('https://space.bilibili.com/674421433/article')
+    }
   }
 }
 </script>
@@ -79,5 +88,28 @@ export default {
   }
   .phone_works_div {
     width: 90%;
+  }
+  .more_btn_div {
+    display: flex;
+    justify-content: flex-end;
+    background: #FAFAFA;
+    width: 90%;
+    height: 11rem;
+  }
+  .more_text {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    align-self: flex-end;
+  }
+  .more_img {
+    width: 10rem;
+    height: 10rem;
+    background: url('../../../assets/img/moreWorks.png') no-repeat;
+    background-size: contain;
+    padding-right: 2rem;
+  }
+  .more_img:hover {
+    background: url('../../../assets/img/moreWorks_hover.png') no-repeat;
+    background-size: contain;
   }
 </style>

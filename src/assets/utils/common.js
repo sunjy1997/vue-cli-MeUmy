@@ -2,6 +2,22 @@ export default {
   install(Vue) {
     // 时间格式化
     Vue.prototype.formatTime = function (date) {
+      // alert(typeof(1596101962))
+      if (typeof(date) === 'number') {
+        if(date) {
+          let val = new Date(date * 1000)	// 时间戳为秒：10位数
+          //let date = new Date(value)	// 时间戳为毫秒：13位数
+          let year = val.getFullYear()
+          let month = val.getMonth() + 1 < 10 ? `0${val.getMonth() + 1}` : val.getMonth() + 1
+          let day = val.getDate() < 10 ? `0${val.getDate()}` : val.getDate()
+          let hour = val.getHours() < 10 ? `0${val.getHours()}` : val.getHours()
+          let minute = val.getMinutes() < 10 ? `0${val.getMinutes()}` : val.getMinutes()
+          let second = val.getSeconds() < 10 ? `0${val.getSeconds()}` : val.getSeconds()
+          date = `${year}-${month}-${day} ${hour}:${minute}:${second}`
+        } else {
+          return ''
+        }
+      }
       if (date === '') {
         return;
       }

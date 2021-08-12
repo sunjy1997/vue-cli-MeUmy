@@ -50,6 +50,11 @@
       }
     },
     created() {
+      // var myRequest = new Request('http://parallel.meumy.club');
+      // fetch(myRequest).then(function(response) {
+      //   console.log(response)
+      // });
+
       this.userIsPhone();
       this.getExcellWorksInfo();
       this.getNewWorksInfo();
@@ -83,7 +88,7 @@
             type: '1',
             title: '狗狗伯爵，出击！',
             auth: '柒沐同学',
-            time: '2021-05-13',
+            time: 1596101962,
             uid: '25461195',
             img:
               'https://i0.hdslb.com/bfs/album/50b592f597a16d27f1cb2d2c5c6b96da2d8b4a74.jpg@320w_249h_1e_1c.webp',
@@ -177,6 +182,7 @@
         let param = [
           {
             name: '视频',
+            path: 'videoPage',
             works: [
               {
                 type: '0',
@@ -212,6 +218,7 @@
           },
           {
             name: '绘图',
+            path: 'imagePage',
             works: [
               {
                 type: '1',
@@ -247,6 +254,7 @@
           },
           {
             name: '文章',
+            path: 'articlePage',
             works: [
               {
                 type: '2',
@@ -279,6 +287,7 @@
           },
           {
             name: '创作者',
+            path: 'authorPage',
             works: [
               {
                 type: '4',

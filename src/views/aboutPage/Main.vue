@@ -68,7 +68,7 @@
           {
             job: '网站前端',
             name: '@霜飔慕雪',
-            head: 'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
+            head: require('../../assets/img/myHead.png'),
             uid: '2488613'
           },
           {

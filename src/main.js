@@ -15,3 +15,8 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app');
+
+router.afterEach((to,from,next) => {
+	document.body.scrollTop =0;
+	document.documentElement.scrollTop = 0;
+});
