@@ -64,18 +64,18 @@
   @contextmenu.prevent="rightClick">
     <!-- 视频框 -->
       <videoBox
-        v-if="info.type === '0'"
+        v-if="info.workType === '0'"
         :isPhone = isPhone
         :info = information>
       </videoBox>
     <!-- 绘图框 -->
-    <div v-else-if="info.type === '1'">
+    <div v-else-if="info.workType === '1'">
       <imageBox
         :isPhone = isPhone
         :info = information></imageBox>
     </div>
     <!-- 文章框 -->
-    <div v-else-if="info.type === '2'">
+    <div v-else-if="info.workType === '2'">
       <articalBox
         :isPhone = isPhone
         :info = information></articalBox>
@@ -87,7 +87,7 @@
         :info = information></materialBox>
     </div>
     <!-- 创作者框 -->
-    <div v-else-if="info.type === '4'">
+    <div v-else-if="info.workType === '4'">
       <authBox
         :isPhone = isPhone
         :info = showInfo></authBox>
@@ -126,8 +126,8 @@ export default {
   },
   props: ['info', 'isPhone', 'right'],
   created() {
-    if (this.showInfo.type !== '4') {
-      this.information = this.formatInfo(this.info)
+    if (this.showInfo.workType !== '4') {
+      this.information = this.formatInfo(this.info);
     } else {
       this.info.time = this.formatTime(this.info.time)
     }

@@ -61,11 +61,6 @@
 export default {
   name: "articalBox",
   props: ["info", "isPhone"],
-  mounted() {
-    window.onresize = () => {
-      this.switchFontSize();
-    };
-  },
   data() {
     return {
       artTitle: this.info.title, // 文章标题

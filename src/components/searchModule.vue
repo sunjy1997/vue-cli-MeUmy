@@ -24,7 +24,7 @@
       <div
         class="pull_box"
         :class="{phone_pull_box: isPhone}"
-        @click="clickMenuBtn(0)">
+        @click="clickMenuBtn()">
         <span> {{ searchTypeList[placeNum].name }} </span>
         <img
           src="../assets/img/pull.png"
@@ -33,11 +33,9 @@
         >
       </div>
       <!-- 输入框 -->
-      <!-- 标题、时间 -->
       <div
         class="search_box"
         :class="{phone_search_box: isPhone}"
-        v-if="placeNum !== '2'"
       >
         <input
           type="text"
@@ -60,66 +58,6 @@
           >
         </div>
       </div>
-      <div
-        class="right_btn_date"
-        :class="{phone_right_btn_date: isPhone}"
-        v-else
-      >
-        <div
-          class="pull_box pull_box_date"
-          :class="{phone_pull_box_date: isPhone}"
-          @click="clickMenuBtn(1)"
-        >
-          <span> {{ year }} </span>
-          <img
-            src="../assets/img/pull.png"
-            class="pull_img_date"
-            :class="{phone_pull_img_date: isPhone}"
-          >
-        </div>
-        <div
-          class="pull_box pull_box_date"
-          :class="{phone_pull_box_date: isPhone}"
-          @click="clickMenuBtn(2)"
-        >
-          <span> {{ month }} </span>
-          <img
-            src="../assets/img/pull.png"
-            class="pull_img_date"
-            :class="{phone_pull_img_date: isPhone}"
-          >
-        </div>
-        <div
-          class="pull_box pull_box_date"
-          :class="{phone_pull_box_date: isPhone}"
-          @click="clickMenuBtn(3)"
-        >
-          <span> {{ day }} </span>
-          <img
-            src="../assets/img/pull.png"
-            class="pull_img_date"
-            :class="{phone_pull_img_date: isPhone}"
-          >
-        </div>
-        <div
-          class="search_btn"
-          :class="{phone_search_btn: isPhone}"
-          @click="searchDate()"
-        >
-          搜索
-        </div>
-        <transition
-          enter-active-class="animate__animated animate__fadeIn"
-          leave-active-class="animate__animated animate__fadeOut">
-          <div
-            class="alert_text"
-            :class="{phone_alert_text: isPhone}"
-            v-show="showAlertText"
-          >
-            {{ alertText }}
-          </div>
-        </transition>
-      </div>
     </div>
     <div class="menu_box" :class="{phone_menu_box: isPhone}">
       <!-- 搜索方式选择框 -->
@@ -130,75 +68,19 @@
           class="menu_body"
           :class="{phone_menu_body: isPhone}"
           v-show="showMenu">
-          <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
+          <!-- 遍历展示子菜单按钮，包括标题、作者等 -->
           <div
             v-for="item in searchTypeList"
             :key="item.id"
             @click="switchsearch(item.id)"
-            class="list_font"
-            :class="{phone_list_font: isPhone}"
           >
-            {{ item.name }}
-          </div>
-        </div>
-      </transition>
-      <!-- 年份框 -->
-      <transition
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut">
-        <div
-          class="year_body"
-          :class="{phone_year_body: isPhone}"
-          v-show="showYear">
-          <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
-          <div
-            v-for="item in yearList"
-            :key="item.id"
-            @click="switchdate(0, item)"
-            class="list_font"
-            :class="{phone_list_font: isPhone}"
-          >
-            {{ item }}
-          </div>
-        </div>
-      </transition>
-      <!-- 月份框 -->
-      <transition
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut">
-        <div
-          class="year_body month_body"
-          :class="{phone_year_body: isPhone, phone_month_body: isPhone}"
-          v-show="showMonth">
-          <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
-          <div
-            v-for="item in 12"
-            :key="item.id"
-            @click="switchdate(1, item)"
-            class="list_font"
-            :class="{phone_list_font: isPhone}"
-          >
-            {{ item }}
-          </div>
-        </div>
-      </transition>
-      <!-- 日期框 -->
-      <transition
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut">
-        <div
-          class="year_body day_body"
-          :class="{phone_year_body: isPhone, phone_day_body: isPhone}"
-          v-show="showDay">
-          <!-- 遍历展示子菜单按钮，包括标题、作者、日期 -->
-          <div
-            v-for="item in dayList"
-            :key="item.id"
-            @click="switchdate(2, item)"
-            class="list_font"
-            :class="{phone_list_font: isPhone}"
-          >
-            {{ item }}
+            <div
+              v-if="item.name !== ''"
+              class="list_font"
+              :class="{phone_list_font: isPhone}"
+            >
+              {{ item.name }}
+            </div>
           </div>
         </div>
       </transition>
@@ -214,6 +96,11 @@ export default {
       // 是否是移动端进入页面
       type: Boolean,
       default: false
+    },
+    page: {
+      // 进入的页面
+      type: String,
+      default: 'video'
     }
   },
   data() {
@@ -226,10 +113,6 @@ export default {
         {
           id: '1',
           name: '作者'
-        },
-        {
-          id: '2',
-          name: '时间'
         }
       ], // 弹窗内容
       placeholderList: [
@@ -240,20 +123,10 @@ export default {
       search: '', // 输入的搜索内容
       showMenu: false, // 是否展示子菜单
       clickMenu: false, // 控制点击监听让展示框消失
-      year: '年份',
-      yearList: [],
-      showYear: false,
-      clickYear: false,
-      month: '月份',
-      showMonth: false,
-      clickMonth: false,
-      day: '日期',
-      dayList: '',
-      showDay: false,
-      clickDay: false,
-      alertText: '咩啊，这不好搜啊，请缩小点范围吧，斯米马三~~',
-      showAlertText: false
     }
+  },
+  created() {
+    this.switchSearchType();
   },
   mounted() {
     // 监听body上的点击
@@ -268,110 +141,20 @@ export default {
     closeMenu() {
       if (this.showMenu === true && this.clickMenu === true) {
         this.showMenu = this.clickMenu = false;
-      } else if (this.showYear === true && this.clickYear === true) {
-        this.showYear = this.clickYear = false;
-      } else if (this.showMonth === true && this.clickMonth === true) {
-        this.showMonth = this.clickMonth = false;
-      } else if (this.showDay === true && this.clickDay === true) {
-        this.showDay = this.clickDay = false;
       }
     },
     // 延时改变clickMenu的值实现点击别处让弹窗消失
-    clickMenuBtn(i) {
-      switch(i) {
-        case 0:
-          if ( this.showMenu === false ) {
-            this.showMenu = true;
-            setTimeout(() => {
-              this.clickMenu = true;
-            }, 30)
-          }
-          break;
-        case 1:
-          if ( this.showYear === false ) {
-            this.showYear = true;
-            setTimeout(() => {
-              this.clickYear = true;
-            }, 30)
-          }
-          break;
-        case 2:
-          if ( this.showMonth === false ) {
-            this.showMonth = true;
-            setTimeout(() => {
-              this.clickMonth = true;
-            }, 30)
-          }
-          break;
-        case 3:
-          if ( this.showDay === false ) {
-            this.showDay = true;
-            setTimeout(() => {
-              this.clickDay = true;
-            }, 30)
-          }
-          break;
-        default:
-          break;
+    clickMenuBtn() {
+      if ( this.showMenu === false ) {
+        this.showMenu = true;
+        setTimeout(() => {
+          this.clickMenu = true;
+        }, 30)
       }
     },
     // 切换搜索方式
     switchsearch(i) {
       this.placeNum = i;
-      // 若选择了按日期搜索，生成年份数组
-      if (i === '2') {
-        // 获取年份
-        let date = Number(new Date().getFullYear());
-        let length = date - 2019;
-        for (let j = 0; j <= length; j++) {
-          this.yearList.push(2019 + j);
-        }
-      } else {
-        this.yearList = [];
-      }
-    },
-    // 切换时间
-    switchdate(i, data) {
-      switch(i) {
-        case 0:
-          this.year = String(data);
-          let leap = this.isLeapYear(Number(this.year));
-          if (leap === true && String(this.month) === '2') {
-            this.dayList = 29;
-          } else if (leap === false && String(this.month) === '2') {
-            this.dayList = 28;
-          }
-          break;
-        case 1:
-          this.month = String(data);
-          // 对应月份的天数
-          switch(data) {
-            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-              this.dayList = 31;
-              break;
-            case 2:
-              if ( this.year !== '年份' ) {
-                let leap = this.isLeapYear(Number(this.year));
-                if (leap === true) {
-                  this.dayList = 29;
-                } else {
-                  this.dayList = 28;
-                }
-              } else {
-                this.dayList = 29;
-              }
-              break;
-            default:
-              this.dayList = 30;
-              break;
-          }
-          break;
-        case 2:
-          this.day = String(data);
-          break;
-        default:
-          break;
-      }
     },
     // 搜索
     searchWorks(data) {
@@ -380,74 +163,69 @@ export default {
         return;
       }
       // 将搜索类型和关键字传递到父组件
-      // 0：标题；1：作者；2：时间
+      // 0：标题；1：作者；
       let param = {
         type: this.placeNum,
         word: data
       }
       this.$emit('on-search', param);
     },
-    // 搜索时间
-    searchDate() {
-      let sYear;
-      let sMonth;
-      let sDay;
-      if ( this.year === '年份' ) {
-        sYear = '';
-      } else {
-        sYear = this.year;
-      }
-      if ( this.month === '月份' ) {
-        sMonth = '';
-      } else {
-        sMonth = this.month;
-      }
-      if ( this.day === '日期' ) {
-        sDay = '';
-      } else {
-        sDay = this.day;
-      }
-
-      if ( sYear === '' && sMonth === '' && sDay === '' ) {
-        // 如果三个参数都为空，不做操作
-        return;
-      } else if ( sYear !== '' && sMonth === '' && sDay === '' ) {
-        // 如果仅输入年份，则可以搜索
-        // 将搜索类型和关键字传递到父组件
-        // 2：时间
-        let time = sYear + '-';
-        let param = {
-          type: '2',
-          word: time
-        }
-        this.$emit('on-search', param);
-        // 点击搜索后清空搜索内容
-        this.year = '年份';
-      } else if (
-        ( sYear === '' && sMonth !== '' && sDay === '' ) ||
-        ( sYear === '' && sMonth === '' && sDay !== '' ) ||
-        ( sYear !== '' && sMonth === '' && sDay !== '' )
-      ) {
-        // 如果仅输入月份或者日期，或只输入年份日期，显示提示字样
-        this.showAlertText = true;
-        setTimeout(() => {
-          this.showAlertText = false;
-        }, 3000);
-      } else {
-        // 如果输入年、月；月、日；年、月、日，则正常搜索
-        // 将搜索类型和关键字传递到父组件
-        // 2：时间
-        let time = sYear + '-' + sMonth + '-' + sDay;
-        let param = {
-          type: '2',
-          work: time
-        }
-        this.$emit('on-search', param);
-        // 点击搜索后清空搜索内容
-        this.year = '年份';
-        this.month = '月份';
-        this.day = '日期';
-        this.dayList = [];
+    // 根据不同的页面，改变搜索方式
+    switchSearchType() {
+      switch (this.page) {
+        case 'video': case 'article': case 'material':
+          this.searchTypeList =[
+            {
+              id: '0',
+              name: '标题'
+            },
+            {
+              id: '1',
+              name: '作者'
+            }
+          ]
+          break;
+        case 'image':
+          this.searchTypeList =[
+            {
+              id: '0',
+              name: ''
+            },
+            {
+              id: '1',
+              name: '作者'
+            }
+          ];
+          this.placeholderList = [
+            '',
+            '按作者搜索：'
+          ];
+          this.placeNum = '1';
+          break;
+        case 'author':
+          this.searchTypeList =[
+            {
+              id: '0',
+              name: ''
+            },
+            {
+              id: '1',
+              name: '作者'
+            },
+            {
+              id: '2',
+              name: 'uid'
+            }
+          ];
+          this.placeholderList = [
+            '',
+            '按作者搜索：',
+            '按uid搜索：'
+          ];
+          this.placeNum = '1';
+          break;
+        default:
+          break;
       }
     }
   }

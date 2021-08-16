@@ -52,15 +52,15 @@ export default {
   props: ['info', 'isPhone'],
   data() {
     return {
-      authName: this.info.name, // 作者昵称
-      vidNum: this.info.vid, // 视屏数量
-      imgNum: this.info.img, // 绘图数量
-      artNum: this.info.art, // 文章数量
+      authName: this.info.authName, // 作者昵称
+      vidNum: this.info.vidNum, // 视屏数量
+      imgNum: this.info.imgNum, // 绘图数量
+      artNum: this.info.artNum, // 文章数量
       updateType: '', // 最近更新作品类型
-      workTitle: this.info.title, // 最近更新作品标题
+      workTitle: this.info.workTitle, // 最近更新作品标题
       workTime: this.info.time, // 最近更新作品时间
-      headImg: this.info.head, // 作者头像
-      authUid: this.info.uid // 作者uid
+      headImg: this.info.imgAddr, // 作者头像
+      authUid: this.info.authUid // 作者uid
     }
   },
   mounted() {
@@ -78,7 +78,7 @@ export default {
     },
     // 处理作品类型的展示
     formatType() {
-      switch(this.info.workType) {
+      switch(this.info.newWork) {
         case '0':
           this.updateType = '视频';
           break;

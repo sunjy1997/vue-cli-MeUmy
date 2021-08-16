@@ -59,7 +59,8 @@
           <!-- 搜索框 -->
           <searchModule
             @on-search='search'
-            :isPhone='isPhone'>
+            :isPhone='isPhone'
+            page='material'>
           </searchModule>
           <!-- 底部边框 -->
           <div class="title_bottom"></div>

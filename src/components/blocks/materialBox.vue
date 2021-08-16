@@ -32,11 +32,6 @@
 export default {
   name: "materialBox",
   props: ["info", "isPhone"],
-  mounted() {
-    window.onresize = () => {
-      this.switchFontSize();
-    };
-  },
   data() {
     return {
       // 素材标题
