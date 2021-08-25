@@ -124,7 +124,7 @@
 
 <script>
   export default {
-    name: 'head',
+    name: 'pageHeader',
     props: [ 'isPhone', 'pageNum' ],
     data() {
       return {
@@ -153,10 +153,10 @@
         showMenu: false, // 是否展示子菜单
         clickMenu: false, // 控制点击监听让展示框消失
         menuList: [ // 遍历创作素材按钮
-          {
-            name: '素材库',
-            path: 'materialPage'
-          },
+          // {
+          //   name: '素材库',
+          //   path: 'materialPage'
+          // },
           {
             name: '草原录播',
             path: 'https://space.bilibili.com/674622242/video'
@@ -184,10 +184,14 @@
       jumpToMenuPage(paths) {
         if (paths.indexOf('https') === -1) {
           // 视频等菜单为项目内页面，使用$router跳转
-          this.$router.push({
-            path: paths,
-            name: paths
-          });
+          try {
+            this.$router.push({
+              path: paths,
+              name: paths
+            });
+          } catch(e) {
+            return;
+          }
         } else {
           // 路灯、录播为外链，用https作为判断依据，打开新页面跳转
           window.open(paths);

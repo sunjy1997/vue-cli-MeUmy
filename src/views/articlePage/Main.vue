@@ -83,6 +83,7 @@
     },
     created() {
       this.userIsPhone();
+      this.searchWorks();
     },
     mounted() {
       window.onresize = () => { // 实时检测页面宽度
@@ -92,98 +93,7 @@
     data() {
       return {
         isPhone: false, // 是否移动设备
-        showWorks: [
-          {
-            type: '2',
-            title: '【MeUmy】淋雨',
-            auth: '努力的灵风',
-            time: '2021-5-24',
-            uid: '62921501',
-            img: '',
-            id: '11413342'
-          },
-          {
-            type: '2',
-            title: '午后',
-            auth: '耋堞疊迭',
-            time: '2021-5-8',
-            uid: '43658770',
-            img: '',
-            id: '11204256'
-          },
-          {
-            type: '2',
-            title: '[MeUmy同人]咩栗不在的七天（糖刀，高虐）',
-            auth: '南宫鸢_Iris',
-            time: '2021-5-10',
-            uid: '8045830',
-            img: '',
-            id: '11227618'
-          },
-          {
-            type: '2',
-            title: '【MeUmy】淋雨',
-            auth: '努力的灵风',
-            time: '2021-5-24',
-            uid: '62921501',
-            img: '',
-            id: '11413342'
-          },
-          {
-            type: '2',
-            title: '午后',
-            auth: '耋堞疊迭',
-            time: '2021-5-8',
-            uid: '43658770',
-            img: '',
-            id: '11204256'
-          },
-          {
-            type: '2',
-            title: '[MeUmy同人]咩栗不在的七天（糖刀，高虐）',
-            auth: '南宫鸢_Iris',
-            time: '2021-5-10',
-            uid: '8045830',
-            img: '',
-            id: '11227618'
-          },
-          {
-            type: '2',
-            title: '【MeUmy】淋雨',
-            auth: '努力的灵风',
-            time: '2021-5-24',
-            uid: '62921501',
-            img: '',
-            id: '11413342'
-          },
-          {
-            type: '2',
-            title: '午后',
-            auth: '耋堞疊迭',
-            time: '2021-5-8',
-            uid: '43658770',
-            img: '',
-            id: '11204256'
-          },
-          {
-            type: '2',
-            title: '[MeUmy同人]咩栗不在的七天（糖刀，高虐）',
-            auth: '南宫鸢_Iris',
-            time: '2021-5-10',
-            uid: '8045830',
-            img: '',
-            id: '11227618'
-          },
-          {
-            type: '2',
-            title: '【MeUmy】淋雨',
-            auth: '努力的灵风',
-            time: '2021-5-24',
-            uid: '62921501',
-            img: '',
-            id: '11413342'
-          }
-        ],  // 当前页展示的作品
+        showWorks: [],  // 当前页展示的作品
         pageSize: 100, // 作品总页数
         pageNo: 1, // 当前页
         onSearch: [], // 搜索框正在搜索的内容
@@ -208,12 +118,25 @@
       searchWorks() {
         // 发送接口搜索
         let param = {
-          workType: '2',
-          searchType: this.onSearch.type,
-          searchWord: this.onSearch.word,
-          pageNum: this.pageNo,
-          classifyChoice: '0'
+          getWorks: {
+            workType: '2',
+            searchType: this.onSearch.type,
+            searchWord: this.onSearch.word,
+            pageNum: this.pageNo,
+            classifyChoice: '0'
+          }
         }
+        Promise.all([this.getWorksInfo(param)]).then(item => {
+          this.pageSize = this.switchPageNum(item[0].worksNum);
+          if (this.showWorks.length === 0) {
+            this.showWorks =  this.showWorks.concat(item[0].worksList);
+          } else {
+            this.showWorks.splice(0,10);
+            setTimeout(() => {
+              this.showWorks = this.showWorks.concat(item[0].worksList);
+            }, 0)
+          }
+        })
       },
       // 搜索框组件返回信息
       search(param) {
@@ -257,6 +180,7 @@
     align-items: center;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    width: 90%;
     max-width: 1250px;
   }
   .phone_body {
@@ -356,6 +280,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%;
   }
   .excellent_div {
     display: flex;

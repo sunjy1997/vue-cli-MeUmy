@@ -81,13 +81,13 @@
         :info = information></articalBox>
     </div>
     <!-- 素材框 -->
-    <div v-else-if="info.type === '3'">
+    <div v-else-if="info.workType === '3'">
       <materialBox
         :isPhone = isPhone
         :info = information></materialBox>
     </div>
     <!-- 创作者框 -->
-    <div v-else-if="info.workType === '4'">
+    <div v-else>
       <authBox
         :isPhone = isPhone
         :info = showInfo></authBox>
@@ -126,7 +126,7 @@ export default {
   },
   props: ['info', 'isPhone', 'right'],
   created() {
-    if (this.showInfo.workType !== '4') {
+    if (this.showInfo.workType) {
       this.information = this.formatInfo(this.info);
     } else {
       this.info.time = this.formatTime(this.info.time)
@@ -153,7 +153,7 @@ export default {
   },
   methods: {
     rightClick(e) {
-      if (this.info.type !== '4') {
+      if (this.info.workType !== '4') {
         this.showMenu = true
         this.x_index = e.pageX;
         this.y_index = e.pageY;

@@ -61,9 +61,10 @@ export default {
   },
   methods: {
     // 跳转创作者页面
-    jumpToAuthPage(uid) {
-      let path = '';
-      this.$router.push(path, uid);
+    jumpToAuthPage() {
+      this.$router.push({
+        path: `authorInfoPage/${this.authUid}`
+      })
     },
     // 跳转视频页面
     jumpToImage(path) {

@@ -28,7 +28,7 @@
                   oncontextmenu="return false"
                   onselectstart="return false"
                   draggable="false"
-                  :src="info.head"
+                  :src="authInfo.imgAddr"
                 >
               </figure>
               <div
@@ -43,7 +43,7 @@
             <div class="info_body">
               <!-- 创作者id -->
               <div class="author_name">
-                {{ info.name }}
+                {{ authInfo.authName }}
               </div>
               <!-- 创作信息 -->
               <div
@@ -55,14 +55,20 @@
                   class="works_num"
                   :class="{phone_works_num: isPhone}"
                 >
-                  <span>视频：{{ info.vid }}条</span>
-                  <span>文章：{{ info.art }}篇</span>
-                  <span>绘图：{{ info.img }}幅</span>
+                  <span>视频：{{ authInfo.vidNum }}条</span>
+                  <span>文章：{{ authInfo.artNum }}篇</span>
+                  <span>绘图：{{ authInfo.imgNum }}幅</span>
                 </div>
                 <!-- 最新作品 -->
                 <div class="works_new">
                   <span>最新作品：</span>
-                  <showBox :info="showWorks[0]" right = '0'></showBox>
+                  <div v-for="item in newWork" :key="item.key">
+                    <showBox
+                      :info="item"
+                      :isPhone = isPhone
+                      right = '0'
+                    ></showBox>
+                  </div>
                 </div>
               </div>
             </div>
@@ -114,51 +120,24 @@
     },
     created() {
       this.userIsPhone();
-      if (this.$route.params.info) {
-        this.info = this.$route.params.info
+      if (this.$route.params.id) {
+        this.info = this.$route.params.id
       }
     },
     mounted() {
       window.onresize = () => { // 实时检测页面宽度
         this.userIsPhone();
       };
+      this.searchWorks();
+      this.getAuthInfo();
     },
     data() {
       return {
         isPhone: false,
         info: '',
-        showWorks: [
-          {
-            type: '0',
-            title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
-            auth: '努力的灵风',
-            time: '2021-05-28 20:45:28',
-            uid: '62921501',
-            img:
-              'https://i2.hdslb.com/bfs/archive/2f2691e2e203333f278103466bc8e953c826d7e6.jpg@380w_240h_100Q_1c.webp',
-            id: '205850362'
-          },
-          {
-            type: '0',
-            title: '【呜米MMD/花嫁配布】这是谁家的新娘？',
-            auth: '73先生',
-            time: '2021-05-27 12:00:15',
-            uid: '19291133',
-            img:
-              'https://i2.hdslb.com/bfs/archive/724e7672e1316aa4a350d2f2993be0a7ea3b8193.jpg@380w_240h_100Q_1c.webp',
-            id: '973299388'
-          },
-          {
-            type: '0',
-            title: '【呜米x咩栗】magnet',
-            auth: '呜米',
-            time: '2021-05-21 18:00:00',
-            uid: '617459493',
-            img:
-              'https://i1.hdslb.com/bfs/archive/e444757b00eeb9cbb85bbf8bd912450f565354fe.jpg@160w_100h_100Q_1c.webp',
-            id: '930635056'
-          }
-        ],
+        authInfo: [],
+        showWorks: [],
+        newWork: [],
         pageSize: 10, // 作品总页数
         pageNo: 1, // 当前页
       }
@@ -176,7 +155,7 @@
         }
       },
       jumpToAuth() {
-        let url = 'https://space.bilibili.com/' + this.info.authUid + '/'
+        let url = 'https://space.bilibili.com/' + this.info + '/';
         window.open(url)
       },
       // 页面跳转
@@ -189,8 +168,40 @@
       searchWorks() {
         // 发送接口搜索
         let param = {
-          page: this.pageNo
+          getWorks: {
+            workType: '-1',
+            pageNum: this.pageNo,
+            searchType: '2',
+            searchWord: this.info
+          }
         }
+        this.getWorksInfo(param).then(item => {
+          this.pageSize = this.switchPageNum(item.worksNum);
+          if (this.showWorks.length === 0) {
+            this.showWorks =  item.worksList;
+            this.newWork[0] = item.worksList[0];
+            // this.$set(this.newWork, 'work', item.worksList[0]);
+          } else {
+            this.showWorks.splice(0,10);
+            setTimeout(() => {
+              this.showWorks = this.showWorks.concat(item.worksList);
+            }, 0)
+          }
+        })
+      },
+      // 获取作者信息
+      getAuthInfo() {
+        // 发送接口搜索
+        let param = {
+          getAuthors: {
+            searchType: '2',
+            searchWord: this.info,
+            pageNum: 1
+          }
+        }
+        this.getWorksInfo(param).then(item => {
+          this.authInfo =  item.worksList[0];
+        })
       }
     }
   }
@@ -222,7 +233,7 @@
     justify-content: center;
     align-self: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
     padding-top: 4rem;
     padding-bottom: 3rem;
     max-width: 1250px;
@@ -389,6 +400,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%;
   }
   .excellent_div {
     display: flex;

@@ -142,12 +142,9 @@
         ], // 作品分类
         classifyChoice: '0', // 现在选择的视频分类
         showWorks: [],  // 当前页展示的作品
-        pageSize: 100, // 作品总页数
+        pageSize: 10, // 作品总页数
         pageNo: 1, // 当前页
-        onSearch: {
-          type: '0',
-          word: ''
-        }, // 搜索框正在搜索的内容
+        onSearch: {}, // 搜索框正在搜索的内容
       }
     },
     methods: {
@@ -172,15 +169,16 @@
             pageNum: this.pageNo,
             classifyChoice: this.classifyChoice
           }
-          // 选择的视频类型，0全部，1切片，2MMD，3其他
+          // classifyChoice:选择的视频类型，0全部，1切片，2MMD，3其他
         }
-        Promise.all([this.getWorksInfo(param)]).then(item => {
+        this.getWorksInfo(param).then(item => {
+          this.pageSize = this.switchPageNum(item.worksNum);
           if (this.showWorks.length === 0) {
-            this.showWorks =  this.showWorks.concat(item[0]);
+            this.showWorks =  this.showWorks.concat(item.worksList);
           } else {
             this.showWorks.splice(0,10);
             setTimeout(() => {
-              this.showWorks = this.showWorks.concat(item[0]);
+              this.showWorks = this.showWorks.concat(item.worksList);
             }, 0)
           }
         })
@@ -236,6 +234,7 @@
     align-items: center;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    width: 90%;
     max-width: 1250px;
   }
   .phone_body {
@@ -335,6 +334,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%;
   }
   .excellent_div {
     display: flex;

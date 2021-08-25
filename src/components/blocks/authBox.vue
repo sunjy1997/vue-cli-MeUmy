@@ -70,10 +70,7 @@ export default {
     // 跳转创作者页面
     jumpToAuthPage() {
       this.$router.push({
-        name: 'authorInfoPage',
-        params: {
-          info: this.info
-        }
+        path: `authorInfoPage/${this.authUid}`
       })
     },
     // 处理作品类型的展示

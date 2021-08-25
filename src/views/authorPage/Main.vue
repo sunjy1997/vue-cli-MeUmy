@@ -83,6 +83,7 @@
     },
     created() {
       this.userIsPhone();
+      this.searchWorks();
     },
     mounted() {
       window.onresize = () => { // 实时检测页面宽度
@@ -92,138 +93,7 @@
     data() {
       return {
         isPhone: false, // 是否移动设备
-        showWorks: [
-          {
-                type: '4',
-                name: '努力的灵风',
-                vid: '639',
-                img: '0',
-                art: '8',
-                workType: '0',
-                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
-                time: '2021-05-28 20:45:28',
-                head:
-                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
-                authUid: '62921501'
-              },
-              {
-                type: '4',
-                name: '73先生',
-                vid: '42',
-                img: '0',
-                art: '21',
-                workType: '0',
-                title: '【MMD/呜米三点式】沙滩性感热舞',
-                time: '2021-05-28 00:00:10',
-                head:
-                  'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
-                authUid: '19291133'
-              },
-              {
-                type: '4',
-                name: '霜飔慕雪',
-                vid: '0',
-                img: '0',
-                art: '0',
-                workType: '0',
-                title: '这人就是个废物什么都不会',
-                time: '2021-05-27 22:58',
-                head:
-                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
-                authUid: ''
-              },
-              {
-                type: '4',
-                name: '努力的灵风',
-                vid: '639',
-                img: '0',
-                art: '8',
-                workType: '0',
-                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
-                time: '2021-05-28 20:45:28',
-                head:
-                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
-                authUid: '62921501'
-              },
-              {
-                type: '4',
-                name: '73先生',
-                vid: '42',
-                img: '0',
-                art: '21',
-                workType: '0',
-                title: '【MMD/呜米三点式】沙滩性感热舞',
-                time: '2021-05-28 00:00:10',
-                head:
-                  'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
-                authUid: '19291133'
-              },
-              {
-                type: '4',
-                name: '霜飔慕雪',
-                vid: '0',
-                img: '0',
-                art: '0',
-                workType: '0',
-                title: '这人就是个废物什么都不会',
-                time: '2021-05-27 22:58',
-                head:
-                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
-                authUid: ''
-              },
-              {
-                type: '4',
-                name: '努力的灵风',
-                vid: '639',
-                img: '0',
-                art: '8',
-                workType: '0',
-                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
-                time: '2021-05-28 20:45:28',
-                head:
-                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
-                authUid: '62921501'
-              },
-              {
-                type: '4',
-                name: '73先生',
-                vid: '42',
-                img: '0',
-                art: '21',
-                workType: '0',
-                title: '【MMD/呜米三点式】沙滩性感热舞',
-                time: '2021-05-28 00:00:10',
-                head:
-                  'https://i2.hdslb.com/bfs/face/99b528a87536696096c83877470cdb300c3ffd76.jpg@128w_128h_1o.webp',
-                authUid: '19291133'
-              },
-              {
-                type: '4',
-                name: '霜飔慕雪',
-                vid: '0',
-                img: '0',
-                art: '0',
-                workType: '0',
-                title: '这人就是个废物什么都不会',
-                time: '2021-05-27 22:58',
-                head:
-                  'https://i2.hdslb.com/bfs/face/62b754c0cd99cab4aafd661fa7781c5dd6c7bf66.jpg@128w_128h_1o.webp',
-                authUid: ''
-              },
-              {
-                type: '4',
-                name: '努力的灵风',
-                vid: '639',
-                img: '0',
-                art: '8',
-                workType: '0',
-                title: '【呜米】《一直都在》——2021.5.28生贺原创曲',
-                time: '2021-05-28 20:45:28',
-                head:
-                  'https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp',
-                authUid: '62921501'
-              }
-        ],  // 当前页展示的作品
+        showWorks: [],  // 当前页展示的作品
         pageSize: 100, // 作品总页数
         pageNo: 1, // 当前页
         onSearch: [], // 搜索框正在搜索的内容
@@ -240,18 +110,27 @@
           this.isPhone = false;
         }
       },
-      // 获取总页数及加载页面是展示内容
-      wholePageNum() {
-        // 发送接口
-      },
       // 搜索并更新展示内容
       searchWorks() {
         // 发送接口搜索
         let param = {
-          searchType: this.onSearch.type,
-          searchWord: this.onSearch.word,
-          pageNum: this.pageNo,
+          getAuthors: {
+            searchType: this.onSearch.type,
+            searchWord: this.onSearch.word,
+            pageNum: this.pageNo
+          }
         }
+        this.getWorksInfo(param).then(item => {
+          this.pageSize = this.switchPageNum(item.worksNum);
+          if (this.showWorks.length === 0) {
+            this.showWorks =  this.showWorks.concat(item.worksList);
+          } else {
+            this.showWorks.splice(0,10);
+            setTimeout(() => {
+              this.showWorks = this.showWorks.concat(item.worksList);
+            }, 0)
+          }
+        })
       },
       // 搜索框组件返回信息
       search(param) {
@@ -295,6 +174,7 @@
     align-items: center;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    width: 90%;
     max-width: 1250px;
   }
   .phone_body {
@@ -394,6 +274,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%;
   }
   .excellent_div {
     display: flex;

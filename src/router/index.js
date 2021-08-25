@@ -22,11 +22,6 @@ export default new Router({
       component: mainPage
     },
     {
-      path: '/mainPage',
-      name: 'mainPage',
-      component: mainPage
-    },
-    {
       path: '/videoPage',
       name: 'videoPage',
       component: videoPage
@@ -52,7 +47,7 @@ export default new Router({
       component: materialPage
     },
     {
-      path: '/authorInfoPage',
+      path: '/authorInfoPage/:id',
       name: 'authorInfoPage',
       component: authorInfoPage
     },

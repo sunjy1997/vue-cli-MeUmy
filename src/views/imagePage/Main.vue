@@ -83,6 +83,7 @@
     },
     created() {
       this.userIsPhone();
+      this.searchWorks();
     },
     mounted() {
       window.onresize = () => { // 实时检测页面宽度
@@ -92,106 +93,8 @@
     data() {
       return {
         isPhone: false, // 是否移动设备
-        showWorks: [
-          {
-            type: '1',
-            title: '夏天[牛年][牛年][牛年]',
-            auth: '迷幺叶yoko',
-            time: '2021-05-22',
-            uid: '32376366',
-            img:
-              '	https://i0.hdslb.com/bfs/album/17caf4f9d26b4e75c53180eb7f021016284fa50f.jpg@240w_320h_1e_1c.webp',
-            id: '527534082601352021'
-          },
-          {
-            type: '1',
-            title: 'gachi浓度超高哒  听说～情侣间在一起久了会越来越像对方～嘛～现在看来没错了',
-            auth: '呜米嗷嗷嗷',
-            time: '2021-05-21',
-            uid: '32376366',
-            img:
-              'https://i0.hdslb.com/bfs/album/449ee6ae7b6123b341aa815db11b6d1c22bb37f3.jpg@104w_104h_1e_1c.webp',
-            id: '527288908690349952'
-          },
-          {
-            type: '1',
-            title: '为了赶出生贺视频所以，最近比较忙...。没画什么贴贴图，那就放一张生贺偷跑图吧',
-            auth: '凪青',
-            time: '2021-05-24',
-            uid: '17311506',
-            img:
-              'https://i0.hdslb.com/bfs/album/80be11a1b27668337f064810f2c3026d4c6f166a.png@320w_180h_1e_1c.webp',
-            id: '528313911221960029'
-          },{
-            type: '1',
-            title: '狗狗伯爵，出击！',
-            auth: '柒沐同学',
-            time: '2021-05-13',
-            uid: '25461195',
-            img:
-              'https://i0.hdslb.com/bfs/album/50b592f597a16d27f1cb2d2c5c6b96da2d8b4a74.jpg@320w_249h_1e_1c.webp',
-            id: '524114906381391492'
-          },
-          {
-            type: '1',
-            title: '给崽崽做了套光标皮肤[捂眼]',
-            auth: '芥末味Banana',
-            time: '2021-05-15',
-            uid: '160446326',
-            img:
-              'https://i0.hdslb.com/bfs/album/da68825453815e98603735e350d88a472963cc0d.png@104w_104h_1e_1c.webp',
-            id: '524990160587246247'
-          },
-          {
-            type: '1',
-            title: 'MeUmy幼儿园🐺🐏',
-            auth: '影片美伽的心上人',
-            time: '2021-05-14',
-            uid: '12302327',
-            img:
-              'https://i0.hdslb.com/bfs/album/8e2d32ecd3a4e4ec390d587a7e43705b5a17d304.jpg@320w_320h_1e_1c.webp',
-            id: '524610528429313870'
-          },{
-            type: '1',
-            title: '夏天[牛年][牛年][牛年]',
-            auth: '迷幺叶yoko',
-            time: '2021-05-22',
-            uid: '32376366',
-            img:
-              '	https://i0.hdslb.com/bfs/album/17caf4f9d26b4e75c53180eb7f021016284fa50f.jpg@240w_320h_1e_1c.webp',
-            id: '527534082601352021'
-          },
-          {
-            type: '1',
-            title: 'gachi浓度超高哒  听说～情侣间在一起久了会越来越像对方～嘛～现在看来没错了',
-            auth: '呜米嗷嗷嗷',
-            time: '2021-05-21',
-            uid: '32376366',
-            img:
-              'https://i0.hdslb.com/bfs/album/449ee6ae7b6123b341aa815db11b6d1c22bb37f3.jpg@104w_104h_1e_1c.webp',
-            id: '527288908690349952'
-          },
-          {
-            type: '1',
-            title: '为了赶出生贺视频所以，最近比较忙...。没画什么贴贴图，那就放一张生贺偷跑图吧',
-            auth: '凪青',
-            time: '2021-05-24',
-            uid: '17311506',
-            img:
-              'https://i0.hdslb.com/bfs/album/80be11a1b27668337f064810f2c3026d4c6f166a.png@320w_180h_1e_1c.webp',
-            id: '528313911221960029'
-          },{
-            type: '1',
-            title: '狗狗伯爵，出击！',
-            auth: '柒沐同学',
-            time: '2021-05-13',
-            uid: '25461195',
-            img:
-              'https://i0.hdslb.com/bfs/album/50b592f597a16d27f1cb2d2c5c6b96da2d8b4a74.jpg@320w_249h_1e_1c.webp',
-            id: '524114906381391492'
-          }
-        ],  // 当前页展示的作品
-        pageSize: 100, // 作品总页数
+        showWorks: [],  // 当前页展示的作品
+        pageSize: 10, // 作品总页数
         pageNo: 1, // 当前页
         onSearch: [], // 搜索框正在搜索的内容
       }
@@ -207,20 +110,29 @@
           this.isPhone = false;
         }
       },
-      // 获取总页数及加载页面是展示内容
-      wholePageNum() {
-        // 发送接口
-      },
       // 搜索并更新展示内容
       searchWorks() {
         // 发送接口搜索
         let param = {
-          workType: '1',
-          searchType: this.onSearch.type,
-          searchWord: this.onSearch.word,
-          pageNum: this.pageNo,
-          classifyChoice: '0'
+          getWorks: {
+            workType: '1',
+            searchType: this.onSearch.type,
+            searchWord: this.onSearch.word,
+            pageNum: this.pageNo,
+            classifyChoice: '0'
+          }
         }
+        this.getWorksInfo(param).then(item => {
+          this.pageSize = this.switchPageNum(item.worksNum);
+          if (this.showWorks.length === 0) {
+            this.showWorks =  this.showWorks.concat(item.worksList);
+          } else {
+            this.showWorks.splice(0,10);
+            setTimeout(() => {
+              this.showWorks = this.showWorks.concat(item.worksList);
+            }, 0)
+          }
+        })
       },
       // 搜索框组件返回信息
       search(param) {
@@ -230,7 +142,7 @@
         // console.log(param)
       },
       // 页面跳转
-      jump(id) {
+      jump() {
         // console.log(id);
         // 页码切换时搜索该页内容
         this.searchWorks();
@@ -264,6 +176,7 @@
     align-items: center;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    width: 90%;
     max-width: 1250px;
   }
   .phone_body {
@@ -363,6 +276,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%;
   }
   .excellent_div {
     display: flex;

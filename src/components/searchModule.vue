@@ -250,9 +250,10 @@ export default {
   }
   .search_body {
     display: flex;
-    width: 53vw;
-    height: 4vw;
+    width: 100%;
+    height: 3rem;
     cursor: default;
+    max-width: 1000px;
   }
   .phone_search_body {
     width: 90vw;
@@ -361,8 +362,8 @@ export default {
   }
   .search_img {
     align-self: center;
-    width: 2.6vw;
-    height: 2.6vw;
+    width: 2rem;
+    height: 2rem;
   }
   .phone_search_img {
     width: 5vw;
