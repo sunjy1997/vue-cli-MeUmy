@@ -1,5 +1,5 @@
 <template>
-  <div  class="namePage" :class="{phone_namePage: isPhone}">
+  <div  class="namePage">
     <!-- 页面头部 -->
     <pageHead
       pageNum = '0'
@@ -59,7 +59,8 @@
           <!-- 搜索框 -->
           <searchModule
             @on-search='search'
-            :isPhone='isPhone'>
+            :isPhone='isPhone'
+            page='video'>
           </searchModule>
           <!-- 底部边框 -->
           <div class="title_bottom"></div>
@@ -73,7 +74,7 @@
           :class="{phone_excellent_div: isPhone}">
           <!-- 框体组件 -->
           <div
-            v-for="item in showWorks"
+            v-for="item in this.showWorks"
             :key="item.key"
             class="works_div"
             :class="{phone_works_div: isPhone}">
@@ -111,6 +112,7 @@
     },
     created() {
       this.userIsPhone();
+      this.searchWorks();
     },
     mounted() {
       window.onresize = () => { // 实时检测页面宽度
@@ -122,128 +124,27 @@
         isPhone: false, // 是否移动设备
         classifyList: [
           {
-            id: 0,
+            id: '0',
             name: '全部'
           },
           {
-            id: 1,
+            id: '1',
             name: '切片'
           },
           {
-            id: 2,
+            id: '2',
             name: 'MMD'
           },
           {
-            id: 3,
+            id: '3',
             name: '其他'
           }
         ], // 作品分类
-        classifyChoice: 0, // 现在选择的视频分类
-        showWorks: [
-          {
-            type: '0',
-            title: '【咩栗MMD】与梦盛开-这么可爱的咩栗确定不来看看吗？',
-            auth: '星空future',
-            time: '2021-05-10 01:34:15',
-            uid: '489676359',
-            img:
-              'https://i1.hdslb.com/bfs/archive/34977197285be205fd407322655bbc83191fdbfb.jpg@380w_240h_100Q_1c.webp',
-            id: '418087077'
-          },
-          {
-            type: '0',
-            title: '性 感 狼 宝 在 线 劝 分 性 感 羊 宝 在 线 贴 贴',
-            auth: '糖炒板栗sama',
-            time: '2021-05-15 06:00:18',
-            uid: '426368456',
-            img:
-              'https://i0.hdslb.com/bfs/archive/71adbf07178b1df0294cda5d1536bd6fc0a70f72.jpg@380w_240h_100Q_1c.webp',
-            id: '375570663'
-          },
-          {
-            type: '0',
-            title: '【MMD】咩栗女士，吃QQ糖嘛',
-            auth: '倦长祈',
-            time: '2021-05-16 14:02:30',
-            uid: '27660293',
-            img:
-              'https://i0.hdslb.com/bfs/archive/9517915d95295793dd7e15ffdafac7a1ba3cac55.jpg@380w_240h_100Q_1c.webp',
-            id: '460602858'
-          },
-          {
-            type: '0',
-            title: '《过 于 生 艹》',
-            auth: '萌糖_Channel',
-            time: '2021-05-15 02:48:14',
-            uid: '408473935',
-            img:
-              'https://i0.hdslb.com/bfs/archive/1ee0d49405b0d43be6e37499f23bc855571b8d4e.jpg@160w_100h_100Q_1c.webp',
-            id: '503063574'
-          },
-          {
-            type: '0',
-            title: '【咩栗MMD】与梦盛开-这么可爱的咩栗确定不来看看吗？',
-            auth: '星空future',
-            time: '2021-05-10 01:34:15',
-            uid: '489676359',
-            img:
-              'https://i1.hdslb.com/bfs/archive/34977197285be205fd407322655bbc83191fdbfb.jpg@380w_240h_100Q_1c.webp',
-            id: '418087077'
-          },
-          {
-            type: '0',
-            title: '性 感 狼 宝 在 线 劝 分 性 感 羊 宝 在 线 贴 贴',
-            auth: '糖炒板栗sama',
-            time: '2021-05-15 06:00:18',
-            uid: '426368456',
-            img:
-              'https://i0.hdslb.com/bfs/archive/71adbf07178b1df0294cda5d1536bd6fc0a70f72.jpg@380w_240h_100Q_1c.webp',
-            id: '375570663'
-          },
-          {
-            type: '0',
-            title: '【MMD】咩栗女士，吃QQ糖嘛',
-            auth: '倦长祈',
-            time: '2021-05-16 14:02:30',
-            uid: '27660293',
-            img:
-              'https://i0.hdslb.com/bfs/archive/9517915d95295793dd7e15ffdafac7a1ba3cac55.jpg@380w_240h_100Q_1c.webp',
-            id: '460602858'
-          },
-          {
-            type: '0',
-            title: '《过 于 生 艹》',
-            auth: '萌糖_Channel',
-            time: '2021-05-15 02:48:14',
-            uid: '408473935',
-            img:
-              'https://i0.hdslb.com/bfs/archive/1ee0d49405b0d43be6e37499f23bc855571b8d4e.jpg@160w_100h_100Q_1c.webp',
-            id: '503063574'
-          },
-          {
-            type: '0',
-            title: '【呜米】马桶盖可以许愿',
-            auth: '切段墨鱼',
-            time: '2021-05-14 15:02:43',
-            uid: '14352056',
-            img:
-              'https://i0.hdslb.com/bfs/archive/8a8c8838fa6944b8aa1ea97454846450cf81c5fa.jpg@160w_100h_100Q_1c.webp',
-            id: '503092736'
-          },
-          {
-            type: '0',
-            title: '参加崽崽咩咩结婚二周年纪念日时竟然遇到这种事情？',
-            auth: '呜米嗷嗷嗷',
-            time: '2021-05-10 23:13:05',
-            uid: '85774607',
-            img:
-              'https://i0.hdslb.com/bfs/archive/712f5624c132ab623dbc3d83263d1e8cb0c89b9b.jpg@160w_100h_100Q_1c.webp',
-            id: '888080581'
-          },
-        ],  // 当前页展示的作品
-        pageSize: 100, // 作品总页数
+        classifyChoice: '0', // 现在选择的视频分类
+        showWorks: [],  // 当前页展示的作品
+        pageSize: 10, // 作品总页数
         pageNo: 1, // 当前页
-        onSearch: [], // 搜索框正在搜索的内容
+        onSearch: {}, // 搜索框正在搜索的内容
       }
     },
     methods: {
@@ -257,27 +158,36 @@
           this.isPhone = false;
         }
       },
-      // 获取总页数及加载页面是展示内容
-      wholePageNum() {
-        // 发送接口
-      },
       // 搜索并更新展示内容
       searchWorks() {
         // 发送接口搜索
         let param = {
-          type: this.onSearch.type,
-          word: this.onSearch.word,
-          page: this.pageNo,
-          choice: this.classifyChoice
-          // 选择的视频类型，0全部，1切片，2MMD，3其他
+          getWorks: {
+            workType: '0',
+            searchType: this.onSearch.type,
+            searchWord: this.onSearch.word,
+            pageNum: this.pageNo,
+            classifyChoice: this.classifyChoice
+          }
+          // classifyChoice:选择的视频类型，0全部，1切片，2MMD，3其他
         }
+        this.getWorksInfo(param).then(item => {
+          this.pageSize = this.switchPageNum(item.worksNum);
+          if (this.showWorks.length === 0) {
+            this.showWorks =  this.showWorks.concat(item.worksList);
+          } else {
+            this.showWorks.splice(0,10);
+            setTimeout(() => {
+              this.showWorks = this.showWorks.concat(item.worksList);
+            }, 0)
+          }
+        })
       },
       // 搜索框组件返回信息
       search(param) {
         this.onSearch = param;
         this.pageNo = 1;
         this.searchWorks();
-        // console.log(param)
       },
       // 切换选项
       switchChoice(i) {
@@ -290,7 +200,7 @@
         }
       },
       // 页面跳转
-      jump(id) {
+      jump() {
         // console.log(id);
         // 页码切换时搜索该页内容
         this.searchWorks();
@@ -324,6 +234,7 @@
     align-items: center;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    width: 90%;
     max-width: 1250px;
   }
   .phone_body {
@@ -423,6 +334,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%;
   }
   .excellent_div {
     display: flex;

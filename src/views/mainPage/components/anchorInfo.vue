@@ -84,8 +84,8 @@
           tag: '咩，咩啊？',
           weiboName: '微博：电击咩阿栗', // 微博用户名
           weibo: 'https://weibo.com/u/7080286241', // 微博
-          questionName: '提问箱：咩阿栗信箱', // 提问箱字段名
-          question: 'https://www.pomeet.com/Merry0', // 提问箱
+          questionName: '提问箱：Meumy的棉花糖', // 提问箱字段名
+          question: 'https://mht.meumy.club/#/', // 提问箱
           cloudName: '网易云：咩栗咩咩咩', // 网易云用户名
           cloud: 'https://music.163.com/#/user/home?id=1356709812', // 网易云
           live: 'https://live.bilibili.com/8792912', // 直播间
@@ -97,8 +97,8 @@
           tag: 'Kira☆Kira☆',
           weiboName: '微博：呜米嗷呜', // 微博用户名
           weibo: 'https://weibo.com/u/7079069131', // 微博
-          questionName: '提问箱：呜米', // 提问箱字段名
-          question: 'https://www.pomeet.com/Umyyy1', // 提问箱
+          questionName: '提问箱：Meumy的棉花糖', // 提问箱字段名
+          question: 'https://mht.meumy.club/#/', // 提问箱
           cloudName: '网易云：呜米嗷嗷嗷', // 网易云用户名
           cloud: 'https://music.163.com/#/user/home?id=1306304320', // 网易云
           live: 'https://live.bilibili.com/22384516', // 直播间
@@ -118,7 +118,7 @@
     position: relative;
   }
   .background {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     -moz-user-select: none;
     -webkit-user-select: none;

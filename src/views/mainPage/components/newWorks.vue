@@ -22,12 +22,32 @@
           :class="{phone_title: isPhone}">
           {{ item.name }}
         </div>
-        <div v-for="i in item.works" :key="i.key" class="works_body">
-          <showBox
-            :isPhone = isPhone
-            :info = i>
-          </showBox>
+        <div v-if="item.works.length !== 0">
+          <div v-for="i in item.works" :key="i.key" class="works_body">
+            <showBox
+              :isPhone = isPhone
+              :info = i>
+            </showBox>
+          </div>
+          <div class="more_btn_div">
+            <div
+              class="more_img"
+              v-if="item.works.length === 3"
+              @click="jumpToMenuPage(item.path)"
+            >
+            </div>
+          </div>
         </div>
+        <img
+          v-else-if="item.name === '视频' || item.name === '创作者'"
+          src="../../../assets/img/merry.png"
+          class="no_works_img merry_img"
+        >
+        <img
+          v-else-if="item.name === '文章' || item.name === '绘图'"
+          src="../../../assets/img/umy.png"
+          class="no_works_img"
+        >
       </div>
     </div>
   </div>
@@ -41,6 +61,15 @@ export default {
   props: [ 'info', 'isPhone'],
   components: {
     showBox
+  },
+  methods: {
+    jumpToMenuPage(path) {
+      // 跳转到对应的作品页面
+      this.$router.push({
+        path: path,
+        name: path
+      });
+    }
   }
 }
 </script>
@@ -94,5 +123,29 @@ export default {
   }
   .works_body {
     width: 100%;
+  }
+  .no_works_img {
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .merry_img {
+    margin-top: 3rem;
+  }
+  .more_btn_div {
+    display: flex;
+    justify-content: flex-end;
+    background: #FAFAFA;
+    width: 100%;
+    height: 4rem;
+  }
+  .more_img {
+    width: 9rem;
+    height: 4rem;
+    background: url('../../../assets/img/little_more.png') no-repeat;
+    background-size: contain;
+  }
+  .more_img:hover {
+    background: url('../../../assets/img/little_more_hover.png') no-repeat;
+    background-size: contain;
   }
 </style>

@@ -8,6 +8,8 @@ import imagePage from '../views/imagePage/Main.vue'; // 引入图片页
 import articlePage from '../views/articlePage/Main.vue'; // 引入文章页
 import authorPage from '../views/authorPage/Main.vue'; // 引入作者页
 import materialPage from '../views/materialPage/Main.vue'; // 引入素材页
+import authorInfoPage from '../views/authorInfoPage/Main.vue'; // 引入作者详情页
+import aboutPage from '../views/aboutPage/Main.vue'; // 引入关于页
 // import testPage from '../views/testPage/test.vue'; // 测试页
 Vue.use(Router);
 Vue.use(VueResource);
@@ -16,11 +18,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'mainPage',
-      component: mainPage
-    },
-    {
-      path: '/mainPage',
       name: 'mainPage',
       component: mainPage
     },
@@ -49,6 +46,16 @@ export default new Router({
       name: 'materialPage',
       component: materialPage
     },
+    {
+      path: '/authorInfoPage/:id',
+      name: 'authorInfoPage',
+      component: authorInfoPage
+    },
+    {
+      path: '/aboutPage',
+      name: 'aboutPage',
+      component: aboutPage
+    }
     // {
     //   path: '/testPage',
     //   name: 'testPage',

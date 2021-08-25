@@ -32,11 +32,6 @@
 export default {
   name: "materialBox",
   props: ["info", "isPhone"],
-  mounted() {
-    window.onresize = () => {
-      this.switchFontSize();
-    };
-  },
   data() {
     return {
       // 素材标题
@@ -50,9 +45,10 @@ export default {
   },
   methods: {
     // 跳转创作者页面
-    jumpToAuthPage(uid) {
-      let path = "";
-      this.$router.push(path, uid);
+    jumpToAuthPage() {
+      this.$router.push({
+        path: `authorInfoPage/${this.authUid}`
+      })
     },
     // 跳转素材页面
     jumpToMaterial(path) {

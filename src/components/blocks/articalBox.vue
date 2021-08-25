@@ -61,11 +61,6 @@
 export default {
   name: "articalBox",
   props: ["info", "isPhone"],
-  mounted() {
-    window.onresize = () => {
-      this.switchFontSize();
-    };
-  },
   data() {
     return {
       artTitle: this.info.title, // 文章标题
@@ -81,9 +76,10 @@ export default {
   },
   methods: {
     // 跳转创作者页面
-    jumpToAuthPage(uid) {
-      let path = "";
-      this.$router.push(path, uid);
+    jumpToAuthPage() {
+      this.$router.push({
+        path: `authorInfoPage/${this.authUid}`
+      })
     },
     // 跳转视频页面
     jumpToartical(path) {

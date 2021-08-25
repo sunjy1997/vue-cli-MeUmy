@@ -143,6 +143,7 @@
         v-model="jumpPage"
         class="input_box"
         :class="{phone_input_box: isPhone}"
+        :placeholder="pageNo"
       />
       <div
         class="pager_btn_go"
@@ -267,19 +268,19 @@ export default {
     align-items: center;
     justify-content: center;
     color: #77797A;
-    height: 5vw;
+    height: 4rem;
   }
   .phone_pager_body {
-    height: 8vw;
+    height: 6rem;
   }
   .pager_box {
     display: flex;
     justify-content: space-between;
-    width: 50vw;
+    width: 45rem;
     height: 100%;
   }
   .phone_pager_box {
-    width: 80vw;
+    width: 50rem;
   }
   .last_page,
   .next_page {
@@ -288,12 +289,12 @@ export default {
     align-items: center;
     background: #f0f0ef;
     font-size: 1.3rem;
-    width: 5vw;
+    width: 4rem;
     font-weight: 900;
     border-radius: 50%;
   }
   .phone_switch_page {
-    width: 8vw;
+    width: 6rem;
     font-size: 2.5rem;
   }
   .pager_disabled {
@@ -346,13 +347,13 @@ export default {
     align-items: center;
     background: #f0f0ef;
     border-radius: 0.7rem;
-    width: 9vw;
+    width: 6rem;
     height: 100%;
     margin-left: 0.5rem;
     padding: 0 0.5rem;
   }
   .phone_pager_input {
-    width: 15vw;
+    width: 9rem;
   }
   .input_box {
     text-align: center;

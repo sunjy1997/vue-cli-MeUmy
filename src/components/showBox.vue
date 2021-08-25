@@ -12,7 +12,7 @@
     time: '', // 作品上传时间，时间格式为年-月-日 时:分:秒
     uid: '', // 作者uid
     img: '', // 图片地址，直接用图片的网络地址即可
-    id: '' // 作品id（具体对av、cv和普通动态id分类方法还不明确）
+    id: '' // 作品id
   }
 
   例：
@@ -64,35 +64,36 @@
   @contextmenu.prevent="rightClick">
     <!-- 视频框 -->
       <videoBox
-        v-if="info.type === '0'"
+        v-if="info.workType === '0'"
         :isPhone = isPhone
         :info = information>
       </videoBox>
     <!-- 绘图框 -->
-    <div v-else-if="info.type === '1'">
+    <div v-else-if="info.workType === '1'">
       <imageBox
         :isPhone = isPhone
         :info = information></imageBox>
     </div>
     <!-- 文章框 -->
-    <div v-else-if="info.type === '2'">
+    <div v-else-if="info.workType === '2'">
       <articalBox
         :isPhone = isPhone
         :info = information></articalBox>
     </div>
     <!-- 素材框 -->
-    <div v-else-if="info.type === '3'">
+    <div v-else-if="info.workType === '3'">
       <materialBox
         :isPhone = isPhone
         :info = information></materialBox>
     </div>
     <!-- 创作者框 -->
-    <div v-else-if="info.type === '4'">
+    <div v-else>
       <authBox
         :isPhone = isPhone
         :info = showInfo></authBox>
     </div>
     <rightMenu
+      v-if="right !== '0'"
       :x = x_index
       :y = y_index
       :showMenu = showMenu
@@ -123,10 +124,10 @@ export default {
     materialBox,
     rightMenu
   },
-  props: ['info', 'isPhone'],
+  props: ['info', 'isPhone', 'right'],
   created() {
-    if (this.showInfo.type !== '4') {
-      this.information = this.formatInfo(this.info)
+    if (this.showInfo.workType) {
+      this.information = this.formatInfo(this.info);
     } else {
       this.info.time = this.formatTime(this.info.time)
     }
@@ -152,9 +153,11 @@ export default {
   },
   methods: {
     rightClick(e) {
-      this.showMenu = true
-      this.x_index = e.pageX;
-      this.y_index = e.pageY;
+      if (this.info.workType !== '4') {
+        this.showMenu = true
+        this.x_index = e.pageX;
+        this.y_index = e.pageY;
+      }
     },
     // 关闭回调
     closeMenu(state) {
@@ -167,11 +170,7 @@ export default {
     },
     // 跳转举报页
     reportWorks() {
-      let param = {
-        workTitle: this.information.title,
-        workPath: this.information.workPath
-      }
-      this.$router.push('', param);
+      window.open('https://message.bilibili.com/#/whisper/mid2488613');
       this.closeWorks();
     },
     // 关闭弹窗
