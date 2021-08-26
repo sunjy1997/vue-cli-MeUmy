@@ -1,11 +1,6 @@
 <template>
   <div class="material_body" :class="{ phone_material_body: isPhone }">
-    <div
-      class="material_text"
-      :class="[
-        { phone_material_text: isPhone }
-      ]"
-    >
+    <div class="material_text" :class="[{ phone_material_text: isPhone }]">
       <div class="title_text">
         <span
           class="title_font"
@@ -35,8 +30,7 @@ export default {
   data() {
     return {
       // 素材标题
-      matTitle:
-        "\xa0\xa0\xa0\xa0" + this.info.title,
+      matTitle: "\xa0\xa0\xa0\xa0" + this.info.title,
       matAuth: this.info.auth, // 素材作者
       matTime: this.info.time, // 素材上传时间
       authUid: this.info.uid, // 作者地址
@@ -47,8 +41,8 @@ export default {
     // 跳转创作者页面
     jumpToAuthPage() {
       this.$router.push({
-        path: `authorInfoPage/${this.authUid}`
-      })
+        path: `authorInfoPage/${this.authUid}`,
+      });
     },
     // 跳转素材页面
     jumpToMaterial(path) {
@@ -64,7 +58,7 @@ export default {
   background: white;
   overflow: auto;
   width: 100%;
-  height: 7rem;
+  height: 8rem;
   border-radius: 0.6rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
