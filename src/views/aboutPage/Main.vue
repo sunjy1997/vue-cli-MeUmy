@@ -142,7 +142,7 @@ export default {
 .namePage {
   display: flex;
   flex-direction: column;
-  font-family: "cjkFonts";
+  font-family: "SimHei";
   background: #f5f5f5;
   height: 100%;
   padding-bottom: 2rem;

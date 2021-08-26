@@ -55,7 +55,7 @@ export default {
           infoData.title = params.workTitle;
         } else if (params.workText && params.workText !== '') {
           // 文章没有标题则展示正文内容；绘图展示正文内容
-          infoData.title = '\xa0\xa0\xa0\xa0' + params.workText;
+          infoData.title = params.workText;
         }
 
         // 作者名

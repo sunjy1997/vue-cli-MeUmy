@@ -37,7 +37,7 @@
                 {{ i.name }}
               </span>
               <img
-                v-if="i.id !== 3"
+                v-if="i.id !== '3'"
                 class="classify_img"
                 src="../../assets/img/point.png"
                 oncontextmenu="return false"
@@ -201,7 +201,7 @@ export default {
 .namePage {
   display: flex;
   flex-direction: column;
-  font-family: "cjkFonts";
+  font-family: "SimHei";
   background: #f5f5f5;
   height: 100%;
   min-height: 100vh;
@@ -277,7 +277,7 @@ export default {
 .classify_div {
   position: relative;
   display: flex;
-  font-size: 2.3rem;
+  font-size: 1.8rem;
   top: -2rem;
 }
 .phone_classify_div {

@@ -1,6 +1,6 @@
 <template>
   <!-- 网页版头部样式 -->
-  <div v-if="!isPhone" class="header-body">
+  <div v-if="!isPhone" class="header_body">
     <div class="header_tags_out">
       <!-- 遍历展示头部标题按钮，包括视频、绘图、文章、创作者 -->
       <div class="header_tags" v-for="item in tabList" :key="item.key">
@@ -20,7 +20,7 @@
           {{ item.name }}
         </div>
         <!-- 仅在绘图按钮右边展示标题图片 -->
-        <div @click="jumpToMenuPage('mainPage')">
+        <div @click="jumpToMenuPage('mainPage')" class="header_img_div">
           <img
             v-if="item.name === '绘图'"
             class="header_img"
@@ -225,15 +225,12 @@ export default {
 img {
   pointer-events: none;
 }
-.header-body {
+.header_body {
   display: flex;
-  padding-right: 1rem;
-  padding-top: 0.3rem;
   box-shadow: #9e9e9e 1px 2px 3px 1px;
 }
 .phone_header_body {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: 8.5rem;
   padding-top: 0.8rem;
@@ -242,13 +239,19 @@ img {
 }
 .header_tags_out {
   display: flex;
-  justify-content: flex-end;
-  height: 3rem;
-  width: 75%;
+  justify-content: center;
+  height: 3.5rem;
+  width: 100%;
 }
 .header_tags {
   display: flex;
-  height: 3rem;
+  height: 3.5rem;
+}
+.header_img_div {
+  height: 3.5rem;
+}
+.header_img_div:hover {
+  cursor: pointer;
 }
 .header_img {
   height: 3.5rem;
@@ -308,10 +311,13 @@ img {
   border-bottom: 0.3rem solid aqua;
 }
 .right_div {
+  position: absolute;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 25%;
+  width: 20%;
+  top: 0.51rem;
+  right: 2rem;
 }
 .right_div_animate {
   animation: rotateInDownRight;
@@ -367,7 +373,7 @@ img {
   top: 1.7rem;
 }
 .list_font {
-  font-family: cjkFonts;
+  font-family: SimHei;
   background: rgba(245, 245, 245, 0.5);
   display: flex;
   justify-content: center;

@@ -226,7 +226,7 @@ export default {
 
 <style scoped>
 .all {
-  font-family: cjkFonts;
+  font-family: SimHei;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,8 +242,8 @@ img {
 }
 .search_body {
   display: flex;
-  width: 100%;
-  height: 3rem;
+  width: 85%;
+  height: 2.5rem;
   cursor: default;
   max-width: 1000px;
 }
@@ -252,7 +252,7 @@ img {
   height: 8vw;
 }
 .pull_box {
-  font-family: cjkFonts;
+  font-family: SimHei;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -302,7 +302,7 @@ img {
   border-radius: 0.5rem;
   z-index: 1;
   font-size: 1.3rem;
-  margin-left: 0.2vw;
+  margin-left: 3.2vw;
 }
 .phone_menu_body {
   width: 20vw;
@@ -310,7 +310,7 @@ img {
   margin-left: 0.2vw;
 }
 .list_font {
-  font-family: cjkFonts;
+  font-family: SimHei;
   background: rgba(245, 245, 245, 0.5);
   display: flex;
   justify-content: center;
@@ -335,7 +335,7 @@ img {
   width: 65vw;
 }
 .input_box {
-  font-family: cjkFonts;
+  font-family: SimHei;
   width: 85%;
   padding-left: 1rem;
   border: none;
@@ -351,6 +351,9 @@ img {
 .right_btn {
   display: flex;
   color: #8b8b8b;
+}
+.right_btn:hover {
+  cursor: pointer;
 }
 .search_img {
   align-self: center;
@@ -375,7 +378,7 @@ img {
   width: 65.5vw;
 }
 .search_btn {
-  font-family: cjkFonts;
+  font-family: SimHei;
   display: flex;
   justify-content: space-around;
   align-items: center;

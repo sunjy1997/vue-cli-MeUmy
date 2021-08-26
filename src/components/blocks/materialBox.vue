@@ -65,7 +65,7 @@ export default {
   box-shadow: #838383 0px 2px 3px 1px;
 }
 .phone_material_body {
-  height: 12rem;
+  height: 13rem;
   box-shadow: #adadad 0px 2px 3px 1px;
 }
 .material_body:hover {
@@ -107,6 +107,7 @@ export default {
 }
 .phone_title_font {
   font-size: 2.1rem;
+  line-height: 2.2rem;
 }
 .title_font:hover {
   cursor: pointer;
