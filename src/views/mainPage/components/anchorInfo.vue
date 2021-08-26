@@ -3,7 +3,7 @@
     <!-- 手机版背景图 -->
     <img
       v-if="isPhone"
-      src="../../../assets/img/anchor.png"
+      src="../../../assets/img/anchor.jpg"
       class="background phone_img"
       oncontextmenu="return false"
       onselectstart="return false"
@@ -56,7 +56,7 @@
     <!-- 背景图 -->
     <img
       v-if="!isPhone"
-      src="../../../assets/img/anchor.png"
+      src="../../../assets/img/anchor.jpg"
       class="background"
       oncontextmenu="return false"
       onselectstart="return false"

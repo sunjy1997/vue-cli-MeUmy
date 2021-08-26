@@ -39,7 +39,7 @@
             <!-- 信息 -->
             <div class="info_body">
               <!-- 创作者id -->
-              <div class="author_name">
+              <div class="author_name" :class="{phone_author_name: isPhone}">
                 {{ authInfo.authName }}
               </div>
               <!-- 创作信息 -->
@@ -51,7 +51,7 @@
                   <span>绘图：{{ authInfo.imgNum }}幅</span>
                 </div>
                 <!-- 最新作品 -->
-                <div class="works_new">
+                <div v-if="!isPhone" class="works_new">
                   <span>最新作品：</span>
                   <div v-for="item in newWork" :key="item.key">
                     <showBox
@@ -65,7 +65,7 @@
             </div>
           </div>
           <!-- 底部边框 -->
-          <div class="title_bottom"></div>
+          <div class="title_bottom" :class="{ phone_title_bottom: isPhone }"></div>
         </div>
       </div>
       <div class="works">
@@ -212,7 +212,7 @@ img {
 .namePage {
   display: flex;
   flex-direction: column;
-  font-family: "cjkFonts";
+  font-family: "SimHei";
   background: #f5f5f5;
   height: 100%;
 }
@@ -240,7 +240,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 17rem;
+  height: 18rem;
   background: repeating-linear-gradient(
     to right,
     #f5f5f5,
@@ -279,8 +279,11 @@ img {
   position: relative;
   width: 100%;
   height: 4rem;
-  bottom: -10rem;
+  bottom: -11rem;
   box-shadow: #afafaf 0px 20px 25px -10px;
+}
+.phone_title_bottom {
+  bottom: -10rem;
 }
 .author_body {
   position: absolute;
@@ -353,16 +356,20 @@ img {
 }
 .author_name {
   width: 100%;
-  height: 28%;
+  height: 22%;
   border-bottom: black solid 1px;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+}
+.phone_author_name {
+  margin-left: 2rem;
+  width: 90%;
 }
 .works_body {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  height: 60%;
-  padding-top: 0.5rem;
+  height: 62%;
+  padding-top: 1rem;
 }
 .phone_works_body {
   padding-top: 1rem;
@@ -372,16 +379,17 @@ img {
   flex-direction: column;
   justify-content: space-between;
   width: 30%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .phone_works_num {
+  width: 90%;
   font-size: 1.7rem;
 }
 .works_new {
   display: flex;
   flex-direction: column;
   width: 70%;
-  font-size: 1.9rem;
+  font-size: 1.4rem;
 }
 .works {
   display: flex;
@@ -401,6 +409,9 @@ img {
   margin-top: 1rem;
 }
 .phone_excellent_div {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 95%;
   min-height: 55vh;
 }
@@ -410,7 +421,6 @@ img {
   width: 45%;
 }
 .phone_works_div {
-  height: 100%;
   width: 90%;
 }
 .pager {

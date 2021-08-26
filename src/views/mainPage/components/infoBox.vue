@@ -163,7 +163,7 @@ export default {
   padding-bottom: 0.3rem;
 }
 .phone_net_text {
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
 }
 .bottom_box {
   display: flex;

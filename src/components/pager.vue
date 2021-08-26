@@ -251,7 +251,7 @@ export default {
 
 <style scoped>
 * {
-  font-family: cjkFonts;
+  font-family: noto;
   -webkit-touch-callout: none; /*系统默认菜单被禁用*/
   -webkit-user-select: none; /*webkit浏览器*/
   -khtml-user-select: none; /*早期浏览器*/
@@ -274,11 +274,12 @@ export default {
 .pager_box {
   display: flex;
   justify-content: space-between;
-  width: 45rem;
-  height: 100%;
+  /* width: 40rem; */
+  height: 80%;
 }
 .phone_pager_box {
   width: 50rem;
+  height: 100%;
 }
 .last_page,
 .next_page {
@@ -287,7 +288,7 @@ export default {
   align-items: center;
   background: #f0f0ef;
   font-size: 1.3rem;
-  width: 4rem;
+  width: 3rem;
   font-weight: 900;
   border-radius: 50%;
 }
@@ -302,7 +303,6 @@ export default {
   display: flex;
   background: #f0f0ef;
   border-radius: 5rem;
-  width: 80%;
   height: 100%;
   margin: 0 0.5rem;
 }
@@ -311,12 +311,12 @@ export default {
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  font-size: 1.3rem;
-  width: 15%;
+  font-size: 1rem;
+  width: 4rem;
   height: 100%;
 }
 .phone_pages {
-  font-size: 2.3rem;
+  font-size: 1.3rem;
 }
 .dont_show {
   display: none;
@@ -345,8 +345,8 @@ export default {
   align-items: center;
   background: #f0f0ef;
   border-radius: 0.7rem;
-  width: 6rem;
-  height: 100%;
+  width: 5rem;
+  height: 80%;
   margin-left: 0.5rem;
   padding: 0 0.5rem;
 }
@@ -370,8 +370,9 @@ export default {
   font-size: 2rem;
 }
 .pager_btn_go {
+  padding-left: 0.2rem;
   font-weight: 900;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 .phone_pager_btn_go {
   white-space: nowrap;

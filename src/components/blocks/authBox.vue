@@ -104,14 +104,14 @@ export default {
   box-shadow: #838383 0px 2px 3px 1px;
 }
 .phone_auth_body {
-  height: 12rem;
+  height: 13rem;
   box-shadow: #adadad 0px 2px 3px 1px;
 }
 .auth_body:hover {
   cursor: default;
 }
 .head {
-  width: 23%;
+  width: 33%;
 }
 .phone_head {
   align-self: center;
@@ -190,5 +190,6 @@ export default {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  text-align: left;
 }
 </style>
