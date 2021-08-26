@@ -15,8 +15,7 @@ Vue.use(Router);
 Vue.use(VueResource);
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'mainPage',
       component: mainPage
@@ -69,7 +68,12 @@ function format(data) {
     const result = {
       ...item
     };
-    let { component, children, redirect, path } = result;
+    let {
+      component,
+      children,
+      redirect,
+      path
+    } = result;
     if (!component) {
       //result.component = Noop;
     }

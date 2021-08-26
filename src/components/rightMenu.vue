@@ -2,7 +2,7 @@
   <div
     v-if="show"
     class="menu_style"
-    :class="{phone_menu_style: isPhone}"
+    :class="{ phone_menu_style: isPhone }"
     :style="{ top: y + 'px', left: x + 'px' }"
   >
     <ul>
@@ -43,20 +43,20 @@ export default {
   props: {
     x: {
       type: [Number],
-      default: 0
+      default: 0,
     },
     y: {
       type: [Number],
-      default: 0
+      default: 0,
     },
     showMenu: {
       type: [Boolean],
-      default: false
+      default: false,
     },
-    isPhone:{
+    isPhone: {
       type: [Boolean],
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -114,6 +114,6 @@ export default {
   font-size: 1.8rem;
 }
 .menu_style > ul > li:hover {
-  background: #DEEDFF;
+  background: #deedff;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<!--
+  <!--
     八角老师想到了重构方法：
       不用v-for遍历整个pageSize
       而是在组件里根据当前页码重新写一个数组
@@ -43,16 +43,13 @@
 
     ————霜飔慕雪 2021/6/7
  -->
-  <div
-    class="pager_body"
-    :class="{phone_pager_body: isPhone}"
-    ref="pager">
-    <div class="pager_box" :class="{phone_pager_box: isPhone}">
+  <div class="pager_body" :class="{ phone_pager_body: isPhone }" ref="pager">
+    <div class="pager_box" :class="{ phone_pager_box: isPhone }">
       <div
         class="last_page"
         :class="[
           { pager_disabled: prevDisable },
-          { phone_switch_page: isPhone }
+          { phone_switch_page: isPhone },
         ]"
         href=""
         @click="jumpPrev()"
@@ -72,22 +69,25 @@
           @click="jump(i)"
           class="pages"
           :class="[
-            {dont_show:
-              (pageNo < 5 && i > 7 && i !== pageSize) ||
-              (pageNo >= 5 && i <= pageSize - 1 && i >= pageNo + 4) ||
-              (pageNo <= pageSize - 3 && i <= pageNo -4 && i !== 1) ||
-              (pageNo == pageSize -2 && i <= pageNo - 5 && i !== 1) ||
-              (pageNo == pageSize -1 && i <= pageNo - 6 && i !== 1) ||
-              (pageNo == pageSize && i <= pageNo - 7 && i !== 1)
+            {
+              dont_show:
+                (pageNo < 5 && i > 7 && i !== pageSize) ||
+                (pageNo >= 5 && i <= pageSize - 1 && i >= pageNo + 4) ||
+                (pageNo <= pageSize - 3 && i <= pageNo - 4 && i !== 1) ||
+                (pageNo == pageSize - 2 && i <= pageNo - 5 && i !== 1) ||
+                (pageNo == pageSize - 1 && i <= pageNo - 6 && i !== 1) ||
+                (pageNo == pageSize && i <= pageNo - 7 && i !== 1),
             },
-            { phone_pages: isPhone }
-          ]">
+            { phone_pages: isPhone },
+          ]"
+        >
           <!-- 被选中的页码 -->
           <div
             class="on_choose"
             :class="[
-              {on_choose_first: pageNo == 1},
-              {on_choose_last: pageNo == pageSize}]"
+              { on_choose_first: pageNo == 1 },
+              { on_choose_last: pageNo == pageSize },
+            ]"
             v-if="i == pageNo"
           >
             {{ i }}
@@ -118,16 +118,14 @@
           <div v-else-if="pageNo == 5 && i == 8">…</div>
           <div v-else-if="pageNo > 4 && i == pageNo - 3">…</div>
           <div v-else-if="pageNo > 4 && i == pageNo + 3">…</div>
-          <div
-            v-else-if="pageNo > pageSize-3 && (i >= pageNo - 6)"
-           >…</div>
+          <div v-else-if="pageNo > pageSize - 3 && i >= pageNo - 6">…</div>
         </div>
       </div>
       <div
         class="next_page"
         :class="[
           { pager_disabled: nextDisable },
-          { phone_switch_page: isPhone }
+          { phone_switch_page: isPhone },
         ]"
         href=""
         @click="jumpNext()"
@@ -137,17 +135,17 @@
       </div>
     </div>
     <!-- 输入页码及跳转按钮 -->
-    <div class="pager_input" :class="{phone_pager_input: isPhone}">
+    <div class="pager_input" :class="{ phone_pager_input: isPhone }">
       <input
         type="text"
         v-model="jumpPage"
         class="input_box"
-        :class="{phone_input_box: isPhone}"
+        :class="{ phone_input_box: isPhone }"
         :placeholder="pageNo"
       />
       <div
         class="pager_btn_go"
-        :class="{phone_pager_btn_go: isPhone}"
+        :class="{ phone_pager_btn_go: isPhone }"
         @click="Go()"
       >
         GO
@@ -176,8 +174,8 @@ export default {
     isPhone: {
       // 是否是移动端进入页面
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -252,131 +250,131 @@ export default {
 </script>
 
 <style scoped>
-  *{
-    font-family: cjkFonts;
-    -webkit-touch-callout:none;  /*系统默认菜单被禁用*/
-    -webkit-user-select:none; /*webkit浏览器*/
-    -khtml-user-select:none; /*早期浏览器*/
-    -moz-user-select:none; /*火狐*/
-    -ms-user-select:none; /*IE10*/
-    user-select:none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  }
-  .pager_body {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    color: #77797A;
-    height: 4rem;
-  }
-  .phone_pager_body {
-    height: 6rem;
-  }
-  .pager_box {
-    display: flex;
-    justify-content: space-between;
-    width: 45rem;
-    height: 100%;
-  }
-  .phone_pager_box {
-    width: 50rem;
-  }
-  .last_page,
-  .next_page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f0f0ef;
-    font-size: 1.3rem;
-    width: 4rem;
-    font-weight: 900;
-    border-radius: 50%;
-  }
-  .phone_switch_page {
-    width: 6rem;
-    font-size: 2.5rem;
-  }
-  .pager_disabled {
-    cursor: not-allowed;
-  }
-  .pages_box {
-    display: flex;
-    background: #f0f0ef;
-    border-radius: 5rem;
-    width: 80%;
-    height: 100%;
-    margin: 0 0.5rem;
-  }
-  .pages {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    font-size: 1.3rem;
-    width: 15%;
-    height: 100%;
-  }
-  .phone_pages {
-    font-size: 2.3rem;
-  }
-  .dont_show {
-    display: none;
-  }
-  .on_choose {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background: #1F75FF;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.7rem;
-  }
-  .on_choose_first {
-    border-top-left-radius: 5rem;
-    border-bottom-left-radius: 5rem;
-  }
-  .on_choose_last {
-    border-top-right-radius: 5rem;
-    border-bottom-right-radius: 5rem;
-  }
-  .pager_input {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: #f0f0ef;
-    border-radius: 0.7rem;
-    width: 6rem;
-    height: 100%;
-    margin-left: 0.5rem;
-    padding: 0 0.5rem;
-  }
-  .phone_pager_input {
-    width: 9rem;
-  }
-  .input_box {
-    text-align: center;
-    background: #f0f0ef;
-    width: 50%;
-    height: 75%;
-    font-size: 1.3rem;
-    border: 1px solid #d4d1d1;
-    border-radius: 0.3rem;
-    -webkit-user-select:text !important;
-  }
-  .input_box:focus {
-    outline: none;
-  }
-  .phone_input_box {
-    font-size: 2rem;
-  }
-  .pager_btn_go {
-    font-weight: 900;
-    font-size: 1.3rem;
-  }
-  .phone_pager_btn_go {
-    white-space: nowrap;
-    font-size: 2.4rem;
-  }
+* {
+  font-family: cjkFonts;
+  -webkit-touch-callout: none; /*系统默认菜单被禁用*/
+  -webkit-user-select: none; /*webkit浏览器*/
+  -khtml-user-select: none; /*早期浏览器*/
+  -moz-user-select: none; /*火狐*/
+  -ms-user-select: none; /*IE10*/
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.pager_body {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #77797a;
+  height: 4rem;
+}
+.phone_pager_body {
+  height: 6rem;
+}
+.pager_box {
+  display: flex;
+  justify-content: space-between;
+  width: 45rem;
+  height: 100%;
+}
+.phone_pager_box {
+  width: 50rem;
+}
+.last_page,
+.next_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f0ef;
+  font-size: 1.3rem;
+  width: 4rem;
+  font-weight: 900;
+  border-radius: 50%;
+}
+.phone_switch_page {
+  width: 6rem;
+  font-size: 2.5rem;
+}
+.pager_disabled {
+  cursor: not-allowed;
+}
+.pages_box {
+  display: flex;
+  background: #f0f0ef;
+  border-radius: 5rem;
+  width: 80%;
+  height: 100%;
+  margin: 0 0.5rem;
+}
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  width: 15%;
+  height: 100%;
+}
+.phone_pages {
+  font-size: 2.3rem;
+}
+.dont_show {
+  display: none;
+}
+.on_choose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #1f75ff;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7rem;
+}
+.on_choose_first {
+  border-top-left-radius: 5rem;
+  border-bottom-left-radius: 5rem;
+}
+.on_choose_last {
+  border-top-right-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+}
+.pager_input {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #f0f0ef;
+  border-radius: 0.7rem;
+  width: 6rem;
+  height: 100%;
+  margin-left: 0.5rem;
+  padding: 0 0.5rem;
+}
+.phone_pager_input {
+  width: 9rem;
+}
+.input_box {
+  text-align: center;
+  background: #f0f0ef;
+  width: 50%;
+  height: 75%;
+  font-size: 1.3rem;
+  border: 1px solid #d4d1d1;
+  border-radius: 0.3rem;
+  -webkit-user-select: text !important;
+}
+.input_box:focus {
+  outline: none;
+}
+.phone_input_box {
+  font-size: 2rem;
+}
+.pager_btn_go {
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+.phone_pager_btn_go {
+  white-space: nowrap;
+  font-size: 2.4rem;
+}
 </style>
