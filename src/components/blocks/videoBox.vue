@@ -54,6 +54,9 @@ export default {
   methods: {
     // 跳转创作者页面
     jumpToAuthPage() {
+      if (this.$route.path.indexOf('authorInfoPage') > -1) {
+        return;
+      }
       this.$router.push({
         path: `authorInfoPage/${this.authUid}`,
       });

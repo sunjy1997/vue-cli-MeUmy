@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       isPhone: false, // 是否移动设备
-      showWorks: [], // 当前页展示的作品
+      showWorks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}], // 当前页展示的作品
       pageSize: 10, // 作品总页数
       pageNo: 1, // 当前页
       onSearch: [], // 搜索框正在搜索的内容

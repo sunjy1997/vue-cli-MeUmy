@@ -240,12 +240,13 @@ img {
 .header_tags_out {
   display: flex;
   justify-content: center;
-  height: 3.5rem;
+  height: 3.8rem;
   width: 100%;
 }
 .header_tags {
   display: flex;
-  height: 3.5rem;
+  height: 3rem;
+  margin-top: 0.3rem;
 }
 .header_img_div {
   height: 3.5rem;
@@ -305,7 +306,7 @@ img {
 .header_btn:hover {
   background: #dedede;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 0.8rem;
 }
 .btn_choose {
   border-bottom: 0.3rem solid aqua;
@@ -316,7 +317,7 @@ img {
   justify-content: flex-end;
   align-items: center;
   width: 20%;
-  top: 0.51rem;
+  top: 0.81rem;
   right: 2rem;
 }
 .right_div_animate {

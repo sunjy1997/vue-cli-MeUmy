@@ -22,6 +22,7 @@ export default {
           })
         } catch (e) {
           console.log(e);
+          return {};
         }
       },
       // 接口获取作品总数

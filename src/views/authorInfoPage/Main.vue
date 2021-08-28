@@ -169,7 +169,6 @@ export default {
         if (this.showWorks.length === 0) {
           this.showWorks = item.worksList;
           this.newWork[0] = item.worksList[0];
-          // this.$set(this.newWork, 'work', item.worksList[0]);
         } else {
           this.showWorks.splice(0, 10);
           setTimeout(() => {

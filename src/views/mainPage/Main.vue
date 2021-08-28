@@ -126,7 +126,7 @@ export default {
       let exlWork = {
         getExcellentWorks: {},
       };
-      Promise.all([this.getWorksInfo(exlWork)])
+      this.getWorksInfo(exlWork)
         .then((item) => {
           this.excellWorksInfo = item[0];
         })
@@ -162,23 +162,26 @@ export default {
           pageNum: 1,
         },
       };
-      Promise.all([
-        this.getWorksInfo(newVid),
-        this.getWorksInfo(newImg),
-        this.getWorksInfo(newArt),
-        this.getWorksInfo(auths),
-      ])
-        .then((item) => {
-          this.newWorksInfo.map((mem, i) => {
-            mem.works.splice(0, 3);
+      let newWorksList = [newVid, newImg, newArt, auths];
+      newWorksList.map((item, i) => {
+        this.getWorksInfo(item)
+          .then((member) => {
+            this.newWorksInfo[i].works.splice(0, 3);
             setTimeout(() => {
-              mem.works = mem.works.concat(item[i].worksList.slice(0, 3));
+              this.newWorksInfo[i].works = this.newWorksInfo[i].works.concat(
+                member.worksList.slice(0, 3)
+              );
+            }, 0);
+          })
+          .catch((err) => {
+            // 如果有接口报错则给作品赋值空数组，展示兜底图片
+            console.log(err);
+            this.newWorksInfo[i].works.splice(0, 3);
+            setTimeout(() => {
+              this.newWorksInfo[i].works = [];
             }, 0);
           });
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+      });
     },
   },
 };

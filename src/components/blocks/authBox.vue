@@ -30,7 +30,7 @@
             <span>文章：{{ artNum }}篇</span>
           </div>
         </div>
-        <div class="items_right">
+        <div class="items_right" :class="{ phone_items_right: isPhone }">
           <span class="new_work"
             >最近更新：{{ updateType }}|{{ workTitle }}</span
           >
@@ -64,6 +64,9 @@ export default {
   methods: {
     // 跳转创作者页面
     jumpToAuthPage() {
+      if (this.$route.path.indexOf('authorInfoPage') > -1) {
+        return;
+      }
       this.$router.push({
         path: `authorInfoPage/${this.authUid}`,
       });
@@ -158,7 +161,7 @@ export default {
   height: 80%;
 }
 .phone_items {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
 }
 .items_left {
   display: flex;
@@ -180,9 +183,13 @@ export default {
 .items_right {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-end;
-  width: 55%;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  width: 57%;
+}
+.phone_items_right {
+  padding: 1rem 0rem 1rem 0rem;
 }
 .new_work {
   overflow: hidden;

@@ -125,7 +125,7 @@ export default {
         },
       ], // 作品分类
       classifyChoice: "0", // 现在选择的视频分类
-      showWorks: [], // 当前页展示的作品
+      showWorks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}], // 当前页展示的作品
       pageSize: 100, // 作品总页数
       pageNo: 1, // 当前页
       onSearch: [], // 搜索框正在搜索的内容
