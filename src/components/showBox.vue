@@ -85,7 +85,7 @@
       <authBox :isPhone="isPhone" :info="showInfo"> </authBox>
     </div>
     <rightMenu
-      v-if="right !== '0'"
+      v-if="showInfo.workType && right !== '0'"
       :x="x_index"
       :y="y_index"
       :showMenu="showMenu"
@@ -158,7 +158,7 @@ export default {
     },
     // 跳转作品页
     async openWorks() {
-      await this.closeWorks();
+      this.closeWorks();
       window.open(this.information.workPath);
     },
     // 跳转举报页

@@ -97,7 +97,7 @@ img {
   text-align: center;
   justify-content: space-evenly;
   background: #fafafa;
-  width: 90%;
+  width: 95%;
   margin-top: 1rem;
   padding-top: 2rem;
 }
