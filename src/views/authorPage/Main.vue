@@ -132,7 +132,7 @@ export default {
       // console.log(param)
     },
     // 页面跳转
-    jump(id) {
+    jump() {
       // console.log(id);
       // 页码切换时搜索该页内容
       this.searchWorks();
