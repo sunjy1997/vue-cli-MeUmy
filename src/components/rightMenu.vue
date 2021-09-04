@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     // 点击别处时隐藏目录，并传递一个关闭事件
-    closeMenu(e) {
+    closeMenu() {
       if (this.show === true) {
         this.show = false;
         this.$emit("close", false);

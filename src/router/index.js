@@ -63,30 +63,30 @@ export default new Router({
   ]
 });
 
-function format(data) {
-  return data.map(item => {
-    const result = {
-      ...item
-    };
-    let {
-      component,
-      children,
-      redirect,
-      path
-    } = result;
-    if (!component) {
-      //result.component = Noop;
-    }
+// function format(data) {
+//   return data.map(item => {
+//     const result = {
+//       ...item
+//     };
+//     let {
+//       component,
+//       children,
+//       redirect,
+//       path
+//     } = result;
+//     if (!component) {
+//       //result.component = Noop;
+//     }
 
-    if (children) {
-      if (!redirect) {
-        result.redirect = `${path}/${children[0].path}`;
-      }
+//     if (children) {
+//       if (!redirect) {
+//         result.redirect = `${path}/${children[0].path}`;
+//       }
 
-      const child = format(children);
-      //Reduce memory usage
-      result.children = child;
-    }
-    return result;
-  })
-}
+//       const child = format(children);
+//       //Reduce memory usage
+//       result.children = child;
+//     }
+//     return result;
+//   })
+// }

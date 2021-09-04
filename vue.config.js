@@ -1,9 +1,15 @@
 // vue.config.js
 module.exports = {
-  proxy: {
-    '/pics': {
-      target: 'http://parallel.meumy.club/',
-      changeOrigin: true
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://parallel.meumy.club/',
+        changeOrigin: true
+      },
+      '/pics': {
+        target: 'http://parallel.meumy.club/',
+        changeOrigin: true
+      }
     }
   }
 }
