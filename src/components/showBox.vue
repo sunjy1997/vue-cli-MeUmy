@@ -161,7 +161,7 @@ export default {
       this.closeWorks();
       window.open(this.information.workPath);
     },
-    // 跳转举报页
+    // 跳转举报页：其实就是霜飔慕雪的对话框.jpg
     reportWorks() {
       window.open("https://message.bilibili.com/#/whisper/mid2488613");
       this.closeWorks();

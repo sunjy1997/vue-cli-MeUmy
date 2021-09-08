@@ -58,13 +58,163 @@
             </div>
           </div>
         </div>
+        <br /><br />
+        <div>
+          <div class="second_title" :class="{ phone_second_title: isPhone }">
+            &nbsp;&nbsp;&nbsp;
+            特别鸣谢以下成员对本网站的帮助（排名顺序不分先后）：
+          </div>
+          <br />
+          <div>
+            <span class="second_title" :class="{ phone_second_title: isPhone }">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 网站策划：
+            </span>
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('19291133')"
+              >@73老师</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('1818479062')"
+              >@呜米小姐的吃饭小虎牙</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('2488613')"
+              >@霜飔慕雪</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('62921501')"
+              >@努力的灵风</span
+            >
+          </div>
+          <br />
+          <div>
+            <span class="second_title" :class="{ phone_second_title: isPhone }">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 客户端开发：
+            </span>
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('2488613')"
+              >@霜飔慕雪</span
+            >
+          </div>
+          <br />
+          <div>
+            <span class="second_title" :class="{ phone_second_title: isPhone }">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 管理端、后端开发：
+            </span>
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('1818479062')"
+              >@呜米小姐的吃饭小虎牙</span
+            >
+          </div>
+          <br />
+          <div>
+            <span class="second_title" :class="{ phone_second_title: isPhone }">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 技术支援：
+            </span>
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('503')"
+              >@流河老师</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('9420577')"
+              >@特斯拉老师</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('573732342')"
+              >@进栈检票老师</span
+            >
+          </div>
+          <br />
+          <div>
+            <span class="second_title" :class="{ phone_second_title: isPhone }">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 网站供图：
+            </span>
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('17311506')"
+              >@凪青太太</span
+            >
+          </div>
+          <br />
+          <div>
+            <span class="second_title" :class="{ phone_second_title: isPhone }">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              10天时间对多达6300+视频进行手工分类的成员：
+            </span>
+            <br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('19291133')"
+              >@73老师</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('1818479062')"
+              >@呜米小姐的吃饭小虎牙</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('9420577')"
+              >@特斯拉老师</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('172467764')"
+              >@温柔可爱的砜酱</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('12007970')"
+              >@遗世尘嚣</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('11601497')"
+              >@发烟酸-</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('2488613')"
+              >@霜飔慕雪</span
+            >
+          </div>
+        </div>
       </div>
     </div>
+    <bottomBox />
   </div>
 </template>
 
 <script>
 import pageHead from "../../components/pageHead";
+import bottomBox from "../../components/bottomBox";
 export default {
   name: "aboutPage",
   data() {
@@ -109,6 +259,7 @@ export default {
   },
   components: {
     pageHead,
+    bottomBox
   },
   methods: {
     // 获取浏览器宽度，动态调整样式
@@ -124,7 +275,7 @@ export default {
     // 跳转作者页
     jumpToAuth(uid) {
       window.open("https://space.bilibili.com/" + uid);
-    },
+    }
   },
 };
 </script>
@@ -145,7 +296,6 @@ export default {
   font-family: "Microsoft YaHei";
   background: #f5f5f5;
   height: 100%;
-  padding-bottom: 2rem;
   min-height: 100vh;
 }
 .body {
@@ -155,7 +305,8 @@ export default {
   align-self: center;
   background: #fafafa;
   padding: 2rem;
-  margin-top: 2rem;
+  margin-top: 2.3rem;
+  margin-bottom: 2rem;
   width: 80%;
   max-width: 1250px;
 }
@@ -257,5 +408,12 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
+}
+.helper_name {
+  margin-top: 1rem;
+  color: #935fca;
+}
+.helper_name:hover {
+  color: #ff3b41;
 }
 </style>

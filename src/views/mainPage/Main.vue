@@ -1,7 +1,7 @@
 <template>
   <div class="namePage">
     <!-- 页面头部 -->
-    <pageHead pageNum="" :isPhone="isPhone"> </pageHead>
+    <pageHead pageNum="" :isPhone="isPhone" />
     <div class="body">
       <!-- 主播信息 -->
       <anchorInfo :MerryHead="MerryHead" :UmyHead="UmyHead" :isPhone="isPhone">
@@ -12,6 +12,7 @@
       <!-- 最新作品 -->
       <newWorks :info="newWorksInfo" :isPhone="isPhone"> </newWorks>
     </div>
+    <bottomBox :isPhone="isPhone" />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import pageHead from "../../components/pageHead";
 import anchorInfo from "./components/anchorInfo";
 import excellentWorks from "./components/excellentWorks";
 import newWorks from "./components/newWorks";
+import bottomBox from "../../components/bottomBox";
 
 export default {
   name: "mainPage",
@@ -28,6 +30,7 @@ export default {
     anchorInfo,
     excellentWorks,
     newWorks,
+    bottomBox,
   },
   data() {
     return {

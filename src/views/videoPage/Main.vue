@@ -37,7 +37,7 @@
                 {{ i.name }}
               </span>
               <img
-                v-if="i.id !== '3'"
+                v-if="i.id !== '6'"
                 class="classify_img"
                 src="../../assets/img/point.png"
                 oncontextmenu="return false"
@@ -78,6 +78,7 @@
         </div>
       </div>
     </div>
+    <bottomBox />
   </div>
 </template>
 
@@ -86,6 +87,7 @@ import pageHead from "../../components/pageHead";
 import searchModule from "../../components/searchModule";
 import showBox from "../../components/showBox";
 import pager from "../../components/pager";
+import bottomBox from '../../components/bottomBox';
 export default {
   name: "videoPage",
   components: {
@@ -93,6 +95,7 @@ export default {
     searchModule,
     showBox,
     pager,
+    bottomBox
   },
   created() {
     this.userIsPhone();
@@ -118,12 +121,24 @@ export default {
         },
         {
           id: "2",
-          name: "MMD",
+          name: "歌",
         },
         {
           id: "3",
-          name: "其他",
+          name: "整活/鬼畜",
         },
+        {
+          id: "4",
+          name: "手书/动画",
+        },
+        {
+          id: "5",
+          name: "MMD",
+        },
+        {
+          id: "6",
+          name: "其他",
+        }
       ], // 作品分类
       classifyChoice: "0", // 现在选择的视频分类
       showWorks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}], // 当前页展示的作品
@@ -281,7 +296,7 @@ export default {
   top: -2rem;
 }
 .phone_classify_div {
-  font-size: 2.8rem;
+  font-size: 2.3rem;
 }
 .classify_choice {
   display: flex;
