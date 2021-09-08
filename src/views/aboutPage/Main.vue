@@ -165,6 +165,12 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('2488613')"
+              >@霜飔慕雪</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
               @click="jumpToAuth('19291133')"
               >@73老师</span
             >、
@@ -173,18 +179,6 @@
               :class="{ phone_second_title: isPhone }"
               @click="jumpToAuth('1818479062')"
               >@呜米小姐的吃饭小虎牙</span
-            >、
-            <span
-              class="helper_name"
-              :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('9420577')"
-              >@特斯拉老师</span
-            >、
-            <span
-              class="helper_name"
-              :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('172467764')"
-              >@温柔可爱的砜酱</span
             >、
             <span
               class="helper_name"
@@ -201,8 +195,14 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('2488613')"
-              >@霜飔慕雪</span
+              @click="jumpToAuth('172467764')"
+              >@温柔可爱的砜酱</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('9420577')"
+              >@特斯拉老师</span
             >
           </div>
         </div>
