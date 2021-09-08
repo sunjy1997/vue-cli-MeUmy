@@ -192,6 +192,7 @@ export default {
   padding: 1rem 0rem 1rem 0rem;
 }
 .new_work {
+  width: 100%;
   overflow: hidden;
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
