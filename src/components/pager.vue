@@ -361,7 +361,7 @@ export default {
   font-size: 1.3rem;
   border: 1px solid #d4d1d1;
   border-radius: 0.3rem;
-  -webkit-user-select: text !important;
+  user-select: text !important;
 }
 .input_box:focus {
   outline: none;

@@ -79,7 +79,7 @@ export default {
         // 咩栗信息框相关信息
         id: "Merry",
         user: "咩栗-电击小羊",
-        tag: "咩，咩啊？",
+        tag: "⚡全力闪光！",
         weiboName: "微博：电击咩阿栗", // 微博用户名
         weibo: "https://weibo.com/u/7080286241", // 微博
         questionName: "Meumy的棉花糖", // 提问箱字段名

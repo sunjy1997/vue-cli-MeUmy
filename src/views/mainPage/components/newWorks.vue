@@ -1,14 +1,10 @@
 <template>
   <div class="newWorks_body">
     <!-- 最新作品标题 -->
-    <img
-      src="../../../assets/img/newWorks.png"
-      class="newWorks_img"
-      :class="{ phone_newWorks_img: isPhone }"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false"
-    />
+    <h1
+      class="newWorks_title"
+      :class="{ phone_newWorks_title: isPhone }"
+    >最新作品</h1>
     <!-- 展示框 -->
     <div class="newWorks_div">
       <!-- 框体组件 -->
@@ -80,17 +76,6 @@ img {
   margin-top: 3rem;
   padding-bottom: 3rem;
 }
-.newWorks_img {
-  width: 15%;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
-}
-.phone_newWorks_img {
-  width: 25%;
-}
 .newWorks_div {
   display: flex;
   flex-wrap: wrap;
@@ -98,8 +83,17 @@ img {
   justify-content: space-evenly;
   background: #fafafa;
   width: 90%;
-  margin-top: 1rem;
+  margin-top: 0rem;
   padding-top: 2rem;
+}
+.newWorks_title {
+  font-size: 2rem;
+  letter-spacing: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.phone_newWorks_title {
+  font-size: 2.5rem;
 }
 .works_box {
   display: flex;
@@ -111,10 +105,10 @@ img {
   width: 90%;
 }
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .phone_title {
-  font-size: 2.8rem;
+  font-size: 2.2rem;
 }
 .works_body {
   width: 100%;
@@ -140,6 +134,7 @@ img {
   background-size: contain;
 }
 .more_img:hover {
+  cursor: pointer;
   background: url("../../../assets/img/little_more_hover.png") no-repeat;
   background-size: contain;
 }

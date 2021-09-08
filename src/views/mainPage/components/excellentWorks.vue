@@ -1,14 +1,10 @@
 <template>
   <div class="excellent_body" v-if="info.length !== 0">
     <!-- MeUmy推荐标题 -->
-    <img
-      src="../../../assets/img/excellentWork.png"
-      class="excellent_img"
-      :class="{ phone_excellent_img: isPhone }"
-      oncontextmenu="return false"
-      onselectstart="return false"
-      draggable="false"
-    />
+    <h1
+      class="excellent_title"
+      :class="{ phone_excellent_title: isPhone }"
+    >MeUmy推荐</h1>
     <!-- 展示框 -->
     <div class="excellent_div" :class="{ phone_excellent_div: isPhone }">
       <!-- 框体组件 -->
@@ -75,8 +71,14 @@ img {
   padding: 0.5rem 0 0.5rem 0;
   margin-top: 1rem;
 }
-.phone_excellent_div {
-  width: 90%;
+.excellent_title {
+  font-size: 2rem;
+  letter-spacing: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.phone_excellent_title {
+  font-size: 2.5rem;
 }
 .works_div {
   display: flex;

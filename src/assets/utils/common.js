@@ -2,7 +2,7 @@ export default {
   install(Vue) {
     // 接口获取时间
     Vue.prototype.getWorksInfo = function (params) {
-        var myRequest = new Request('http://parallel.meumy.club/api');
+        var myRequest = new Request('/api');
         try {
           return fetch(
             myRequest, {

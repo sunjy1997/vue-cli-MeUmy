@@ -43,8 +43,8 @@
         创作素材
         <!-- 添加子菜单框的显示控制与动画效果 -->
         <transition
-          enter-active-class="animate__animated animate__backInRight"
-          leave-active-class="animate__bounceOut"
+          enter-active-class="right_div_list_in_animate"
+          leave-active-class="right_div_list_out_animate"
         >
           <div class="menu_body" v-show="showMenu">
             <!-- 遍历展示子菜单按钮，包括素材库、草原路灯、草原录播 -->
@@ -59,9 +59,9 @@
           </div>
         </transition>
       </div>
-      <div @click="jumpToMenuPage('aboutPage')">
+      <div @click="jumpToMenuPage('aboutPage')" class="info_icon">
         <img
-          src="../assets/img/icon.png"
+          src="../assets/img/info.svg"
           class="icon_img"
           oncontextmenu="return false"
           onselectstart="return false"
@@ -89,8 +89,8 @@
         @click="clickMenuBtn"
       ></div>
       <transition
-        enter-active-class="animate__bounceIn"
-        leave-active-class="animate__bounceOut"
+        enter-active-class="right_div_list_in_animate"
+        leave-active-class="right_div_list_out_animate"
       >
         <div class="phone_menu_body" v-show="showMenu">
           <!-- 遍历展示子菜单按钮 -->
@@ -285,7 +285,7 @@ img {
 }
 .header_img_animate {
   animation: zoomIn;
-  animation-duration: 2s;
+  animation-duration: 500ms;
 }
 .header_btn {
   display: flex;
@@ -301,7 +301,9 @@ img {
 }
 .header_btn_animate {
   animation: zoomIn;
-  animation-duration: 2.5s;
+  animation-duration: 500ms;
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
 }
 .header_btn:hover {
   background: #dedede;
@@ -321,11 +323,18 @@ img {
   right: 2rem;
 }
 .right_div_animate {
-  animation: rotateInDownRight;
-  animation-duration: 1.5s;
+  animation: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 500ms;
+  animation-fill-mode: backwards;
 }
-.right_div:hover {
-  cursor: pointer;
+.right_div_list_in_animate {
+  animation: fadeIn;
+  animation-duration: 300ms;
+}
+.right_div_list_out_animate {
+  animation: fadeOut;
+  animation-duration: 300ms;
 }
 .icon_font {
   display: flex;
@@ -341,15 +350,19 @@ img {
 .icon_font:hover {
   background: #dedede;
   border-radius: 1rem;
+  cursor: pointer;
 }
 .icon_img {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2rem;
+  height: 2rem;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+}
+.info_icon:hover {
+  cursor: pointer;
 }
 .menu_body {
   border-radius: 0.5rem;
@@ -374,7 +387,7 @@ img {
   top: 1.7rem;
 }
 .list_font {
-  font-family: SimHei;
+  font-family: Microsoft YaHei;
   background: rgba(245, 245, 245, 0.5);
   display: flex;
   justify-content: center;
