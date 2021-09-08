@@ -141,7 +141,6 @@
         v-model="jumpPage"
         class="input_box"
         :class="{ phone_input_box: isPhone }"
-        :placeholder="pageNo"
       />
       <div
         class="pager_btn_go"

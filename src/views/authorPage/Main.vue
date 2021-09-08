@@ -56,6 +56,7 @@
         </div>
       </div>
     </div>
+    <bottomBox />
   </div>
 </template>
 
@@ -64,6 +65,7 @@ import pageHead from "../../components/pageHead";
 import searchModule from "../../components/searchModule";
 import showBox from "../../components/showBox";
 import pager from "../../components/pager";
+import bottomBox from "../../components/bottomBox";
 export default {
   name: "authorPage",
   components: {
@@ -71,6 +73,7 @@ export default {
     searchModule,
     showBox,
     pager,
+    bottomBox
   },
   created() {
     this.userIsPhone();
