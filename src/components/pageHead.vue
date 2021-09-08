@@ -166,7 +166,7 @@ export default {
         },
         {
           name: "草原路灯",
-          path: "https://meumy.club/",
+          path: "https://lamp.meumy.club/",
         },
         {
           name: "主页",
