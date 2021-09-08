@@ -158,7 +158,7 @@
           <div>
             <span class="second_title" :class="{ phone_second_title: isPhone }">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              10天时间对多达6300+视频进行手工分类的成员：
+              6天时间对多达6300+视频进行手工分类的成员：
             </span>
             <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
