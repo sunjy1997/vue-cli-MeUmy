@@ -230,7 +230,7 @@ export default {
         {
           job: "网站后端",
           name: "@八角老师",
-          head: require("../../assets/img/octaveHead.png"),
+          head: require("../../assets/img/octaveHead.jpg"),
           uid: "1818479062",
         },
         {
