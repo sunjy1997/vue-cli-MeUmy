@@ -230,7 +230,7 @@ export default {
         {
           job: "网站后端",
           name: "@八角老师",
-          head: "https://i1.hdslb.com/bfs/face/80ad77e611c2bb0ddf97977251df64685f90c61c.jpg@128w_128h_1o.webp",
+          head: require("../../assets/img/octaveHead.png"),
           uid: "1818479062",
         },
         {
@@ -239,12 +239,14 @@ export default {
           head: "https://i0.hdslb.com/bfs/face/4b9df1254484bffca2c23093d31f41bca860ddec.jpg@128w_128h_1o.webp",
           uid: "17311506",
         },
+        /* 可恶 不要她
         {
           job: "发起人",
           name: "@努力的灵风",
           head: "https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp",
           uid: "62921501",
         },
+        */
       ],
     };
   },
