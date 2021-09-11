@@ -173,7 +173,8 @@ a:hover {
   border-radius: 0.6rem;
   padding: 0.5rem;
   padding-bottom: 0.4rem;
-  box-shadow: #b9b9b9 0.05rem 0.1rem 0.15rem 0.05rem;
+  box-shadow: 2px 2px 4px -2px #cccccc;
+  border: 1px solid rgba(0,0,0,.125);
 }
 .phone_info_box {
   width: 94%;

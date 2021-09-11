@@ -8,19 +8,15 @@
         <div class="line"></div>
         <span class="info" :class="{ phone_info: isPhone }">介绍</span>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           MeUmy平行草原时空是一个属于MeUmy的同人网站，收录了bilibili上有关MeUmy的视频、文章和绘图等二创作品，并进行了简单的分类统计，便于草民们查找。
         </p>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           使用咩栗、呜米形象及设定的全部MeUmy二创作品及素材禁止用于商业用途，网站收录的全部作品版权归同人作品原作者所有，侵权删除。
         </p>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           同时，本同人站无法查看任何作品详情，目的仅仅是为二创作者引流，欣赏作品请点击跳转作品详情页，每一位作者的付出都值得被用心对待，请不要吝惜您的点赞，您的鼓励能间接地创造更优秀的作品。
         </p>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           感谢您对MeUmy的关注与支持，让我们共同努力，一同创造并见证属于MeUmy的更美好的未来！
         </p>
       </div>
@@ -339,6 +335,7 @@ export default {
   font-size: 1.4rem;
   margin-top: 1rem;
   line-height: 1.8rem;
+  text-indent: 2rem;
 }
 .phone_text_1 {
   font-size: 2.8rem;
@@ -374,7 +371,8 @@ export default {
   width: 100%;
   height: 78%;
   border-radius: 0.6rem;
-  box-shadow: #838383 0px 2px 3px 1px;
+  box-shadow: 2px 2px 4px -2px #cccccc;
+  border: 1px solid rgba(0,0,0,.125);
 }
 .image {
   width: 9rem;

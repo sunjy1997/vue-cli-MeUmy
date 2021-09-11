@@ -85,11 +85,11 @@ export default {
   border-radius: 0.6rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  box-shadow: #838383 0px 2px 3px 1px;
+  box-shadow: 2px 2px 4px -2px #cccccc;
+  border: 1px solid rgba(0,0,0,.125);
 }
 .phone_image_body {
   height: 13rem;
-  box-shadow: #adadad 0px 2px 3px 1px;
 }
 .image_body:hover {
   cursor: default;
