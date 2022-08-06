@@ -235,7 +235,7 @@ export default {
         {
           job: "绘图画师",
           name: "@凪青",
-          head: "https://i0.hdslb.com/bfs/face/4b9df1254484bffca2c23093d31f41bca860ddec.jpg@128w_128h_1o.webp",
+          head: require("../../assets/img/zhiqing.png"),
           uid: "17311506",
         },
       ],
