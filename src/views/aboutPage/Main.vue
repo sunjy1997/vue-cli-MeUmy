@@ -90,7 +90,6 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('62921501')"
               >@努力的灵风</span
             >
           </div>
@@ -238,12 +237,6 @@ export default {
           name: "@凪青",
           head: "https://i0.hdslb.com/bfs/face/4b9df1254484bffca2c23093d31f41bca860ddec.jpg@128w_128h_1o.webp",
           uid: "17311506",
-        },
-        {
-          job: "发起人",
-          name: "@努力的灵风",
-          head: "https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp",
-          uid: "62921501",
         },
       ],
     };
