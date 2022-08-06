@@ -76,17 +76,17 @@ export default {
 .video_body {
   display: flex;
   background: white;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
   height: 8rem;
   border-radius: 0.6rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  box-shadow: #838383 0px 2px 3px 1px;
+  box-shadow: 2px 2px 4px -2px #cccccc;
+  border: 1px solid rgba(0,0,0,.125);
 }
 .phone_video_body {
   height: 13rem;
-  box-shadow: #adadad 0px 2px 3px 1px;
 }
 .video_body:hover {
   cursor: default;

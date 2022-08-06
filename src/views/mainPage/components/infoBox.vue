@@ -9,31 +9,34 @@
         <span class="tag" :class="{ phone_tag: isPhone }">{{ info.tag }}</span>
       </div>
       <div class="net" :class="{ phone_net: isPhone }">
-        <span
-          class="net_text animate__animated animate__fadeInTopRight"
+        <a
+          class="net_text slightFadeInTopRight"
           :class="{ phone_net_text: isPhone }"
-          @click="jumpToNet(info.weibo)"
+          :href="info.weibo"
+          target="__blank"
         >
           {{ info.weiboName }}
-        </span>
-        <span
-          class="net_text animate__animated animate__fadeInRight"
+        </a>
+        <a
+          class="net_text slightFadeInRight"
           :class="{ phone_net_text: isPhone }"
-          @click="jumpToNet(info.question)"
+          :href="info.question"
+          target="__blank"
         >
           {{ info.questionName }}
-        </span>
-        <span
-          class="net_text animate__animated animate__fadeInBottomRight"
-          @click="jumpToNet(info.cloud)"
+        </a>
+        <a
+          class="net_text slightFadeInBottomRight"
+          :href="info.cloud"
+          target="__blank"
         >
           {{ info.cloudName }}
-        </span>
+        </a>
       </div>
     </div>
     <div class="bottom_box" :class="{ phone_bottom_box: isPhone }">
       <!-- 跳转直播间按钮 -->
-      <div
+      <button
         class="btn"
         :class="[
           info.id === 'Umy' ? 'Umy_btn' : 'Merry_btn',
@@ -41,10 +44,10 @@
         ]"
         @click="jumpToNet(info.live)"
       >
-        <span class="animate__animated animate__zoomIn">直播间</span>
-      </div>
+        <span class="animate__animated animate__fadeIn animate__faster">直播间</span>
+      </button>
       <!-- 跳转主播主页按钮 -->
-      <div
+      <button
         class="btn"
         :class="[
           info.id === 'Umy' ? 'Umy_btn' : 'Merry_btn',
@@ -52,8 +55,8 @@
         ]"
         @click="jumpToNet(info.homepage)"
       >
-        <span class="animate__animated animate__zoomIn">主播</span>
-      </div>
+        <span class="animate__animated animate__fadeIn animate__faster">主播</span>
+      </button>
     </div>
   </div>
 </template>
@@ -72,6 +75,85 @@ export default {
 </script>
 
 <style scoped>
+@keyframes slightFadeInTopRight {
+  from {
+    opacity: 0;
+    transform: translate3d(10%, -10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slightFadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(10%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slightFadeInBottomRight {
+  from {
+    opacity: 0;
+    transform: translate3d(10%, 10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slightFadeInTopLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-10%, -10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slightFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-10%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slightFadeInBottomLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-10%, 10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.slightFadeInTopRight {
+  animation: slightFadeInTopRight 500ms;
+}
+.slightFadeInRight {
+  animation: slightFadeInRight 500ms;
+}
+.slightFadeInBottomRight {
+  animation: slightFadeInBottomRight 500ms;
+}
+
+a:link {
+  color: #b0b0b0;
+}
+a:visited {
+  color: #b0b0b0;
+}
+a:hover {
+  color: #919191;
+}
 .info_body {
   width: 50%;
   height: 100%;
@@ -84,9 +166,6 @@ export default {
   pointer-events: auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.info_body:hover {
-  cursor: pointer;
-}
 .info_box {
   display: flex;
   background: white;
@@ -94,7 +173,8 @@ export default {
   border-radius: 0.6rem;
   padding: 0.5rem;
   padding-bottom: 0.4rem;
-  box-shadow: #b9b9b9 0.05rem 0.1rem 0.15rem 0.05rem;
+  box-shadow: 2px 2px 4px -2px #cccccc;
+  border: 1px solid rgba(0,0,0,.125);
 }
 .phone_info_box {
   width: 94%;
@@ -112,9 +192,8 @@ export default {
 .user {
   align-self: center;
   font-size: 1rem;
-  animation: fadeInTopLeft;
+  animation: slightFadeInTopLeft 500ms;
   white-space: nowrap;
-  animation-duration: 1s;
 }
 .phone_user {
   font-size: 2.5rem;
@@ -125,8 +204,7 @@ export default {
   height: 1px;
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
-  animation: fadeInLeft;
-  animation-duration: 1s;
+  animation: slightFadeInLeft 500ms;
 }
 .phone_line {
   width: 100%;
@@ -134,8 +212,7 @@ export default {
 .tag {
   align-self: flex-end;
   font-size: 0.9rem;
-  animation: fadeInBottomLeft;
-  animation-duration: 1s;
+  animation: slightFadeInBottomLeft 500ms;
 }
 .phone_tag {
   font-size: 1.8rem;
@@ -159,7 +236,7 @@ export default {
   font-size: 1.7rem;
   padding-left: 0rem;
 }
-.net_text {
+.net_text:link {
   padding-bottom: 0.3rem;
 }
 .phone_net_text {
@@ -181,14 +258,18 @@ export default {
   color: white;
   width: 20%;
   border-radius: 0.4rem;
+  border: 0;
   margin-left: 4%;
+}
+.btn:hover {
+  cursor: pointer;
 }
 .phone_btn {
   width: 7rem;
   height: 4rem;
   border-radius: 0.9rem;
   margin-left: 1.5rem;
-  font-size: 2.1rem;
+  font-size: 1.8rem;
 }
 .Umy_btn {
   background: linear-gradient(to right, #e774b7, #d53138);

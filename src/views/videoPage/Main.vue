@@ -216,7 +216,7 @@ export default {
 .namePage {
   display: flex;
   flex-direction: column;
-  font-family: "SimHei";
+  font-family: "Microsoft YaHei";
   background: #f5f5f5;
   height: 100%;
   min-height: 100vh;

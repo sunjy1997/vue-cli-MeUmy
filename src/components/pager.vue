@@ -1,17 +1,5 @@
 <template>
   <!--
-    八角老师想到了重构方法：
-      不用v-for遍历整个pageSize
-      而是在组件里根据当前页码重新写一个数组
-      数组里只有要展示的页码
-      这样的话就需要考虑几种情况
-      一种是页码少的时候，不需要...的情况
-      一种是页码多的时候
-
-      页码多的时候，在前面几页，最后几页和中间的页码需要分开处理
-      但是整体逻辑比遍历整个pageSize清晰很多
-      后续会对本处代码进行重构
-
     分页组件
 
     引用方法：
@@ -58,67 +46,26 @@
         <span>&lt;</span>
       </div>
       <div class="pages_box">
-        <!--
-          v-for生成的div即便没有内容也会占位，
-          下列去除方法相当繁琐，也很丑，但是暂时没有别的解决办法，
-          等有办法了再优化
-        -->
         <div
-          v-for="i in pageSize"
-          :key="i"
-          @click="jump(i)"
+          v-for="(val, key) in pages"
+          :key="key"
+          @click="jump(val)"
           class="pages"
-          :class="[
-            {
-              dont_show:
-                (pageNo < 5 && i > 7 && i !== pageSize) ||
-                (pageNo >= 5 && i <= pageSize - 1 && i >= pageNo + 4) ||
-                (pageNo <= pageSize - 3 && i <= pageNo - 4 && i !== 1) ||
-                (pageNo == pageSize - 2 && i <= pageNo - 5 && i !== 1) ||
-                (pageNo == pageSize - 1 && i <= pageNo - 6 && i !== 1) ||
-                (pageNo == pageSize && i <= pageNo - 7 && i !== 1),
-            },
-            { phone_pages: isPhone },
-          ]"
+          :class="{ phone_pages: isPhone }"
         >
-          <!-- 被选中的页码 -->
           <div
             class="on_choose"
             :class="[
               { on_choose_first: pageNo == 1 },
               { on_choose_last: pageNo == pageSize },
             ]"
-            v-if="i == pageNo"
+            v-if="val == pageNo"
           >
-            {{ i }}
+            {{ val }}
           </div>
-          <!-- 下方两个都是控制展示的页码的 -->
-          <div
-            v-else-if="
-              (pageNo < 5 && i < 7) ||
-              (pageNo > pageSize - 3 && i > pageSize - 6)
-            "
-            href=""
-          >
-            {{ i }}
+          <div v-else>
+            {{ val }}
           </div>
-          <div
-            v-else-if="
-              pageSize < 6 ||
-              i == 1 ||
-              i == pageSize ||
-              (pageNo - 2 <= i && i <= pageNo + 2)
-            "
-            href=""
-          >
-            {{ i }}
-          </div>
-          <!-- 不展示的部分用...包含 -->
-          <div v-else-if="pageNo < 5 && i == 7">…</div>
-          <div v-else-if="pageNo == 5 && i == 8">…</div>
-          <div v-else-if="pageNo > 4 && i == pageNo - 3">…</div>
-          <div v-else-if="pageNo > 4 && i == pageNo + 3">…</div>
-          <div v-else-if="pageNo > pageSize - 3 && i >= pageNo - 6">…</div>
         </div>
       </div>
       <div
@@ -179,7 +126,52 @@ export default {
   data() {
     return {
       jumpPage: "", //避免操作props参数
+      pages: [],
     };
+  },
+  watch: {
+    pageNo(pageNo) {
+      console.log(pageNo);
+      if (this.pageSize > 8) {
+        if (pageNo < 5) {
+          this.pages = [1, 2, 3, 4, 5, 6, "...", this.pageSize];
+        } else if (5 <= pageNo && pageNo <= this.pageSize - 4) {
+          this.pages = [
+            1,
+            "...",
+            pageNo - 2,
+            pageNo - 1,
+            pageNo,
+            pageNo + 1,
+            pageNo + 2,
+            "...",
+            this.pageSize,
+          ];
+        } else {
+          this.pages = [
+            1,
+            "...",
+            this.pageSize - 5,
+            this.pageSize - 4,
+            this.pageSize - 3,
+            this.pageSize - 2,
+            this.pageSize - 1,
+            this.pageSize,
+          ];
+        }
+      }
+    },
+  },
+  mounted() {
+    // 初始化渲染的页码数组
+    if (this.pageSize <= 8) {
+      let i = 1;
+      for (i; i <= this.pageSize; i++) {
+        this.pages.push(i);
+      }
+    } else {
+      this.pages = [1, 2, 3, 4, 5, 6, "...", this.pageSize];
+    }
   },
   computed: {
     prevDisable: function () {
@@ -220,7 +212,7 @@ export default {
     },
     jump: function (id) {
       // 页码相同不跳转
-      if (id == this.pageNo) {
+      if (id == this.pageNo || typeof id === "string") {
         return;
       }
       //直接跳转
@@ -250,7 +242,7 @@ export default {
 
 <style scoped>
 * {
-  font-family: noto;
+  font-family: SimHei;
   -webkit-touch-callout: none; /*系统默认菜单被禁用*/
   -webkit-user-select: none; /*webkit浏览器*/
   -khtml-user-select: none; /*早期浏览器*/
@@ -273,12 +265,11 @@ export default {
 .pager_box {
   display: flex;
   justify-content: space-between;
-  /* width: 40rem; */
-  height: 80%;
+  width: 45rem;
+  height: 100%;
 }
 .phone_pager_box {
   width: 50rem;
-  height: 100%;
 }
 .last_page,
 .next_page {
@@ -287,7 +278,7 @@ export default {
   align-items: center;
   background: #f0f0ef;
   font-size: 1.3rem;
-  width: 3rem;
+  width: 4rem;
   font-weight: 900;
   border-radius: 50%;
 }
@@ -303,6 +294,7 @@ export default {
   background: #f0f0ef;
   border-radius: 5rem;
   height: 100%;
+  max-width: 36rem;
   margin: 0 0.5rem;
 }
 .pages {
@@ -310,12 +302,12 @@ export default {
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  font-size: 1rem;
-  width: 4rem;
+  font-size: 1.3rem;
+  width: 4.5rem;
   height: 100%;
 }
 .phone_pages {
-  font-size: 1.3rem;
+  font-size: 2.3rem;
 }
 .dont_show {
   display: none;
@@ -344,8 +336,8 @@ export default {
   align-items: center;
   background: #f0f0ef;
   border-radius: 0.7rem;
-  width: 5rem;
-  height: 80%;
+  width: 6rem;
+  height: 100%;
   margin-left: 0.5rem;
   padding: 0 0.5rem;
 }
@@ -360,7 +352,7 @@ export default {
   font-size: 1.3rem;
   border: 1px solid #d4d1d1;
   border-radius: 0.3rem;
-  -webkit-user-select: text !important;
+  user-select: text !important;
 }
 .input_box:focus {
   outline: none;
@@ -369,9 +361,8 @@ export default {
   font-size: 2rem;
 }
 .pager_btn_go {
-  padding-left: 0.2rem;
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 .phone_pager_btn_go {
   white-space: nowrap;

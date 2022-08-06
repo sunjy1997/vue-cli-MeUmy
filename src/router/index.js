@@ -10,6 +10,7 @@ import authorPage from '../views/authorPage/Main.vue'; // 引入作者页
 import materialPage from '../views/materialPage/Main.vue'; // 引入素材页
 import authorInfoPage from '../views/authorInfoPage/Main.vue'; // 引入作者详情页
 import aboutPage from '../views/aboutPage/Main.vue'; // 引入关于页
+import notFoundPage from '../views/notFoundPage/Main.vue'; // 引入404页
 // import testPage from '../views/testPage/test.vue'; // 测试页
 Vue.use(Router);
 Vue.use(VueResource);
@@ -54,6 +55,11 @@ export default new Router({
       path: '/aboutPage',
       name: 'aboutPage',
       component: aboutPage
+    },
+    {
+      path: '*',
+      name: 'notFoundPage',
+      component: notFoundPage
     }
     // {
     //   path: '/testPage',

@@ -214,7 +214,7 @@ img {
 .namePage {
   display: flex;
   flex-direction: column;
-  font-family: "SimHei";
+  font-family: "Microsoft YaHei";
   background: #f5f5f5;
   height: 100%;
 }
@@ -336,7 +336,8 @@ img {
   width: 4.5rem;
   height: 2.5rem;
   border-radius: 0.8rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.3rem;
   margin-left: 4%;
   top: -1.8rem;
   left: 7.5rem;
@@ -344,6 +345,7 @@ img {
 }
 .btn:hover {
   background: linear-gradient(to right, #fac282, #ebd336);
+  cursor: pointer;
 }
 .phone_btn {
   width: 6.4rem;
@@ -351,7 +353,7 @@ img {
   border-radius: 0.9rem;
   margin-left: -1rem;
   margin-top: -0.5rem;
-  font-size: 2.1rem;
+  font-size: 2.0rem;
 }
 .info_body {
   width: 70%;
@@ -379,7 +381,7 @@ img {
 .works_num {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 30%;
   font-size: 1.2rem;
 }

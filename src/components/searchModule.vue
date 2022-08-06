@@ -1,6 +1,6 @@
 <template>
   <!--
-    分页组件导入方法
+    搜索组件导入方法
 
     <searchModule @on-search='search' :isPhone='isPhone'></searchModule>
 
@@ -60,8 +60,8 @@
     <div class="menu_box" :class="{ phone_menu_box: isPhone }">
       <!-- 搜索方式选择框 -->
       <transition
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut"
+        enter-active-class="animate__animated animate__fadeIn animate__faster"
+        leave-active-class="animate__animated animate__fadeOut animate__faster"
       >
         <div
           class="menu_body"
@@ -226,7 +226,7 @@ export default {
 
 <style scoped>
 .all {
-  font-family: SimHei;
+  font-family: Microsoft YaHei;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -252,7 +252,7 @@ img {
   height: 8vw;
 }
 .pull_box {
-  font-family: SimHei;
+  font-family: Microsoft YaHei;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -310,7 +310,7 @@ img {
   margin-left: 0.2vw;
 }
 .list_font {
-  font-family: SimHei;
+  font-family: Microsoft YaHei;
   background: rgba(245, 245, 245, 0.5);
   display: flex;
   justify-content: center;
@@ -335,7 +335,7 @@ img {
   width: 65vw;
 }
 .input_box {
-  font-family: SimHei;
+  font-family: Microsoft YaHei;
   width: 85%;
   padding-left: 1rem;
   border: none;
@@ -378,7 +378,7 @@ img {
   width: 65.5vw;
 }
 .search_btn {
-  font-family: SimHei;
+  font-family: Microsoft YaHei;
   display: flex;
   justify-content: space-around;
   align-items: center;

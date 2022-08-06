@@ -8,19 +8,15 @@
         <div class="line"></div>
         <span class="info" :class="{ phone_info: isPhone }">介绍</span>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           MeUmy平行草原时空是一个属于MeUmy的同人网站，收录了bilibili上有关MeUmy的视频、文章和绘图等二创作品，并进行了简单的分类统计，便于草民们查找。
         </p>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           使用咩栗、呜米形象及设定的全部MeUmy二创作品及素材禁止用于商业用途，网站收录的全部作品版权归同人作品原作者所有，侵权删除。
         </p>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           同时，本同人站无法查看任何作品详情，目的仅仅是为二创作者引流，欣赏作品请点击跳转作品详情页，每一位作者的付出都值得被用心对待，请不要吝惜您的点赞，您的鼓励能间接地创造更优秀的作品。
         </p>
         <p class="text_1" :class="{ phone_text_1: isPhone }">
-          &nbsp;&nbsp;&nbsp;
           感谢您对MeUmy的关注与支持，让我们共同努力，一同创造并见证属于MeUmy的更美好的未来！
         </p>
       </div>
@@ -90,7 +86,6 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('62921501')"
               >@努力的灵风</span
             >
           </div>
@@ -165,6 +160,12 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('2488613')"
+              >@霜飔慕雪</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
               @click="jumpToAuth('19291133')"
               >@73老师</span
             >、
@@ -173,18 +174,6 @@
               :class="{ phone_second_title: isPhone }"
               @click="jumpToAuth('1818479062')"
               >@呜米小姐的吃饭小虎牙</span
-            >、
-            <span
-              class="helper_name"
-              :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('9420577')"
-              >@特斯拉老师</span
-            >、
-            <span
-              class="helper_name"
-              :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('172467764')"
-              >@温柔可爱的砜酱</span
             >、
             <span
               class="helper_name"
@@ -201,8 +190,14 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('2488613')"
-              >@霜飔慕雪</span
+              @click="jumpToAuth('172467764')"
+              >@温柔可爱的砜酱</span
+            >、
+            <span
+              class="helper_name"
+              :class="{ phone_second_title: isPhone }"
+              @click="jumpToAuth('9420577')"
+              >@特斯拉老师</span
             >
           </div>
         </div>
@@ -230,21 +225,24 @@ export default {
         {
           job: "网站后端",
           name: "@八角老师",
-          head: "https://i1.hdslb.com/bfs/face/80ad77e611c2bb0ddf97977251df64685f90c61c.jpg@128w_128h_1o.webp",
+          head: require("../../assets/img/octaveHead.jpg"),
           uid: "1818479062",
         },
         {
           job: "绘图画师",
           name: "@凪青",
-          head: "https://i0.hdslb.com/bfs/face/4b9df1254484bffca2c23093d31f41bca860ddec.jpg@128w_128h_1o.webp",
+          head: require("../../assets/img/zhiqing.png"),
           uid: "17311506",
         },
+        /* 可恶 不要她
+           八角老师是注释，那我也不能太小气.jpg
         {
           job: "发起人",
           name: "@努力的灵风",
           head: "https://i2.hdslb.com/bfs/face/679ba3aab7b0bebd12564d5cba94c6f3ceee1a22.jpg@128w_128h_1o.webp",
           uid: "62921501",
         },
+        */
       ],
     };
   },
@@ -293,7 +291,7 @@ export default {
 .namePage {
   display: flex;
   flex-direction: column;
-  font-family: "SimHei";
+  font-family: "Microsoft YaHei";
   background: #f5f5f5;
   height: 100%;
   min-height: 100vh;
@@ -337,6 +335,7 @@ export default {
   font-size: 1.4rem;
   margin-top: 1rem;
   line-height: 1.8rem;
+  text-indent: 2rem;
 }
 .phone_text_1 {
   font-size: 2.8rem;
@@ -372,7 +371,8 @@ export default {
   width: 100%;
   height: 78%;
   border-radius: 0.6rem;
-  box-shadow: #838383 0px 2px 3px 1px;
+  box-shadow: 2px 2px 4px -2px #cccccc;
+  border: 1px solid rgba(0,0,0,.125);
 }
 .image {
   width: 9rem;
