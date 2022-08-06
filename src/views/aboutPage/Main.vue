@@ -86,7 +86,6 @@
             <span
               class="helper_name"
               :class="{ phone_second_title: isPhone }"
-              @click="jumpToAuth('62921501')"
               >@努力的灵风</span
             >
           </div>
@@ -232,10 +231,11 @@ export default {
         {
           job: "绘图画师",
           name: "@凪青",
-          head: "https://i0.hdslb.com/bfs/face/4b9df1254484bffca2c23093d31f41bca860ddec.jpg@128w_128h_1o.webp",
+          head: require("../../assets/img/zhiqing.png"),
           uid: "17311506",
         },
         /* 可恶 不要她
+           八角老师是注释，那我也不能太小气.jpg
         {
           job: "发起人",
           name: "@努力的灵风",
