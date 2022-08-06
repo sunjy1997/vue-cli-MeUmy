@@ -15,7 +15,7 @@
           oncontextmenu="return false"
           onselectstart="return false"
           draggable="false"
-          @click="jumpToartical(artWorkPath)"
+          @click="jumpToArticle(artWorkPath)"
         />
       </figure>
     </div>
@@ -31,7 +31,7 @@
           v-if="artTitle !== ''"
           class="title_font"
           :class="{ phone_title_font: isPhone }"
-          @click="jumpToartical(artWorkPath)"
+          @click="jumpToArticle(artWorkPath)"
         >
           {{ artTitle }}
         </span>
@@ -39,7 +39,7 @@
           v-else
           class="title_font"
           :class="{ phone_title_font: isPhone }"
-          @click="jumpToartical(artWorkPath)"
+          @click="jumpToArticle(artWorkPath)"
         >
           {{ artText }}
         </span>
@@ -84,8 +84,8 @@ export default {
         path: `authorInfoPage/${this.authUid}`,
       });
     },
-    // 跳转视频页面
-    jumpToartical(path) {
+    // 跳转文章页面
+    jumpToArticle(path) {
       window.open(path);
     },
   },
@@ -99,7 +99,7 @@ export default {
 .artical_body {
   display: flex;
   background: white;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
   height: 8rem;
   border-radius: 0.6rem;

@@ -79,7 +79,7 @@ export default {
 .image_body {
   display: flex;
   background: white;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
   height: 8rem;
   border-radius: 0.6rem;
